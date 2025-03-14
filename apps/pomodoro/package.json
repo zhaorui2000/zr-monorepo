@@ -15,12 +15,17 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "devDependencies": {
-    "cordova-android": "^13.0.0",
-    "@zr/postcss-px-to-vw":"workspace:*"
+    "@zr/postcss-px-to-vw": "workspace:*",
+    "cordova-android": "^13.0.0"
   },
   "cordova": {
     "platforms": [
       "android"
     ]
+  },
+  "dependencies": {
+    "@zr/ui": "workspace:*",
+    "nanostores": "^0.11.4",
+    "rxjs": "^7.8.2"
   }
 }

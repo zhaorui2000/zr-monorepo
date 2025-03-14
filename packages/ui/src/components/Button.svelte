@@ -9,6 +9,8 @@
     dashed = false,
     content,
     className,
+    children,
+    ...restProps
   } = $props();
 
   const buttonVariants = cva("btn", {
@@ -60,9 +62,9 @@
   });
 </script>
 
-<button class={cx(buttonVariants({ color, size }), className)}>
+<button class={cx(buttonVariants({ color, size }), className)} {...restProps}>
   {#if loading}
     <span class="loading loading-spinner"></span>
   {/if}
-  {@render content?.()}
+  {@render children?.()}
 </button>

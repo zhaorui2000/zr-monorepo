@@ -3,14 +3,13 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    "./ui.css": "./dist/ui.css",
+    "./*":"./src/components/*.svelte"
+  },
   "scripts": {
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "exports":{
-    "./*": "./src/components/*.svelte"
-  },
-  "devDependencies": {
+    "dev": "vite build --watch"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1"
