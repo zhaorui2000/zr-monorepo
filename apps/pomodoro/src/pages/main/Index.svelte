@@ -4,6 +4,10 @@
   import TimeRemaining from "./module/TimeRemaining.svelte";
   import applaudMp3 from "@assets/applaud.mp3";
   import useClickAnywhere from "@zr/svelte-hooks/useClickAnywhere.svelte.js";
+  import notificationPlugins from "@utils/notificationPlugins";
+  import startNotify from "./utils/startNotify";
+  import endNotify from "./utils/endNotify";
+  import updateNotify from "./utils/updateNotify";
   import {
     tomatoActor,
     start,
@@ -16,26 +20,31 @@
 
   let interval = null;
   let audio = null;
+
   const { startListen, stopListen } = useClickAnywhere(() => {
     audio.pause();
   });
-
   onMount(() => {
     startListen();
     $tomatoActor.start();
     audio = new Audio(applaudMp3);
     audio.loop = true;
   });
+
   onDestroy(() => {
     stopListen();
   });
+
   $tomatoActor.subscribe((state) => {
     $timeRemaining = $timeDuration[state.value] ?? $timeRemaining;
   });
+
   $start = function () {
+    startNotify($timeRemaining);
     // 倒计时
     interval = rxjs.interval(1000).subscribe(() => {
       $timeRemaining--;
+      updateNotify($timeRemaining);
       if ($timeRemaining <= 0) {
         $tomatoActor.send({ type: "finish" });
         audio.play();
@@ -43,7 +52,12 @@
       }
     });
   };
+
   $finish = function () {
+    endNotify({
+      title: "🍅 完成",
+      text: $timeRemaining <= 1 ? "任务完成 🎉 " : "手动结束",
+    });
     interval.unsubscribe();
   };
 </script>

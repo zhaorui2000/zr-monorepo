@@ -66,6 +66,9 @@ importers:
       nanostores:
         specifier: ^0.11.4
         version: 0.11.4
+      uuid:
+        specifier: ^11.1.0
+        version: 11.1.0
       xstate:
         specifier: ^5.19.2
         version: 5.19.2
@@ -76,6 +79,9 @@ importers:
       cordova-android:
         specifier: ^13.0.0
         version: 13.0.0
+      cordova-plugin-device:
+        specifier: ^3.0.0
+        version: 3.0.0
 
   packages/postcss-px-to-vw:
     devDependencies:
@@ -602,6 +608,10 @@ packages:
     resolution: {integrity: sha512-OA2NQ6wvhNz4GytPYwTdlA9xfG7Yf7ufkj4u97m3rUfoL/AECwwj0GVT2CYpk/0Fk6HyuHA3QYCxfDPYsKzI1A==}
     engines: {node: '>=16.0.0'}
 
+  cordova-plugin-device@3.0.0:
+    resolution: {integrity: sha512-g8fFYOvleeYpklWvHwZ/T8/IzJe/3O0MGVDIUoqBru4v8SNDAbNVD3oOqoOQANBWGFQMg7GIkAAl8errCHZ7zQ==}
+    engines: {cordovaDependencies: {2.1.0: {cordova-electron: '>=3.0.0'}, 3.0.0: {cordova-android: '>=7.0.0', cordova-electron: '>=3.0.0'}, 4.0.0: {cordova: '>100'}}}
+
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
@@ -1092,6 +1102,10 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
+  uuid@11.1.0:
+    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
+    hasBin: true
+
   vite@6.2.1:
     resolution: {integrity: sha512-n2GnqDb6XPhlt9B8olZPrgMD/es/Nd1RdChF6CBD/fHW6pUyUTt2sQW2fPRX5GiD9XEa6+8A6A4f2vT6pSsE7Q==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
@@ -1571,6 +1585,8 @@ snapshots:
       read-chunk: 3.2.0
       strip-bom: 4.0.0
 
+  cordova-plugin-device@3.0.0: {}
+
   cross-spawn@7.0.6:
     dependencies:
       path-key: 3.1.1
@@ -2012,6 +2028,8 @@ snapshots:
       picocolors: 1.1.1
 
   util-deprecate@1.0.2: {}
+
+  uuid@11.1.0: {}
 
   vite@6.2.1(@types/node@22.13.0)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.0):
     dependencies:

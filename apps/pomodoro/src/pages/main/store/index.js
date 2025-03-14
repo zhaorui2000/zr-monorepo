@@ -1,10 +1,12 @@
 import { atom } from "nanostores";
 import { setup } from "xstate";
 import { createActor } from "xstate";
+import { v4 as uuid } from "uuid";
 
 export const timeRemaining = atom();
 export const start = atom(() => {})
 export const finish = atom(() => {})
+export const ID= uuid()
 
 export const timeDuration = atom({
     Doing: import.meta.env.MODE === "development" ? 25: 25 * 60,
