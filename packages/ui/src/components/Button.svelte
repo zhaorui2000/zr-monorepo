@@ -4,11 +4,13 @@
   let {
     color = "",
     size = "",
+    disabled = false,
     loading = false,
     soft = false,
     dashed = false,
     content,
     className,
+    square = false,
     children,
     ...restProps
   } = $props();
@@ -62,7 +64,10 @@
   });
 </script>
 
-<button class={cx(buttonVariants({ color, size }), className)} {...restProps}>
+<button
+  class={cx(buttonVariants({ color, size, disabled, square }), className)}
+  {...restProps}
+>
   {#if loading}
     <span class="loading loading-spinner"></span>
   {/if}

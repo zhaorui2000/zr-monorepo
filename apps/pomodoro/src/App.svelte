@@ -1,7 +1,7 @@
 <script>
-  import Main from "./pages/Main.svelte";
+  import Main from "./pages/main/Index.svelte";
 </script>
 
-<main>
+<main class="h-screen w-screen">
   <Main />
 </main>
