@@ -1,36 +1,22 @@
 {
-  "name": "io.cordova.hellocordova",
-  "displayName": "HelloCordova",
+  "name": "pomodoro",
   "version": "1.0.0",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "main": "index.js",
   "scripts": {
     "dev:web": "vite",
-    "dev:android": "cordova run android",
-    "build:web": "vite build",
-    "build:android": "vite build && cordova build android"
+    "build:web": "vite build"
   },
-  "keywords": [
-    "ecosystem:cordova"
-  ],
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@zr/postcss-px-to-vw": "workspace:*",
-    "cordova-android": "^13.0.0",
-    "cordova-plugin-device": "^3.0.0"
-  },
-  "cordova": {
-    "platforms": [
-      "android"
-    ],
-    "plugins": {
-      "cordova-plugin-local-notification": {
-        "ANDROIDX_CORE_VERSION": "1.12.0"
-      }
-    }
+    "@capacitor/cli": "^7.1.0",
+    "@zr/postcss-px-to-vw": "workspace:*"
   },
   "dependencies": {
+    "@capacitor/android": "^7.1.0",
+    "@capacitor/background-runner": "2.1.0",
+    "@capacitor/core": "^7.1.0",
+    "@capacitor/local-notifications": "^7.0.0",
     "@zr/svelte-hooks": "workspace:*",
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
