@@ -1,2 +1,5 @@
 @import "tailwindcss";
 @import "@zr/ui/ui.css";
+html{
+    @apply h-lvh w-lvw;
+}
