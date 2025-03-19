@@ -1,5 +1,5 @@
 <script>
-  import { cva,cx } from "class-variance-authority";
+  import { cva, cx } from "class-variance-authority";
   let {
     color = "",
     size = "",
@@ -7,8 +7,8 @@
     outline = false,
     dash = false,
     ghost = false,
-    content,
     className,
+    children,
   } = $props();
   const badgeVariants = cva("badge", {
     variants: {
@@ -45,6 +45,9 @@
   });
 </script>
 
-<span class={cx(badgeVariants({ color, size, soft, outline, dash, ghost }),className)}
-  >{@render content?.()}</span
+<span
+  class={cx(
+    badgeVariants({ color, size, soft, outline, dash, ghost }),
+    className
+  )}>{@render children?.()}</span
 >

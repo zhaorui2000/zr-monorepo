@@ -1,26 +1,26 @@
 <script>
-  import { cva,cx } from "class-variance-authority";
+  import { cva, cx } from "class-variance-authority";
   let {
     color,
     size,
     dashed = false,
     border = false,
     title = "",
-    content,
     actions,
     className,
+    children,
   } = $props();
   const cardVariants = cva("card", {
     variants: {
       color: {
-        neutral: ["card-neutral text-neutral-content"],
-        primary: ["card-primary text-primary-content"],
-        secondary: ["card-secondary text-secondary-content"],
-        accent: ["card-accent text-accent-content"],
-        info: ["card-info text-info-content"],
-        success: ["card-success text-success-content"],
-        warning: ["card-warning text-warning-content"],
-        error: ["card-error text-error-content"],
+        neutral: ["bg-neutral text-neutral-content"],
+        primary: ["bg-primary text-primary-content"],
+        secondary: ["bg-secondary text-secondary-content"],
+        accent: ["bg-accent text-accent-content"],
+        info: ["bg-info text-info-content"],
+        success: ["bg-success text-success-content"],
+        warning: ["bg-warning text-warning-content"],
+        error: ["bg-error text-error-content"],
       },
       size: {
         xs: ["card-xs"],
@@ -51,7 +51,7 @@
   <div class="card-body">
     <h2 class="card-title">{title}</h2>
     <p>
-      {@render content?.()}
+      {@render children?.()}
     </p>
     <div class="card-actions justify-end">
       {@render actions?.()}

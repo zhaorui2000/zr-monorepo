@@ -2,3 +2,7 @@
 @plugin "daisyui";
 @plugin "@tailwindcss/typography";
 @plugin "@iconify/tailwind4";
+
+html {
+    @apply bg-base-100;
+}
