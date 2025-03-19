@@ -3,13 +3,15 @@
   import Card from "@zr/ui/Card";
   import Radio from "@zr/ui/Radio";
   import { v4 as uuid } from "uuid";
-  import { answer, randomOrder } from "./store";
+  import {
+    answer,
+    randomOrder,
+    OPTION_LABELS,
+    ANKI_QUESTION,
+    ANKI_OPTIONS,
+  } from "./store";
   import generateUniqueRandomNumbers from "@zr/utils/Array/generateUniqueRandomNumbers";
-  const question = "{{问题}}";
-  const AOption = "{{A}}";
-  const BOption = "{{B}}";
-  const COption = "{{C}}";
-  const DOption = "{{D}}";
+
   const radioName = uuid();
   $randomOrder = generateUniqueRandomNumbers(1, 4);
   const orderClass = cva("", {
@@ -25,41 +27,21 @@
 </script>
 
 <div class="flex flex-col gap-y-2 p-4">
-  <Card color="primary" title="单选题">{@html question}</Card>
-  <Card>
-    <div class="grid">
-      <Radio
-        className={orderClass({ order: $randomOrder[0] })}
-        color="primary"
-        size="sm"
-        value="A"
-        onchange={() => ($answer = "A")}
-        name={radioName}>{@html AOption}</Radio
-      >
-      <Radio
-        className={orderClass({ order: $randomOrder[1] })}
-        color="primary"
-        size="sm"
-        value="B"
-        onchange={() => ($answer = "B")}
-        name={radioName}>{@html BOption}</Radio
-      >
-      <Radio
-        className={orderClass({ order: $randomOrder[2] })}
-        color="primary"
-        size="sm"
-        value="C"
-        onchange={() => ($answer = "C")}
-        name={radioName}>{@html COption}</Radio
-      >
-      <Radio
-        className={orderClass({ order: $randomOrder[3] })}
-        color="primary"
-        size="sm"
-        value="D"
-        onchange={() => ($answer = "D")}
-        name={radioName}>{@html DOption}</Radio
-      >
-    </div></Card
-  >
+  <Card color="primary" title="单选题">{@html ANKI_QUESTION}</Card>
+  <div class="grid">
+    <Card>
+      <div class="grid">
+        {#each { length: OPTION_LABELS.length }, row}
+          <Radio
+            color="primary"
+            className={orderClass({ order: $randomOrder[row] })}
+            size="sm"
+            onchange={() => ($answer = OPTION_LABELS[row])}
+            value={OPTION_LABELS[row]}
+            name={radioName}>{@html ANKI_OPTIONS[row]}</Radio
+          >
+        {/each}
+      </div>
+    </Card>
+  </div>
 </div>

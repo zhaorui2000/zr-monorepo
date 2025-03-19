@@ -3,12 +3,16 @@
   import Card from "@zr/ui/Card";
   import Radio from "@zr/ui/Radio";
   import { v4 as uuid } from "uuid";
-  import { answer, randomOrder } from "./store";
+  import {
+    answer,
+    randomOrder,
+    OPTION_LABELS,
+    ANKI_QUESTION,
+    ANKI_TRUE_ANSWER,
+    ANKI_OPTIONS,
+  } from "./store";
   import Badge from "@zr/ui/Badge";
   import Extension from "@modules/Extension.svelte";
-  const question = "{{问题}}";
-  const Options = ["{{A}}", "{{B}}", "{{C}}", "{{D}}"];
-  const trueAnswer = "{{答案}}";
   const radioName = uuid();
   const orderClass = cva("", {
     variants: {
@@ -21,8 +25,8 @@
     },
   });
   function calcBg(row) {
-    if (["A", "B", "C", "D"][row] === trueAnswer) return "success";
-    if (["A", "B", "C", "D"][row] === $answer) {
+    if (OPTION_LABELS[row] === ANKI_TRUE_ANSWER) return "success";
+    if (OPTION_LABELS[row] === $answer) {
       return "error";
     }
 
@@ -31,20 +35,20 @@
 </script>
 
 <div class="flex flex-col gap-y-2 p-4">
-  <Card color="primary" title="单选题">{@html question}</Card>
+  <Card color="primary" title="单选题">{@html ANKI_QUESTION}</Card>
   <Card>
     <div class="grid">
-      {#each { length: 4 }, row}
+      {#each { length: OPTION_LABELS.length }, row}
         <Radio
           className={orderClass({ order: $randomOrder[row] })}
           bg={calcBg(row)}
           size="sm"
-          value={["A", "B", "C", "D"][row]}
+          value={OPTION_LABELS[row]}
           name={radioName}
         >
           <Badge className="mr-2" color="primary" size="sm"
-            >{["A", "B", "C", "D"][row]}</Badge
-          >{@html Options[row]}</Radio
+            >{OPTION_LABELS[row]}</Badge
+          >{@html ANKI_OPTIONS[row]}</Radio
         >
       {/each}
     </div>

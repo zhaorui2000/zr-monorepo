@@ -8,7 +8,12 @@ export default defineConfig({
   plugins: [ viteSingleFile(),tailwindcss(),svelte()],
   build: {
     // Do not compress, compressed and pasted to anki template recognition problem
-    minify: false
+    minify: false,
+    rollupOptions:{
+      output:{
+        format:"iife"
+      }
+    }
   },
   resolve: {
     alias: {
