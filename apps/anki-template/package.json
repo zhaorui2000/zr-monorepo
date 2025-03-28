@@ -21,6 +21,7 @@
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
+    "marked": "^15.0.7",
     "nanostores": "^0.11.4",
     "tailwindcss": "^4.0.14",
     "uuid": "^11.1.0"

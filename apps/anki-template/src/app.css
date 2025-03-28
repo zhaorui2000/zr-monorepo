@@ -3,3 +3,23 @@
 html{
     @apply h-lvh w-lvw;
 }
+@utility h1{
+    h1 {
+        @apply font-[36px] font-bold;
+    }
+}
+@utility h2 {
+    @apply font-[24px] font-bold;
+}
+@utility h3 {
+    @apply font-[20px] font-bold;
+}
+@utility h4 {
+    @apply font-[16px] font-bold;
+}
+@utility h5 {
+    @apply font-[16px];
+}
+@utility h6 {
+    @apply font-[16px];
+}
