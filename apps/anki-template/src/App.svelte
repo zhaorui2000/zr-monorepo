@@ -12,9 +12,12 @@
         link.remove();
       }
     });
-    document.querySelectorAll("head style").forEach((style) => {
-      style.remove();
-    });
+    // 如果是生产环境，删除 head 中的 style 标签
+    if (import.meta.env.PROD) {
+      document.querySelectorAll("head style").forEach((style) => {
+        style.remove();
+      });
+    }
   });
 </script>
 
