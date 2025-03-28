@@ -1,84 +1,69 @@
-# Turborepo starter
+# 项目运行
 
-This Turborepo starter is maintained by the Turborepo core team.
+使用 turbo+pnpm 构建的单仓库项目
+使用方法：
 
-## Using this example
+1. 安装 nodejs 去官网下载最新版本
+   `https://nodejs.org/zh-cn`
+   安装完后，重启电脑或者终端，使用 node -v 查看版本号
+2. 安装 pnpm
+   `https://www.pnpm.cn/`
+   安装完后，重启电脑或者终端，使用 pnpm -v 查看版本号
+3. 安装依赖
+   `pnpm install`
+4. 启动项目
+   `pnpm dev`
+5. 浏览器访问
+   `http://localhost:5173/`
+   如成功打开网站，证明安装成功
 
-Run the following command:
+# anki 加入模板（单选题为例）
 
-```sh
-npx create-turbo@latest
+### 首先 anki 要有对应的字段
+
+1. 打开 anki
+
+2. 点击 工具 -> 笔记模板 -> 添加 -> 点击【添加：问答题】 -> 输入名称（随意）
+
+3. 列表中选择刚才添加的模板
+
+4. 点击字段
+
+5. 添加或修改，保证字段名为 【A】【B】【C】【D】【问题】【答案】【补充】
+   
+   ![](./assets/字段.png)
+
+6. 点击 【保存】
+
+7. 列表中选择刚才添加的模板
+
+8. 点击【卡片】
+
+9. 这时候就可以看到正面模板、背面模板和样式
+
+10. 点击样式单选，删除里面所有内容。
+
+### 项目打包对应代码
+
+> 项目使用 svelte + tailwind + daisyui
+
+1. 进入 /app/anki-template/src/App.svelte 这个文件，修改第二行
+
+```js
+import TEMp from "./pages/MCQs/Back.svelte";
 ```
 
-## What's inside?
+`MCQs`文件夹 是单选题
+`Back.svelte` 是背面模板，`Front.svelte` 正面模板
 
-This Turborepo includes the following packages/apps:
+如果想打包正面模板，就改成
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```js
+import TEMp from "./pages/MCQs/Front.svelte";
 ```
 
-### Develop
+2. 项目根目录运行 `pnpm build`（如果刚刚运行 pnpm dev 使用 (win)ctrl + c 或 (mac) cmd + c 停止）就打包成功了
 
-To develop all apps and packages, run the following command:
+3. 找到 /app/anki-template/dist/index.html 这个文件，这个就是打包好的内容，全选粘贴替换 anki 中对应的模板
 
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+![](./assets/选择题正面.png)

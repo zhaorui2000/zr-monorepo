@@ -1,5 +1,5 @@
 <script>
-  import MCQs from "./pages/MCQs/Back.svelte";
+  import TEMp from "./pages/MCQs/Back.svelte";
   import { onMount } from "svelte";
   onMount(() => {
     // Remove Anki default import webview.css
@@ -11,4 +11,4 @@
   });
 </script>
 
-<MCQs />
+<TEMp />
