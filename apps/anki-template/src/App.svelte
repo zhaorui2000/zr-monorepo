@@ -1,5 +1,6 @@
 <script>
-  import TEMp from "./pages/MCQs/Front.svelte";
+  import TEMp from "./pages/MCQs/Back.svelte";
+  import "@zr/ui/index.js";
   import ThemeController from "@zr/ui/ThemeController";
   import { onMount } from "svelte";
   import { themeChange } from "theme-change";

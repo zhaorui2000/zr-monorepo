@@ -6,7 +6,8 @@
   "main": "dist/index.js",
   "exports": {
     "./ui.css": "./dist/ui.css",
-    "./*":"./src/components/*.svelte"
+    "./*":"./src/components/*.svelte",
+    "./index.js":"./dist/index.js"
   },
   "scripts": {
     "dev": "vite build --watch"

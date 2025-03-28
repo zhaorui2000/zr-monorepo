@@ -1,7 +1,7 @@
 <script>
   import Card from "@zr/ui/Card";
   import { marked } from "marked";
-  import markedRender from "@utils/markedRender";
+  import markedRender from "@utils/markedRender.svelte.js";
   import Collapse from "@zr/ui/Collapse";
   const extension = "{{补充}}"
     .replaceAll(/<br\s*(\/?)>/g, "\n")
