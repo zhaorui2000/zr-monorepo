@@ -36,7 +36,7 @@
 
 <div class="flex flex-col gap-y-2 p-4">
   <Card color="primary" title="单选题">{@html ANKI_QUESTION}</Card>
-  <Card>
+  <Card className="pointer-events-none">
     <div class="grid">
       {#each { length: OPTION_LABELS.length }, row}
         <Radio
