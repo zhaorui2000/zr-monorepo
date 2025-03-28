@@ -63,6 +63,7 @@
           class="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
           aria-label={theme}
           value={theme}
+          data-set-theme={theme}
         />
       </li>
     {/each}

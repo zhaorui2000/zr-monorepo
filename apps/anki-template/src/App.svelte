@@ -2,7 +2,9 @@
   import TEMp from "./pages/MCQs/Back.svelte";
   import ThemeController from "@zr/ui/ThemeController";
   import { onMount } from "svelte";
+  import { themeChange } from "theme-change";
   onMount(() => {
+    themeChange(false);
     // Remove Anki default import webview.css
     document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
       if (link.getAttribute("href").includes("webview.css")) {

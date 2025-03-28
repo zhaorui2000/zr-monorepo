@@ -25,6 +25,7 @@
     "marked": "^15.0.7",
     "nanostores": "^0.11.4",
     "tailwindcss": "^4.0.14",
+    "theme-change": "^2.5.0",
     "uuid": "^11.1.0"
   }
 }
