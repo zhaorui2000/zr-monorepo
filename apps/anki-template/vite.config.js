@@ -17,7 +17,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@modules": path.resolve(__dirname, "./src/modules")
+      "@modules": path.resolve(__dirname, "./src/modules"),
+      "@utils": path.resolve(__dirname, "./src/utils")
     }
   }
 })

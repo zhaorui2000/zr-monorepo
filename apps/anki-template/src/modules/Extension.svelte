@@ -1,13 +1,13 @@
 <script>
   import Card from "@zr/ui/Card";
   import { marked } from "marked";
+  import markedRender from "@utils/markedRender";
   const extension = "{{补充}}"
     .replaceAll(/<br\s*(\/?)>/g, "\n")
     .replaceAll(/&nbsp;/g, " ");
-  console.log(extension);
-  console.log(marked.parse(extension));
+  marked.use({ renderer: markedRender });
 </script>
 
 <Card color="warning" title="补充">
-  {@html marked.parse(extension)}
+  {@html marked(extension)}
 </Card>

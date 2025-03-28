@@ -1,8 +1,24 @@
-const marked = require('marked');
+import { marked } from "marked";
+import {cva} from "class-variance-authority"
 
-class CustomRenderer extends marked.Renderer {
+export default {
   // 自定义标题渲染
-  heading(text, level) {
-    return `<div class="h${level}">${text}</div>`;
+  heading({ tokens, depth }) {
+    console.log({tokens, depth})
+    const text = marked.parser(tokens);
+    const style = cva("",{
+      variants: {
+        depth: {
+          1: "h1",
+          2: "h2",
+          3: "h3",
+          4: "h4",
+          5: "h5",
+          6: "h6",
+        },
+      },
+    })({ depth });
+
+    return `<div class="${style}">${text}</div>`;
   }
 }
