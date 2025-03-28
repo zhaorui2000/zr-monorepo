@@ -8,11 +8,17 @@
       if (link.getAttribute("href").includes("webview.css")) {
         link.remove();
       }
+      if (link.getAttribute("href").includes("reviewer.css")) {
+        link.remove();
+      }
+    });
+    document.querySelectorAll("head style").forEach((style) => {
+      style.remove();
     });
   });
 </script>
 
-<div class="h-lvh w-lvw relative">
+<div class="h-full w-full relative">
   <div class="absolute top-1 right-10">
     <ThemeController />
   </div>
