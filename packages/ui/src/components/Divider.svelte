@@ -1,5 +1,3 @@
-<svelte:options customElement={{ tag: "zr-divider", shadow: "none" }} />
-
 <script>
   import { cva } from "class-variance-authority";
   const dividerVariants = cva("divider", {

@@ -12,6 +12,6 @@ export default {
     }).join("")}</ul>`;
   },
   hr(){
-    return "<zr-divider></zr-divider>"
+    return `<div class="divider"></div>`
   }
 };
