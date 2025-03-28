@@ -6,7 +6,9 @@
   const extension = "{{补充}}"
     .replaceAll(/<br\s*(\/?)>/g, "\n")
     .replaceAll(/&nbsp;/g, " ");
-  const extensionCollapsible = "{{折叠内容}}";
+  const extensionCollapsible = "{{折叠内容}}"
+    .replaceAll(/<br\s*(\/?)>/g, "\n")
+    .replaceAll(/&nbsp;/g, " ");
   const hasExtensionCollapsible = "{{#折叠内容}}1{{/折叠内容}}";
   marked.use({ renderer: markedRender });
 </script>
