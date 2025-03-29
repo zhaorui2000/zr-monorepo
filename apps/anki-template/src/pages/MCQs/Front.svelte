@@ -2,6 +2,7 @@
   import { cva } from "class-variance-authority";
   import Card from "@zr/ui/Card";
   import Radio from "@zr/ui/Radio";
+  import RandomOrderCheckbox from "./component/RandomOrderCheckbox.svelte";
   import { v4 as uuid } from "uuid";
   import {
     answer,

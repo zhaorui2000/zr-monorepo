@@ -13,6 +13,7 @@
   } from "./store";
   import Badge from "@zr/ui/Badge";
   import Extension from "@modules/Extension.svelte";
+  import RandomOrderCheckbox from "./component/RandomOrderCheckbox.svelte";
   const radioName = uuid();
   const orderClass = cva("", {
     variants: {
@@ -36,8 +37,11 @@
 
 <div class="flex flex-col gap-y-2 p-4">
   <Card color="primary" title="单选题">{@html ANKI_QUESTION}</Card>
-  <Card className="pointer-events-none">
-    <div class="grid">
+  <Card>
+    {#snippet actions()}
+      <RandomOrderCheckbox></RandomOrderCheckbox>
+    {/snippet}
+    <div class="grid pointer-events-none">
       {#each { length: OPTION_LABELS.length }, row}
         <Radio
           className={orderClass({ order: $randomOrder[row] })}

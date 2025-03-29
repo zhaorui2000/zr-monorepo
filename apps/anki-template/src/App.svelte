@@ -6,7 +6,6 @@
   import { themeChange } from "theme-change";
   onMount(() => {
     themeChange(false);
-    // Remove Anki default import webview.css
     document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
       if (link.getAttribute("href").includes("webview.css")) {
         link.remove();
