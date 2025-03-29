@@ -7,10 +7,7 @@
   onMount(() => {
     themeChange(false);
     document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
-      if (link.getAttribute("href").includes("webview.css")) {
-        link.remove();
-      }
-      if (link.getAttribute("href").includes("reviewer.css")) {
+      if (link.getAttribute("href").includes(".css")) {
         link.remove();
       }
     });
