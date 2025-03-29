@@ -1,5 +1,5 @@
 <script>
-  import TEMp from "./pages/MCQs/Back.svelte";
+  import TEMp from "./pages/MCQs/Front.svelte";
   import "@zr/ui/index.js";
   import ThemeController from "@zr/ui/ThemeController";
   import { onMount } from "svelte";
@@ -23,9 +23,7 @@
   });
 </script>
 
-<div class="h-full w-full relative">
-  <div class="absolute top-1 right-10">
-    <ThemeController />
-  </div>
-  <TEMp />
+<div class="absolute top-1 right-10">
+  <ThemeController />
 </div>
+<TEMp />

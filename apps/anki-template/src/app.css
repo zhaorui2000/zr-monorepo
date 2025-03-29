@@ -1,28 +1,38 @@
 @import "tailwindcss";
 @import "@zr/ui/ui.css";
-html{
-    @apply h-lvh w-lvw;
-    font-family:"霞鹜文楷 GB 屏幕阅读版",var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji")
+html {
+  @apply h-lvh w-lvw;
+  font-family: "霞鹜文楷 GB 屏幕阅读版",
+    var(
+      --default-font-family,
+      ui-sans-serif,
+      system-ui,
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
+      "Noto Color Emoji"
+    );
 }
 h1 {
-        font-size: 36px;
-        font-weight: bold;
-    }
- h2 {
-    font-size: 24px;
-    font-weight: bold;
+  font-size: 36px;
+  font-weight: bold;
+}
+h2 {
+  font-size: 24px;
+  font-weight: bold;
 }
 h3 {
-    font-size: 20px;
-    font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
 }
 h4 {
-    font-size: 16px;
-    font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 }
 h5 {
-    font-size: 16px;
+  font-size: 16px;
 }
 h6 {
-    font-size: 16px;
+  font-size: 16px;
 }

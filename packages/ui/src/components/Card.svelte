@@ -10,7 +10,7 @@
     className,
     children,
   } = $props();
-  const cardVariants = cva("card", {
+  const cardVariants = cva("card relative", {
     variants: {
       color: {
         neutral: ["bg-neutral text-neutral-content"],
@@ -45,11 +45,28 @@
     ],
     defaultVariants: {},
   });
+  const cardTitleVariants = cva("card-title sticky top-0", {
+    variants: {
+      color: {
+        neutral: ["bg-neutral", "text-neutral-content"],
+        primary: ["bg-primary", "text-primary-content"],
+        secondary: ["bg-secondary", "text-secondary-content"],
+        accent: ["bg-accent", "text-accent-content"],
+        info: ["bg-info", "text-info-content"],
+        success: ["bg-success", "text-success-content"],
+        warning: ["bg-warning", "text-warning-content"],
+        error: ["bg-error", "text-error-content"],
+      },
+    },
+    defaultVariants: {},
+  });
 </script>
 
 <div class={cx(cardVariants({ size, border, dashed, color }), className)}>
   <div class="card-body">
-    <h2 class="card-title">{title}</h2>
+    <h2 class={cx(cardTitleVariants({ color }))}>
+      {title}
+    </h2>
     <p>
       {@render children?.()}
     </p>

@@ -35,9 +35,11 @@
   }
 </script>
 
-<div class="flex flex-col gap-y-2 p-4">
+<div
+  class="flex flex-col gap-y-2 sm:p-2 md:p-4 p-1 overflow-y-scroll max-h-full"
+>
   <Card color="primary" title="单选题">{@html ANKI_QUESTION}</Card>
-  <Card>
+  <Card size="xs">
     {#snippet actions()}
       <RandomOrderCheckbox></RandomOrderCheckbox>
     {/snippet}
