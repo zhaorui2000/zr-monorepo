@@ -1,5 +1,6 @@
 <script>
   import { cva, cx } from "class-variance-authority";
+  import Icon from "./Icon.svelte";
   let {
     color,
     size,
@@ -8,9 +9,12 @@
     title = "",
     actions,
     className,
+    stickyAble = false,
+    stickyClass = "top-0 bottom-0",
     children,
   } = $props();
-  const cardVariants = cva("card", {
+  let sticky = $state(false);
+  const cardVariants = cva("card relative", {
     variants: {
       color: {
         neutral: ["bg-neutral text-neutral-content"],
@@ -34,6 +38,9 @@
       },
       dashed: {
         true: ["card-dashed"],
+      },
+      sticky: {
+        true: ["sticky", "z-2", "max-h-[50dvh]"],
       },
     },
     compoundVariants: [
@@ -62,8 +69,27 @@
   });
 </script>
 
-<div class={cx(cardVariants({ size, border, dashed, color }), className)}>
+<div
+  class={cx(
+    cardVariants({ size, border, dashed, color, sticky }),
+    { [stickyClass]: sticky, "rounded-none": sticky },
+    className
+  )}
+>
   <div class="card-body overflow-y-scroll">
+    {#if stickyAble}
+      <Icon
+        iconClass={cx({
+          "icon-[material-symbols--sticky-note-rounded]": sticky,
+          "icon-[material-symbols--sticky-note-outline-rounded]": !sticky,
+        })}
+        onclick={() => {
+          sticky = !sticky;
+        }}
+        className="text-3xl absolute top-2 right-2 z-1 opacity-25"
+      ></Icon>
+    {/if}
+
     <h2 class={cx(cardTitleVariants({ color }))}>
       {title}
     </h2>

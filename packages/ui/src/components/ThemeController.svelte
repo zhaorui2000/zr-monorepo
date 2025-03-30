@@ -38,7 +38,7 @@
   ];
 </script>
 
-<div class="dropdown z-1">
+<div class="dropdown z-9999">
   <div tabindex="0" role="button" class="btn m-1 hover:opacity-75 opacity-25">
     主题
     <svg

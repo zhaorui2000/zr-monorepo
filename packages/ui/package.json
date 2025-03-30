@@ -6,13 +6,16 @@
   "main": "dist/index.js",
   "exports": {
     "./ui.css": "./dist/ui.css",
-    "./*":"./src/components/*.svelte",
-    "./index.js":"./dist/index.js"
+    "./*": "./src/components/*.svelte",
+    "./index.js": "./dist/index.js"
   },
   "scripts": {
     "dev": "vite build --watch"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1"
+  },
+  "devDependencies": {
+    "@iconify/tailwind4": "^1.0.6"
   }
 }
