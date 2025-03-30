@@ -40,7 +40,7 @@
         true: ["card-dashed"],
       },
       sticky: {
-        true: ["sticky", "z-2", "max-h-[50dvh]"],
+        true: ["sticky", "z-2", "max-h-[40dvh]"],
       },
     },
     compoundVariants: [
