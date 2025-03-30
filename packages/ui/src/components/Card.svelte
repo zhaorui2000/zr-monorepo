@@ -10,7 +10,7 @@
     className,
     children,
   } = $props();
-  const cardVariants = cva("card relative", {
+  const cardVariants = cva("card", {
     variants: {
       color: {
         neutral: ["bg-neutral text-neutral-content"],
@@ -63,7 +63,7 @@
 </script>
 
 <div class={cx(cardVariants({ size, border, dashed, color }), className)}>
-  <div class="card-body">
+  <div class="card-body overflow-y-scroll">
     <h2 class={cx(cardTitleVariants({ color }))}>
       {title}
     </h2>
