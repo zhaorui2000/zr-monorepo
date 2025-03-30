@@ -52,7 +52,7 @@
     ],
     defaultVariants: {},
   });
-  const cardTitleVariants = cva("card-title sticky top-0", {
+  const cardTitleVariants = cva("card-title sticky", {
     variants: {
       color: {
         neutral: ["bg-neutral", "text-neutral-content"],
@@ -89,8 +89,10 @@
         className="text-3xl absolute top-2 right-2 z-1 opacity-25"
       ></Icon>
     {/if}
-
-    <h2 class={cx(cardTitleVariants({ color }))}>
+    <h2
+      class={cx(cardTitleVariants({ color }))}
+      style="top: calc(-1 * var(--card-p, 1.5rem))"
+    >
       {title}
     </h2>
     <p>
