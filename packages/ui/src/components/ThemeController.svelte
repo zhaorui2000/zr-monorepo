@@ -35,6 +35,7 @@
     "caramellatte",
     "abyss",
     "silk",
+    "ghibli",
   ];
 </script>
 

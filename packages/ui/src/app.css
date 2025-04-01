@@ -34,7 +34,58 @@
     "caramellatte",
     "abyss",
     "silk";
-  }
+}
+@plugin "daisyui/theme"{
+  name: "ghibli";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  /* 柔和的米色调背景，带点老旧感 */
+  --color-base-100: oklch(97% 0.02 85);  /* 温暖米白色 */
+  --color-base-200: oklch(93% 0.03 90);  /* 柔和浅黄褐 */
+  --color-base-300: oklch(85% 0.05 95);  /* 旧纸感米黄色 */
+  --color-base-content: oklch(25% 0.05 100); /* 低对比的深褐色文字 */
+
+  /* 代表自然的核心色彩 */
+  --color-primary: oklch(58% 0.26 190); /* 低饱和度的青绿色 */
+  --color-primary-content: oklch(98% 0.02 190);
+
+  --color-secondary: oklch(72% 0.22 80); /* 柔和的金黄，类似阳光色 */
+  --color-secondary-content: oklch(20% 0.06 80);
+
+  --color-accent: oklch(62% 0.27 20); /* 低饱和的红砖色 */
+  --color-accent-content: oklch(98% 0.02 20);
+
+  --color-neutral: oklch(45% 0.04 240); /* 带一点灰蓝感的柔和中性色 */
+  --color-neutral-content: oklch(95% 0.02 240);
+
+  /* 额外的信息提示色彩 */
+  --color-info: oklch(68% 0.18 220); /* 柔和的浅蓝色，像晴天的天空 */
+  --color-info-content: oklch(98% 0.01 220);
+
+  --color-success: oklch(60% 0.22 135); /* 柔和的森林绿 */
+  --color-success-content: oklch(98% 0.01 135);
+
+  --color-warning: oklch(78% 0.24 70); /* 柔和的暖橙色 */
+  --color-warning-content: oklch(20% 0.06 70);
+
+  --color-error: oklch(62% 0.28 10); /* 低饱和度的深红色，带点旧感 */
+  --color-error-content: oklch(98% 0.01 10);
+
+  /* 复古风格的圆角和边框 */
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+
+  /* 视觉层次感 */
+  --size-selector: 0.3rem;
+  --size-field: 0.35rem;
+  --border: 1px;
+  --depth: 2;
+  --noise: 0.07; /* 增加一点手绘感 */
+}
+
 @plugin "@tailwindcss/typography";
 @plugin "@iconify/tailwind4";
 
