@@ -1,0 +1,75 @@
+<script>
+  import Icon from "./Icon.svelte";
+  import { cx, cva } from "class-variance-authority";
+  export const ALERT_ICON_TYPE = {
+    success: "icon-[material-symbols--check-circle-rounded]",
+    error: "icon-[material-symbols--error-outline-rounded]",
+  };
+  const {
+    type,
+    className,
+    color,
+    soft,
+    outline,
+    dash,
+    vertical,
+    closeable = true,
+    horizontal,
+    children,
+  } = $props();
+  let isShow = $state(true);
+  const alertVariants = cva("alert", {
+    variants: {
+      color: {
+        undefined: [""],
+        neutral: ["alert-neutral"],
+        primary: ["alert-primary"],
+        secondary: ["alert-secondary"],
+        accent: ["alert-accent"],
+        info: ["alert-info"],
+        success: ["alert-success"],
+        warning: ["alert-warning"],
+        error: ["alert-error"],
+      },
+      soft: {
+        true: ["alert-soft"],
+      },
+      outline: {
+        true: ["alert-outline"],
+      },
+      dash: {
+        true: ["alert-dash"],
+      },
+      vertical: {
+        true: ["alert-vertical"],
+      },
+      horizontal: {
+        true: ["alert-horizontal"],
+      },
+    },
+    compoundVariants: [],
+    defaultVariants: {},
+  });
+</script>
+
+{#if isShow}
+  <div
+    role="alert"
+    class={cx(
+      alertVariants({ color, soft, outline, dash, vertical, horizontal }),
+      className
+    )}
+  >
+    <Icon iconClass={ALERT_ICON_TYPE[type]}></Icon>
+    {@render children?.()}
+    {#if closeable}
+      <Icon
+        iconClass="icon-[material-symbols--close-rounded]"
+        className="cursor-pointer"
+        onclick={() => {
+          isShow = false;
+        }}
+      ></Icon>
+    {/if}
+  </div>
+{/if}

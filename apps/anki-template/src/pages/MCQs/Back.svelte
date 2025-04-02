@@ -2,6 +2,7 @@
   import { cva, cx } from "class-variance-authority";
   import Card from "@zr/ui/Card";
   import Radio from "@zr/ui/Radio";
+  import Alert from "@zr/ui/Alert";
   import { v4 as uuid } from "uuid";
   import {
     answer,
@@ -15,6 +16,7 @@
   import Extension from "@modules/Extension.svelte";
   import RandomOrderCheckbox from "./component/RandomOrderCheckbox.svelte";
   const radioName = uuid();
+  const isCorrect = $state($answer === ANKI_TRUE_ANSWER);
   const orderClass = cva("", {
     variants: {
       order: {
@@ -43,6 +45,11 @@
     title="单选题"
     stickyAble
     stickyClass="sm:-top-2 md:-top-4 -top-1">{@html ANKI_QUESTION}</Card
+  >
+  <Alert
+    type={isCorrect ? "success" : "error"}
+    soft
+    color={isCorrect ? "success" : "error"}>{isCorrect ? "正确" : "错误"}</Alert
   >
   <Card size="xs">
     {#snippet actions()}
