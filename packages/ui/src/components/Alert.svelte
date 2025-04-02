@@ -1,6 +1,7 @@
 <script>
   import Icon from "./Icon.svelte";
   import { cx, cva } from "class-variance-authority";
+  import { fade } from "svelte/transition";
   export const ALERT_ICON_TYPE = {
     success: "icon-[material-symbols--check-circle-rounded]",
     error: "icon-[material-symbols--error-outline-rounded]",
@@ -54,6 +55,7 @@
 
 {#if isShow}
   <div
+    transition:fade={{ duration: 300 }}
     role="alert"
     class={cx(
       alertVariants({ color, soft, outline, dash, vertical, horizontal }),
