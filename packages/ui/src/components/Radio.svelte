@@ -52,6 +52,9 @@
     longPress: (e) => {
       isShowRadio = !isShowRadio;
     },
+    eventListenerOptions: {
+      capture: true,
+    },
   }}
 >
   <label class="flex gap-2 cursor-pointer items-center">
@@ -64,7 +67,7 @@
       {...restProps}
     />
     <span
-      class={cx("", {
+      class={cx("select-none", {
         "line-through": !isShowRadio,
       })}>{@render children?.()}</span
     >

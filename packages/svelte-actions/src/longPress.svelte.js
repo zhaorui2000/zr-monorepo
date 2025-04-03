@@ -1,16 +1,16 @@
 import { timer, fromEvent, merge, switchMap, takeUntil, filter } from 'rxjs';
 
-export default function longPress(node, { longPress, duration = 700 } = {}) {
+export default function longPress(node, { longPress, duration = 700,eventListenerOptions } = {}) {
   let subscription;
   // 创建事件流：同时监听触摸和鼠标事件
   const startEvents = merge(
-    fromEvent(node, 'touchstart'),
-    fromEvent(node, 'mousedown')
+    fromEvent(node, 'touchstart',eventListenerOptions),
+    fromEvent(node, 'mousedown',eventListenerOptions)
   );
   const endEvents = merge(
-    fromEvent(node, 'touchend'),
-    fromEvent(node, 'mouseup'),
-    fromEvent(node, 'touchcancel') // 处理触摸取消（如移动手指离开）
+    fromEvent(node, 'touchend',eventListenerOptions),
+    fromEvent(node, 'mouseup',eventListenerOptions),
+    fromEvent(node, 'touchcancel',eventListenerOptions) // 处理触摸取消（如移动手指离开）
   );
   startEvents.pipe(
     switchMap(() => {
