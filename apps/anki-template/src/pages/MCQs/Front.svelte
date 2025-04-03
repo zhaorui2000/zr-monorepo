@@ -2,6 +2,7 @@
   import { cva } from "class-variance-authority";
   import Card from "@zr/ui/Card";
   import Radio from "@zr/ui/Radio";
+  import CopyQuestion from "./component/CopyQuestion.svelte";
   import { v4 as uuid } from "uuid";
   import {
     answer,
@@ -47,6 +48,9 @@
           >
         {/each}
       </div>
+      {#snippet actions()}
+        <CopyQuestion></CopyQuestion>
+      {/snippet}
     </Card>
   </div>
 </div>
