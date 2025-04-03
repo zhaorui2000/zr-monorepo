@@ -15,6 +15,7 @@
   import Badge from "@zr/ui/Badge";
   import Extension from "@modules/Extension.svelte";
   import RandomOrderCheckbox from "./component/RandomOrderCheckbox.svelte";
+  import CopyQuestion from "./component/CopyQuestion.svelte";
   const radioName = uuid();
   const isCorrect = $state($answer === ANKI_TRUE_ANSWER);
   const orderClass = cva("", {
@@ -52,9 +53,6 @@
     color={isCorrect ? "success" : "error"}>{isCorrect ? "正确" : "错误"}</Alert
   >
   <Card size="xs">
-    {#snippet actions()}
-      <RandomOrderCheckbox></RandomOrderCheckbox>
-    {/snippet}
     <div class="grid pointer-events-none">
       {#each { length: OPTION_LABELS.length }, row}
         <Radio
@@ -70,6 +68,10 @@
         >
       {/each}
     </div>
+    {#snippet actions()}
+      <RandomOrderCheckbox></RandomOrderCheckbox>
+      <CopyQuestion></CopyQuestion>
+    {/snippet}
   </Card>
   <Extension />
 </div>

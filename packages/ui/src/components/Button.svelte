@@ -7,7 +7,8 @@
     disabled = false,
     loading = false,
     soft = false,
-    dashed = false,
+    dash = false,
+    outline = false,
     content,
     className,
     square = false,
@@ -30,8 +31,11 @@
       soft: {
         true: ["btn-soft"],
       },
-      dashed: {
-        true: ["btn-dashed"],
+      dash: {
+        true: ["btn-dash"],
+      },
+      outline: {
+        true: ["btn-outline"],
       },
       active: {
         true: ["btn-active"],
@@ -53,6 +57,7 @@
       },
       size: {
         "": "",
+        xs: ["btn-xs"],
         sm: ["btn-sm"],
         md: ["btn-md"],
         lg: ["btn-lg"],
@@ -65,11 +70,16 @@
 </script>
 
 <button
-  class={cx(buttonVariants({ color, size, disabled, square }), className)}
+  class={cx(
+    buttonVariants({ color, size, disabled, square, dash, soft, outline }),
+    className
+  )}
   {...restProps}
 >
   {#if loading}
     <span class="loading loading-spinner"></span>
   {/if}
-  {@render children?.()}
+  {#if !loading}
+    {@render children?.()}
+  {/if}
 </button>
