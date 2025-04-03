@@ -1,0 +1,14 @@
+{
+  "name": "@zr/svelte-actions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "exports": {
+    "./*": "./src/*.svelte.js"
+  },
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -13,6 +13,7 @@
     "dev": "vite build --watch"
   },
   "dependencies": {
+    "@zr/svelte-actions": "workspace:*",
     "class-variance-authority": "^0.7.1"
   },
   "devDependencies": {

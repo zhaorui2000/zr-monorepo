@@ -1,5 +1,5 @@
 <script>
-  import TEMp from "./pages/MCQs/Back.svelte";
+  import TEMp from "./pages/MCQs/Front.svelte";
   import "@zr/ui/index.js";
   import { fly } from "svelte/transition";
   import ThemeController from "@zr/ui/ThemeController";

@@ -1,6 +1,6 @@
 <script>
   import { cva, cx } from "class-variance-authority";
-
+  import longPress from "@zr/svelte-actions/longPress";
   let {
     color = "",
     size = "",
@@ -10,6 +10,7 @@
     children,
     ...restProps
   } = $props();
+  let isShowRadio = $state(true);
 
   const radioVariants = cva("radio", {
     variants: {
@@ -45,14 +46,27 @@
   });
 </script>
 
-<fieldset class={cx("fieldset", className)}>
+<fieldset
+  class={cx("fieldset", className)}
+  use:longPress={{
+    longPress: (e) => {
+      isShowRadio = !isShowRadio;
+    },
+  }}
+>
   <label class="flex gap-2 cursor-pointer items-center">
     <input
       type="radio"
       {name}
-      class={cx(radioVariants({ color, size, bg }))}
+      class={cx(radioVariants({ color, size, bg }), {
+        "opacity-0": !isShowRadio,
+      })}
       {...restProps}
     />
-    <span>{@render children?.()}</span>
+    <span
+      class={cx("", {
+        "line-through": !isShowRadio,
+      })}>{@render children?.()}</span
+    >
   </label>
 </fieldset>
