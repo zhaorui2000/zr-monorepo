@@ -3,6 +3,8 @@
   import Card from "@zr/ui/Card";
   import Radio from "@zr/ui/Radio";
   import CopyQuestion from "./component/CopyQuestion.svelte";
+  import Range from "@zr/ui/Range";
+  import Model from "@zr/ui/Model";
   import { v4 as uuid } from "uuid";
   import {
     answer,
@@ -14,6 +16,7 @@
   import generateUniqueRandomNumbers from "@zr/utils/Array/generateUniqueRandomNumbers";
 
   const radioName = uuid();
+  let dialog;
   $randomOrder = generateUniqueRandomNumbers(1, 4);
   const orderClass = cva("", {
     variants: {
@@ -31,8 +34,10 @@
   class="grid gap-y-2 sm:p-2 md:p-4 p-1 max-h-full"
   style="grid-template-rows: 1fr min-content;"
 >
-  <Card className="overflow-y-scroll" color="primary" title="单选题"
-    >{@html ANKI_QUESTION}</Card
+  <Card
+    className="overflow-y-scroll min-h-[6.25rem]"
+    color="primary"
+    title="单选题">{@html ANKI_QUESTION}</Card
   >
   <div class="grid">
     <Card size="xs">

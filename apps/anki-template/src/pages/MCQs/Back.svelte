@@ -39,13 +39,13 @@
 </script>
 
 <div
-  class="flex flex-col gap-y-2 sm:p-2 md:p-4 p-1 overflow-y-scroll max-h-full"
+  class="flex flex-col gap-y-2 sm:p-2 md:p-4 p-1 overflow-y-scroll overflow-x-hidden max-h-full"
 >
   <Card
     color="primary"
     title="单选题"
     stickyAble
-    stickyClass="sm:-top-2 md:-top-4 -top-1">{@html ANKI_QUESTION}</Card
+    stickyClass="sm:-top-2 md:-top-4 -top-1 ">{@html ANKI_QUESTION}</Card
   >
   <Alert
     type={isCorrect ? "success" : "error"}

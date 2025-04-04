@@ -1,4 +1,5 @@
 <script>
+  import { cx } from "class-variance-authority";
   const themeList = [
     "light",
     "dark",
@@ -37,10 +38,11 @@
     "silk",
     "ghibli",
   ];
+  const { className, ...restProps } = $props();
 </script>
 
 <div class="dropdown z-9999">
-  <div tabindex="0" role="button" class="btn m-1 hover:opacity-75 opacity-25">
+  <div tabindex="0" role="button" class="btn m-1">
     主题
     <svg
       width="12px"
@@ -54,14 +56,17 @@
     </svg>
   </div>
   <ul
-    class="dropdown-content z-1 bg-base-300 rounded-box w-content p-2 shadow-2xl max-h-80 overflow-y-auto"
+    class={cx(
+      "dropdown-content z-1 bg-base-300 rounded-box w-content p-2 shadow-2xl overflow-y-auto",
+      className
+    )}
   >
     {#each themeList as theme}
       <li>
         <input
           type="radio"
           name="theme-dropdown"
-          class="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
+          class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
           aria-label={theme}
           value={theme}
           data-set-theme={theme}

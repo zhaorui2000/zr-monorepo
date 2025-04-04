@@ -1,7 +1,5 @@
 <script>
-  import TEMp from "./pages/MCQs/Back.svelte";
-  import "@zr/ui/index.js";
-  import ThemeController from "@zr/ui/ThemeController";
+  import Index from "./pages/Main/Index.svelte";
   import { onMount } from "svelte";
   import { themeChange } from "theme-change";
   onMount(() => {
@@ -20,7 +18,4 @@
   });
 </script>
 
-<div class="absolute top-1 left-2">
-  <ThemeController />
-</div>
-<TEMp />
+<Index></Index>

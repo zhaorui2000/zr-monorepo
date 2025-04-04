@@ -11,7 +11,7 @@
     );
     setTimeout(() => {
       loading = false;
-    }, 1000);
+    }, 300);
   };
 </script>
 

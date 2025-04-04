@@ -8,9 +8,11 @@
     loading = false,
     soft = false,
     dash = false,
+    circle = false,
     outline = false,
     content,
     className,
+    ghost = false,
     square = false,
     children,
     ...restProps
@@ -52,6 +54,9 @@
       square: {
         true: ["btn-square"],
       },
+      circle: {
+        true: ["btn-circle"],
+      },
       block: {
         true: ["btn-block"],
       },
@@ -71,7 +76,17 @@
 
 <button
   class={cx(
-    buttonVariants({ color, size, disabled, square, dash, soft, outline }),
+    buttonVariants({
+      color,
+      size,
+      disabled,
+      square,
+      dash,
+      ghost,
+      soft,
+      outline,
+      circle,
+    }),
     className
   )}
   {...restProps}

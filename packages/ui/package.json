@@ -15,8 +15,5 @@
   "dependencies": {
     "@zr/svelte-actions": "workspace:*",
     "class-variance-authority": "^0.7.1"
-  },
-  "devDependencies": {
-    "@iconify/tailwind4": "^1.0.6"
   }
 }

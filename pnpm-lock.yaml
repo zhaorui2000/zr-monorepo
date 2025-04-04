@@ -117,10 +117,6 @@ importers:
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
-    devDependencies:
-      '@iconify/tailwind4':
-        specifier: ^1.0.6
-        version: 1.0.6(tailwindcss@4.0.17)
 
   packages/utils: {}
 
