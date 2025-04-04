@@ -1,9 +1,7 @@
 <script>
   import Index from "./pages/Main/Index.svelte";
   import { onMount } from "svelte";
-  import { themeChange } from "theme-change";
   onMount(() => {
-    themeChange(false);
     document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
       if (link.getAttribute("href").includes(".css")) {
         link.remove();

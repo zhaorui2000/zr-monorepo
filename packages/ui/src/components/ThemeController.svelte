@@ -1,5 +1,7 @@
 <script>
   import { cx } from "class-variance-authority";
+  import { onMount } from "svelte";
+  import { themeChange } from "theme-change";
   const themeList = [
     "light",
     "dark",
@@ -39,6 +41,9 @@
     "ghibli",
   ];
   const { className, ...restProps } = $props();
+  onMount(() => {
+    themeChange(false);
+  });
 </script>
 
 <div class="dropdown z-9999">
