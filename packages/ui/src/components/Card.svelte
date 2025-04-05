@@ -1,18 +1,37 @@
 <script>
   import { cva, cx } from "class-variance-authority";
   import Icon from "./Icon.svelte";
+  import Joi from "joi";
+  import sizeSchema from "./validateSchema/sizeSchema";
+  import colorSchema from "./validateSchema/colorSchema";
   let {
     color,
     size,
-    dashed = false,
+    dash = false,
     border = false,
     title = "",
     actions,
     className,
     stickyAble = false,
     stickyClass = "top-0 bottom-0",
+    responsive = false,
     children,
   } = $props();
+  // ------------------------- 校验 -------------------------
+  const { value: cardVariantsProps, error } = Joi.object({
+    ...sizeSchema,
+    ...colorSchema,
+    dash: Joi.boolean(),
+    border: Joi.boolean(),
+  }).validate({
+    responsive,
+    size,
+    border,
+    dash,
+    color,
+  });
+  $inspect(error);
+  // ························· 校验 ·························
   let sticky = $state(false);
   const cardVariants = cva("card relative", {
     variants: {
@@ -33,11 +52,21 @@
         lg: ["card-lg"],
         xl: ["card-xl"],
       },
+      responsive: {
+        true: [
+          "card-xs",
+          "sm:card-sm",
+          "md:card-md",
+          "lg:card-lg",
+          "xl:card-xl",
+          "2xl:card-xl",
+        ],
+      },
       border: {
         true: ["card-border"],
       },
-      dashed: {
-        true: ["card-dashed"],
+      dash: {
+        true: ["card-dash"],
       },
       sticky: {
         true: ["sticky", "z-2", "max-h-[40dvh]"],
@@ -46,7 +75,7 @@
     compoundVariants: [
       {
         border: false,
-        dashed: false,
+        dash: false,
         className: "shadow-sm",
       },
     ],
@@ -71,7 +100,7 @@
 
 <div
   class={cx(
-    cardVariants({ size, border, dashed, color, sticky }),
+    cardVariants({ ...cardVariantsProps, sticky }),
     { [stickyClass]: sticky, "rounded-none": sticky },
     className
   )}

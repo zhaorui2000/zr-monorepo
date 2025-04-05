@@ -13,7 +13,7 @@
   marked.use({ renderer: markedRender });
 </script>
 
-<Card color="warning" title="补充">
+<Card responsive color="warning" title="补充">
   {#if Number(hasExtensionCollapsible) === 1}
     <Collapse color="neutral" icon="plus" title="折叠内容">
       {@html marked(extensionCollapsible)}

@@ -35,12 +35,13 @@
   style="grid-template-rows: 1fr min-content;"
 >
   <Card
+    responsive
     className="overflow-y-scroll min-h-[6.25rem]"
     color="primary"
     title="单选题">{@html ANKI_QUESTION}</Card
   >
   <div class="grid">
-    <Card size="xs">
+    <Card responsive>
       <div class="grid">
         {#each { length: OPTION_LABELS.length }, row}
           <Radio

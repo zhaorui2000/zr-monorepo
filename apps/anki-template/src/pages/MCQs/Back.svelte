@@ -42,6 +42,7 @@
   class="flex flex-col gap-y-2 sm:p-2 md:p-4 p-1 overflow-y-scroll overflow-x-hidden max-h-full"
 >
   <Card
+    responsive
     color="primary"
     title="单选题"
     stickyAble
@@ -52,7 +53,7 @@
     soft
     color={isCorrect ? "success" : "error"}>{isCorrect ? "正确" : "错误"}</Alert
   >
-  <Card size="xs">
+  <Card responsive>
     <div class="grid pointer-events-none">
       {#each { length: OPTION_LABELS.length }, row}
         <Radio
