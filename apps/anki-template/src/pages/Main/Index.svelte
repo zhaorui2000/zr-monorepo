@@ -45,8 +45,8 @@
     <Range
       onchange={handleChangeFontSize}
       initValue={$baseFontSize}
-      min={14}
-      max={22}
+      min={16}
+      max={24}
       step={2}
     ></Range>
   </div>
