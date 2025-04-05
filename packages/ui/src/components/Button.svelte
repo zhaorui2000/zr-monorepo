@@ -14,6 +14,7 @@
     className,
     ghost = false,
     square = false,
+    responsive = false,
     children,
     ...restProps
   } = $props();
@@ -60,6 +61,16 @@
       block: {
         true: ["btn-block"],
       },
+      responsive: {
+        true: [
+          "btn-xs",
+          "sm:btn-sm",
+          "md:btn-md",
+          "lg:btn-lg",
+          "xl:btn-xl",
+          "2xl:btn-2xl",
+        ],
+      },
       size: {
         "": "",
         xs: ["btn-xs"],
@@ -77,6 +88,7 @@
 <button
   class={cx(
     buttonVariants({
+      responsive,
       color,
       size,
       disabled,

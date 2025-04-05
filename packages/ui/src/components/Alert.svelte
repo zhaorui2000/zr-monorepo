@@ -16,7 +16,9 @@
     vertical,
     closeable = true,
     horizontal,
+    responsive,
     children,
+    ...restProps
   } = $props();
   let isShow = $state(true);
   const alertVariants = cva("alert", {
@@ -47,6 +49,16 @@
       horizontal: {
         true: ["alert-horizontal"],
       },
+      responsive: {
+        true: [
+          "text-xs",
+          "sm:text-sm",
+          "md:text-base",
+          "lg:text-lg",
+          "xl:text-xl",
+          "2xl:text-xl",
+        ],
+      },
     },
     compoundVariants: [],
     defaultVariants: {},
@@ -58,9 +70,18 @@
     transition:fade={{ duration: 300 }}
     role="alert"
     class={cx(
-      alertVariants({ color, soft, outline, dash, vertical, horizontal }),
+      alertVariants({
+        responsive,
+        color,
+        soft,
+        outline,
+        dash,
+        vertical,
+        horizontal,
+      }),
       className
     )}
+    {...restProps}
   >
     <Icon iconClass={ALERT_ICON_TYPE[type]}></Icon>
     {@render children?.()}

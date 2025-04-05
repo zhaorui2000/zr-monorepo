@@ -34,7 +34,7 @@
   class={cx(collapseVariants({ color, border, icon }), className)}
 >
   <div class="collapse-title font-semibold">{title}</div>
-  <div class="collapse-content text-sm">
+  <div class="collapse-content">
     {@render children?.()}
   </div>
 </div>

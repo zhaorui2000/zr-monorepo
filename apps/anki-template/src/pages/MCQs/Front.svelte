@@ -3,8 +3,7 @@
   import Card from "@zr/ui/Card";
   import Radio from "@zr/ui/Radio";
   import CopyQuestion from "./component/CopyQuestion.svelte";
-  import Range from "@zr/ui/Range";
-  import Model from "@zr/ui/Model";
+  import Container from "@zr/ui/Container";
   import { v4 as uuid } from "uuid";
   import {
     answer,
@@ -30,8 +29,8 @@
   });
 </script>
 
-<div
-  class="grid gap-y-2 sm:p-2 md:p-4 p-1 max-h-full"
+<Container
+  className="grid gap-y-2"
   style="grid-template-rows: 1fr min-content;"
 >
   <Card
@@ -47,7 +46,7 @@
           <Radio
             color="primary"
             className={orderClass({ order: $randomOrder[row] })}
-            size="sm"
+            responsive
             onchange={() => ($answer = OPTION_LABELS[row])}
             value={OPTION_LABELS[row]}
             name={radioName}>{@html ANKI_OPTIONS[row]}</Radio
@@ -59,4 +58,4 @@
       {/snippet}
     </Card>
   </div>
-</div>
+</Container>

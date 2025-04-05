@@ -5,6 +5,7 @@
     color = "",
     size = "",
     bg = "",
+    responsive = false,
     name,
     className,
     children,
@@ -34,6 +35,16 @@
         warning: ["radio-warning"],
         error: ["radio-error"],
       },
+      responsive: {
+        true: [
+          "radio-xs",
+          "sm:radio-sm",
+          "md:radio-md",
+          "lg:radio-lg",
+          "xl:radio-xl",
+          "2xl:radio-xl",
+        ],
+      },
       size: {
         xs: ["radio-xs"],
         sm: ["radio-sm"],
@@ -48,10 +59,12 @@
 
 <fieldset
   class={cx("fieldset", className)}
+  style="font-size: inherit;"
   use:longPress={{
     longPress: (e) => {
       isShowRadio = !isShowRadio;
     },
+    duration: 300,
     eventListenerOptions: {
       capture: true,
     },
@@ -61,7 +74,7 @@
     <input
       type="radio"
       {name}
-      class={cx(radioVariants({ color, size, bg }), {
+      class={cx(radioVariants({ responsive, color, size, bg }), {
         "opacity-0": !isShowRadio,
       })}
       {...restProps}

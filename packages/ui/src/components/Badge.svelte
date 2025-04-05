@@ -7,11 +7,22 @@
     outline = false,
     dash = false,
     ghost = false,
+    responsive = false,
     className,
     children,
   } = $props();
   const badgeVariants = cva("badge", {
     variants: {
+      responsive: {
+        true: [
+          "badge-xs",
+          "sm:badge-sm",
+          "md:badge-md",
+          "lg:badge-lg",
+          "xl:badge-xl",
+          "2xl:badge-xl",
+        ],
+      },
       size: {
         xs: ["badge-xs"],
         sm: ["badge-sm"],
@@ -47,7 +58,7 @@
 
 <span
   class={cx(
-    badgeVariants({ color, size, soft, outline, dash, ghost }),
+    badgeVariants({ color, size, soft, outline, dash, ghost, responsive }),
     className
   )}>{@render children?.()}</span
 >

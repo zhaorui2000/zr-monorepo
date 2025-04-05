@@ -13,4 +13,4 @@
   })();
 </script>
 
-<Checkbox checked={true} onchange={handleChangeOrder}>乱序</Checkbox>
+<Checkbox responsive checked={true} onchange={handleChangeOrder}>乱序</Checkbox>

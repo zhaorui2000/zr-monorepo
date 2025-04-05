@@ -1,6 +1,6 @@
 <script>
   import Model from "@zr/ui/Model";
-  import TEMp from "../MCQs/Front.svelte";
+  import TEMp from "../MCQs/Back.svelte";
   import "@zr/ui/index.js";
   import ThemeController from "@zr/ui/ThemeController";
   import Button from "@zr/ui/Button";
@@ -18,6 +18,7 @@
 </script>
 
 <Button
+  responsive
   circle
   className="fixed top-1 left-1 z-1 text-[40px] opacity-25"
   onclick={() => dialog.showModal()}

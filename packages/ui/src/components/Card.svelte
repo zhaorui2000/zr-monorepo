@@ -1,6 +1,7 @@
 <script>
   import { cva, cx } from "class-variance-authority";
   import Icon from "./Icon.svelte";
+  import Button from "@zr/ui/Button";
   let {
     color,
     size,
@@ -89,16 +90,23 @@
 >
   <div class="card-body overflow-y-scroll">
     {#if stickyAble}
-      <Icon
-        iconClass={cx({
-          "icon-[material-symbols--sticky-note-rounded]": sticky,
-          "icon-[material-symbols--sticky-note-outline-rounded]": !sticky,
-        })}
+      <Button
+        className="text-2xl absolute top-2 right-2 z-1 opacity-25"
+        {color}
+        responsive
+        circle
+        ghost
         onclick={() => {
           sticky = !sticky;
         }}
-        className="text-3xl absolute top-2 right-2 z-1 opacity-25"
-      ></Icon>
+      >
+        <Icon
+          iconClass={cx({
+            "icon-[material-symbols--sticky-note-rounded]": sticky,
+            "icon-[material-symbols--sticky-note-outline-rounded]": !sticky,
+          })}
+        ></Icon>
+      </Button>
     {/if}
     <h2
       class={cx(cardTitleVariants({ color }))}
@@ -109,7 +117,7 @@
     <p>
       {@render children?.()}
     </p>
-    <div class="card-actions justify-end">
+    <div class="card-actions justify-end items-center gap-2">
       {@render actions?.()}
     </div>
   </div>
