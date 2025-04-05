@@ -1,7 +1,8 @@
 <script>
   import { cva, cx } from "class-variance-authority";
   import Icon from "./Icon.svelte";
-  import Button from "@zr/ui/Button";
+  import Button from "./Button.svelte";
+  import { fade } from "svelte/transition";
   let {
     color,
     size,
@@ -9,6 +10,7 @@
     border = false,
     title = "",
     actions,
+    collapsedActions,
     className,
     stickyAble = false,
     stickyClass = "top-0 bottom-0",
@@ -16,6 +18,7 @@
     children,
   } = $props();
   let sticky = $state(false);
+  let showCollapsedActions = $state(false);
   const cardVariants = cva("card relative", {
     variants: {
       color: {
@@ -108,17 +111,40 @@
         ></Icon>
       </Button>
     {/if}
-    <h2
+    <h3
       class={cx(cardTitleVariants({ color }))}
       style="top: calc(-1 * var(--card-p, 1.5rem))"
     >
       {title}
-    </h2>
+    </h3>
     <p>
       {@render children?.()}
     </p>
-    <div class="card-actions justify-end items-center gap-2">
+
+    <div class="card-actions justify-end items-center gap-2 w-full flex-nowrap">
       {@render actions?.()}
+      {#if showCollapsedActions}
+        <div
+          class="flex justify-end items-center gap-2"
+          transition:fade={{ duration: 300 }}
+        >
+          {@render collapsedActions?.()}
+        </div>
+      {/if}
+      {#if collapsedActions}
+        <Button
+          onclick={() => (showCollapsedActions = !showCollapsedActions)}
+          circle
+          responsive
+          className={cx("", {
+            "absolute right-1 bottom-1": !showCollapsedActions && !actions,
+            "opacity-25": !showCollapsedActions,
+            "opacity-75": showCollapsedActions,
+          })}
+        >
+          <Icon iconClass="icon-[material-symbols--more-horiz]"></Icon>
+        </Button>
+      {/if}
     </div>
   </div>
 </div>

@@ -71,6 +71,8 @@
     </div>
     {#snippet actions()}
       <RandomOrderCheckbox></RandomOrderCheckbox>
+    {/snippet}
+    {#snippet collapsedActions()}
       <CopyQuestion></CopyQuestion>
     {/snippet}
   </Card>

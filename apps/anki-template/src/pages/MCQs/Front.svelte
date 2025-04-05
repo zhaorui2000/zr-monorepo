@@ -13,7 +13,7 @@
     ANKI_OPTIONS,
   } from "./store";
   import generateUniqueRandomNumbers from "@zr/utils/Array/generateUniqueRandomNumbers";
-
+  import { onMount } from "svelte";
   const radioName = uuid();
   let dialog;
   $randomOrder = generateUniqueRandomNumbers(1, 4);
@@ -26,6 +26,11 @@
         4: "order-4",
       },
     },
+  });
+  onMount(() => {
+    // ······· 初始化 ·······
+    $answer = "";
+    // ------- 初始化 -------
   });
 </script>
 
@@ -47,13 +52,14 @@
             color="primary"
             className={orderClass({ order: $randomOrder[row] })}
             responsive
+            checked={$answer === OPTION_LABELS[row]}
             onchange={() => ($answer = OPTION_LABELS[row])}
             value={OPTION_LABELS[row]}
             name={radioName}>{@html ANKI_OPTIONS[row]}</Radio
           >
         {/each}
       </div>
-      {#snippet actions()}
+      {#snippet collapsedActions()}
         <CopyQuestion></CopyQuestion>
       {/snippet}
     </Card>

@@ -19,5 +19,4 @@
 
 <!-- icon url: https://icones.js.org/collection/material-symbols -->
 <span {...restProps} class={cx(iconVariants({ color }), iconClass, className)}
-  >123</span
->
+></span>

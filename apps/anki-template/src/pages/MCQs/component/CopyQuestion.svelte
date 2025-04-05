@@ -15,6 +15,6 @@
   };
 </script>
 
-<Button color="secondary" dash responsive onclick={handleClick} {loading}
+<Button color="secondary" responsive onclick={handleClick} {loading}
   >复制题目</Button
 >

@@ -8,6 +8,7 @@
     responsive = false,
     name,
     className,
+    checked = false,
     children,
     ...restProps
   } = $props();
@@ -58,13 +59,18 @@
 </script>
 
 <fieldset
-  class={cx("fieldset", className)}
+  class={cx(
+    "fieldset",
+    {
+      "text-primary": checked,
+    },
+    className
+  )}
   style="font-size: inherit;"
   use:longPress={{
     longPress: (e) => {
       isShowRadio = !isShowRadio;
     },
-    duration: 300,
     eventListenerOptions: {
       capture: true,
     },
@@ -72,6 +78,7 @@
 >
   <label class="flex gap-2 cursor-pointer items-center">
     <input
+      {checked}
       type="radio"
       {name}
       class={cx(radioVariants({ responsive, color, size, bg }), {
