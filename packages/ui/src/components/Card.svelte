@@ -1,9 +1,6 @@
 <script>
   import { cva, cx } from "class-variance-authority";
   import Icon from "./Icon.svelte";
-  import Joi from "joi";
-  import sizeSchema from "./validateSchema/sizeSchema";
-  import colorSchema from "./validateSchema/colorSchema";
   let {
     color,
     size,
@@ -17,21 +14,6 @@
     responsive = false,
     children,
   } = $props();
-  // ------------------------- 校验 -------------------------
-  const { value: cardVariantsProps, error } = Joi.object({
-    ...sizeSchema,
-    ...colorSchema,
-    dash: Joi.boolean(),
-    border: Joi.boolean(),
-  }).validate({
-    responsive,
-    size,
-    border,
-    dash,
-    color,
-  });
-  $inspect(error);
-  // ························· 校验 ·························
   let sticky = $state(false);
   const cardVariants = cva("card relative", {
     variants: {
@@ -100,7 +82,7 @@
 
 <div
   class={cx(
-    cardVariants({ ...cardVariantsProps, sticky }),
+    cardVariants({ color, size, responsive, border, dash, sticky }),
     { [stickyClass]: sticky, "rounded-none": sticky },
     className
   )}

@@ -1,6 +1,6 @@
 <script>
   import Model from "@zr/ui/Model";
-  import TEMp from "../MCQs/Back.svelte";
+  import TEMp from "../MCQs/Front.svelte";
   import "@zr/ui/index.js";
   import ThemeController from "@zr/ui/ThemeController";
   import Button from "@zr/ui/Button";
