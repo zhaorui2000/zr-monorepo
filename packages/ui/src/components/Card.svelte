@@ -142,7 +142,8 @@
             "opacity-75": showCollapsedActions,
           })}
         >
-          <Icon iconClass="icon-[material-symbols--more-horiz]"></Icon>
+          <Icon responsive iconClass="icon-[material-symbols--more-horiz]"
+          ></Icon>
         </Button>
       {/if}
     </div>

@@ -49,7 +49,7 @@
     onchange={handleChangeFontSize}
     initValue={$baseFontSize}
     min={16}
-    max={24}
-    step={2}
+    max={32}
+    step={4}
   ></Range>
 </Model>

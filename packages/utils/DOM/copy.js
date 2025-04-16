@@ -1,10 +1,13 @@
 export default async function copy(content) {
-  // 复制到剪贴板
-  let result;
-  try {
-    result = await navigator.clipboard.writeText(content);
-  } catch (err) {
-    console.error("@utils:clipText error", err);
-  }
-  return result;
+  return new Promise((resolve, reject) => {
+    navigator.clipboard
+      .writeText(content)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        console.error("@utils:copu error", err);
+        reject(err);
+      });
+  });
 }
