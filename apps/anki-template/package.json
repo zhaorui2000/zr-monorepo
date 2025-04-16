@@ -13,12 +13,12 @@
     "vite-plugin-singlefile": "^2.2.0"
   },
   "dependencies": {
-    "@nanostores/persistent": "^0.10.2",
+    "@nanostores/persistent": "^1.0.0",
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
-    "marked": "^15.0.7",
-    "nanostores": "^0.11.4",
+    "marked": "^15.0.8",
+    "nanostores": "^1.0.1",
     "uuid": "^11.1.0"
   }
 }
