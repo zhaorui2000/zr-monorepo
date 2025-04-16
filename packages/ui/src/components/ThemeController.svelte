@@ -2,6 +2,7 @@
   import { cx } from "class-variance-authority";
   import { onMount } from "svelte";
   import { themeChange } from "theme-change";
+  import getRandomIntInclusive from "@zr/utils/Number/getRandomIntInclusive";
   const themeList = [
     "light",
     "dark",
@@ -41,6 +42,11 @@
     "ghibli",
   ];
   const { className, ...restProps } = $props();
+  export function randomTheme() {
+    const randomIndex = getRandomIntInclusive(0, themeList.length - 1);
+    const randomTheme = themeList[randomIndex];
+    document.documentElement.setAttribute("data-theme", randomTheme);
+  }
   onMount(() => {
     themeChange(false);
   });

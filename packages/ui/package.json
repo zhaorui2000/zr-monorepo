@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@zr/svelte-actions": "workspace:*",
+    "@zr/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "daisyui": "^5.0.22",
     "theme-change": "^2.5.0"

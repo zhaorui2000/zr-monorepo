@@ -84,6 +84,9 @@ importers:
       '@zr/svelte-actions':
         specifier: workspace:*
         version: link:../svelte-actions
+      '@zr/utils':
+        specifier: workspace:*
+        version: link:../utils
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
