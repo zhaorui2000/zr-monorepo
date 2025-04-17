@@ -46,6 +46,7 @@
     const randomIndex = getRandomIntInclusive(0, themeList.length - 1);
     const randomTheme = themeList[randomIndex];
     document.documentElement.setAttribute("data-theme", randomTheme);
+    localStorage.setItem("theme", randomTheme);
   }
   onMount(() => {
     themeChange(false);
