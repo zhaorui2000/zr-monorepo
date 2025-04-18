@@ -5,6 +5,7 @@
   import CopyQuestion from "./component/CopyQuestion.svelte";
   import Container from "@zr/ui/Container";
   import { v4 as uuid } from "uuid";
+  import DrawArea from "@zr/ui/DrawArea";
   import {
     answer,
     randomOrder,
@@ -38,12 +39,11 @@
   className="grid gap-y-2"
   style="grid-template-rows: 1fr min-content;"
 >
-  <Card
-    responsive
-    className="overflow-y-scroll min-h-[6.25rem]"
-    color="primary"
-    title="单选题">{@html ANKI_QUESTION}</Card
-  >
+  <DrawArea className="overflow-y-scroll min-h-[6.75rem]">
+    <Card responsive className="h-full" color="primary" title="单选题"
+      >{@html ANKI_QUESTION}</Card
+    >
+  </DrawArea>
   <div class="grid">
     <Card responsive>
       <div class="grid">

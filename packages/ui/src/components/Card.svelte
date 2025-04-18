@@ -87,7 +87,10 @@
 <div
   class={cx(
     cardVariants({ color, size, responsive, border, dash, sticky }),
-    { [stickyClass]: sticky, "rounded-none": sticky },
+    {
+      [stickyClass]: sticky,
+      "rounded-none": sticky,
+    },
     className
   )}
 >
