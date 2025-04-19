@@ -1,5 +1,5 @@
 <script>
-  import TEMp from "../MCQs/Front.svelte";
+  import TEMp from "../MCQs/Back.svelte";
   import Setting from "../../modules/Setting.svelte";
 </script>
 

@@ -40,7 +40,7 @@
     leafer.on(PointerEvent.DOWN, ({ x, y }) => {
       line = new Line({
         points: [x, y],
-        strokeWidth: 3,
+        strokeWidth: 2,
         stroke,
       });
       lineIds.push(line.innerId);
@@ -65,16 +65,16 @@
 >
   <div
     use:preventDefault={"touchmove"}
-    class={cx({ "user-select-none pointer-events-none": !enabled })}
+    class={cx({ "user-select-none": !enabled })}
     bind:this={drawCanvasWrap}
   >
     {@render children?.()}
   </div>
   <div class="flex flex-col gap-y-1 sticky top-0 h-fit">
-    <Button circle color="error" onclick={clear}>
+    <Button responsive circle color="error" onclick={clear}>
       <Icon iconClass="icon-[material-symbols--delete-outline-rounded]"></Icon>
     </Button>
-    <Button circle onclick={undo}>
+    <Button responsive circle onclick={undo}>
       <Icon iconClass="icon-[material-symbols--undo-rounded]"></Icon>
     </Button>
   </div>

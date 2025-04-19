@@ -2,12 +2,22 @@ export default function preventDefault(node, eventName) {
   function handle(event) {
     event.preventDefault();
   }
-
-  node.addEventListener(eventName, handle);
-
+  if (Array.isArray(eventName)) {
+    eventName.forEach((name) => {
+      node.addEventListener(name, handle);
+    });
+  } else {
+    node.addEventListener(eventName, handle);
+  }
   return {
     destroy() {
-      node.removeEventListener(eventName, handle);
+      if (Array.isArray(eventName)) {
+        eventName.forEach((name) => {
+          node.removeEventListener(name, handle);
+        });
+      } else {
+        node.removeEventListener(eventName, handle);
+      }
     },
   };
 }

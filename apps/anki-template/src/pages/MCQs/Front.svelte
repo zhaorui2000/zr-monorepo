@@ -6,8 +6,10 @@
   import Container from "@zr/ui/Container";
   import { v4 as uuid } from "uuid";
   import DrawArea from "@zr/ui/DrawArea";
+  import Stopwatch from "@zr/utils/Time/Stopwatch";
   import {
     answer,
+    duration,
     randomOrder,
     OPTION_LABELS,
     ANKI_QUESTION,
@@ -17,6 +19,7 @@
   import { onMount } from "svelte";
   const radioName = uuid();
   let dialog;
+  let stopwatch = new Stopwatch();
   $randomOrder = generateUniqueRandomNumbers(1, 4);
   const orderClass = cva("", {
     variants: {
@@ -31,6 +34,13 @@
   onMount(() => {
     // ······· 初始化 ·······
     $answer = "";
+    stopwatch.start();
+    $duration = 0;
+    window.addEventListener("beforeunload", (event) => {
+      stopwatch.stop();
+      $duration = stopwatch.valueOf();
+      event.returnValue = "";
+    });
     // ------- 初始化 -------
   });
 </script>

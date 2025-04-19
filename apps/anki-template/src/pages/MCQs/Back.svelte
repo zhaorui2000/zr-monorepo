@@ -5,8 +5,10 @@
   import Alert from "@zr/ui/Alert";
   import Container from "@zr/ui/Container";
   import { v4 as uuid } from "uuid";
+  import formatTime from "@zr/utils/Time/FormatTime";
   import {
     answer,
+    duration,
     randomOrder,
     OPTION_LABELS,
     ANKI_QUESTION,
@@ -51,7 +53,11 @@
     responsive
     type={isCorrect ? "success" : "error"}
     soft
-    color={isCorrect ? "success" : "error"}>{isCorrect ? "正确" : "错误"}</Alert
+    color={isCorrect ? "success" : "error"}
+    >【{isCorrect ? "正确" : "错误"}】用时：({formatTime(
+      "mm:ss",
+      $duration
+    )})</Alert
   >
   <Card responsive>
     <div class="grid pointer-events-none">
