@@ -17,7 +17,7 @@
     "@zr/svelte-actions": "workspace:*",
     "@zr/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
-    "daisyui": "^5.0.25",
+    "daisyui": "^5.0.27",
     "fabric": "^6.6.4",
     "leafer-ui": "^1.5.3",
     "theme-change": "^2.5.0"

@@ -5,6 +5,7 @@
   import Button from "./Button.svelte";
   import Icon from "./Icon.svelte";
   import isTouchDevice from "@zr/utils/DOM/isTouchDevice";
+  import preventDefault from "@zr/svelte-actions/preventDefault";
   import "@leafer-in/find";
 
   const { children, className, enabled = $bindable(true) } = $props();
@@ -58,11 +59,23 @@
   });
 </script>
 
-<div class={cx("relative", className)}>
+<div
+  class={cx("relative grid gap-x-1", className)}
+  style="grid-template-columns: 1fr min-content"
+>
   <div
+    use:preventDefault={"touchmove"}
     class={cx({ "user-select-none pointer-events-none": !enabled })}
     bind:this={drawCanvasWrap}
   >
     {@render children?.()}
+  </div>
+  <div class="flex flex-col gap-y-1 sticky top-0 h-fit">
+    <Button circle color="error" onclick={clear}>
+      <Icon iconClass="icon-[material-symbols--delete-outline-rounded]"></Icon>
+    </Button>
+    <Button circle onclick={undo}>
+      <Icon iconClass="icon-[material-symbols--undo-rounded]"></Icon>
+    </Button>
   </div>
 </div>
