@@ -15,6 +15,9 @@ html {
       "Noto Color Emoji"
     );
 }
+::-webkit-scrollbar{
+  display:none
+}
 h1 {
   font-size: 2rem;
   font-weight: bold;

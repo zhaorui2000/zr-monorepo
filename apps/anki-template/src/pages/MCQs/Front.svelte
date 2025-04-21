@@ -18,7 +18,6 @@
   import generateUniqueRandomNumbers from "@zr/utils/Array/generateUniqueRandomNumbers";
   import { onMount } from "svelte";
   const radioName = uuid();
-  let dialog;
   let stopwatch = new Stopwatch();
   $randomOrder = generateUniqueRandomNumbers(1, 4);
   const orderClass = cva("", {
@@ -39,7 +38,6 @@
     window.addEventListener("beforeunload", (event) => {
       stopwatch.stop();
       $duration = stopwatch.valueOf();
-      event.returnValue = "";
     });
     // ------- 初始化 -------
   });
