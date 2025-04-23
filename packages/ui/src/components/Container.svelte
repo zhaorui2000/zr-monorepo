@@ -1,6 +1,15 @@
 <script>
-  import { cx } from "class-variance-authority";
+  import StickyContainer from "@zr/ui/StickyContainer";
+  import { cx, cva } from "class-variance-authority";
+  import { onMount } from "svelte";
   let { children, className, ...restProps } = $props();
+  const stickyClass = cva("", {
+    variants: {
+      position: {
+        top: ["-top-1 sm:-top-2 md:-top-3 lg:-top-4 xl:-top-5 2xl:-top-6"],
+      },
+    },
+  });
 </script>
 
 <div
@@ -10,5 +19,5 @@
   )}
   {...restProps}
 >
-  {@render children?.()}
+  {@render children?.({ stickyClass })}
 </div>

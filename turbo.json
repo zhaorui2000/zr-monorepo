@@ -8,6 +8,9 @@
       "outputs": ["apps/anki-template/dist/**"]
     },
     "dev": {
+      "inputs": [
+        "packages/ui/dist/**"
+      ],
       "cache": false,
       "persistent": true
     }

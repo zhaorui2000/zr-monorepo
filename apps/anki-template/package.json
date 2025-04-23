@@ -17,7 +17,7 @@
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
-    "marked": "^15.0.8",
+    "marked": "^15.0.9",
     "nanostores": "^1.0.1",
     "uuid": "^11.1.0"
   }
