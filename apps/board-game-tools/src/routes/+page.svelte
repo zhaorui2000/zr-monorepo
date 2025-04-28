@@ -3,6 +3,8 @@
   import Steps from "@zr/ui/Steps";
   import Button from "@zr/ui/Button";
   import Icon from "@zr/ui/Icon";
+  import Badge from "@zr/ui/Badge";
+
   let normalItems = [
     { title: "翻牌" },
     { title: "放置资源" },
@@ -38,11 +40,11 @@
 </script>
 
 <div
-  class="grid h-full w-full p-4"
+  class="grid p-4"
   style="grid-template-rows: min-content 1fr min-content;"
 >
-  <div class="flex text-2xl items-center justify-center">
-    回合 {round}
+  <div class="flex text-2xl items-center justify-center gap-x-2">
+    <span>回合</span><Badge color="primary">{round}</Badge>
   </div>
 
   <div class="flex flex-col justify-around items-center">
