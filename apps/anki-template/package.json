@@ -1,5 +1,5 @@
 {
-  "name": "anki-template",
+  "name": "@zr/anki-template",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -17,7 +17,7 @@
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
-    "marked": "^15.0.9",
+    "marked": "^15.0.11",
     "nanostores": "^1.0.1",
     "uuid": "^11.1.0"
   }
