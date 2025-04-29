@@ -17,6 +17,10 @@ export default defineConfig(async () => ({
   server: {
     port: 1420,
     strictPort: true,
+    headers: {
+      "Cross-Origin-Opener-Policy": "same-origin",
+      "Cross-Origin-Embedder-Policy": "require-corp",
+    },
     host: host || false,
     hmr: host
       ? {
@@ -28,6 +32,9 @@ export default defineConfig(async () => ({
     watch: {
       // 3. tell vite to ignore watching `src-tauri`
       ignored: ["**/src-tauri/**"],
+    },
+    optimizeDeps: {
+      exclude: ["@sqlite.org/sqlite-wasm"],
     },
   },
 }));

@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
+    "dev": "vite dev --host",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
@@ -14,13 +14,18 @@
   "license": "MIT",
   "dependencies": {
     "@tauri-apps/api": "^2.5.0",
-    "@tauri-apps/plugin-opener": "^2.2.6"
+    "@tauri-apps/plugin-opener": "^2.2.6",
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "sql.js": "^1.13.0"
   },
   "devDependencies": {
-    "@zr/ui": "workspace:*",
     "@sveltejs/adapter-static": "^3.0.8",
     "@sveltejs/kit": "^2.20.7",
     "@tauri-apps/cli": "^2.5.0",
+    "@zr/ui": "workspace:*",
+    "@zr/utils": "workspace:*",
     "svelte-check": "^4.1.6",
     "typescript": "~5.8.3"
   }
