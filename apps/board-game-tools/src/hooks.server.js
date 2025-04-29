@@ -1,13 +1,27 @@
 import express from "express";
 import { createServer } from "node:http";
-import { Server } from "socket.io";
+import { Server } from 'socket.io';
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server, {
+export const handle = async ({ event, resolve }) => {
+  // SvelteKit的默认请求处理
+  return resolve(event);
+};
+
+// 创建socket.io实例并挂载到全局对象
+export const io = new Server({
   cors: {
-    origin: "*", // 开发环境允许所有源
-  },
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
+
+// 监听连接事件
+io.on('connection', (socket) => {
+  socket.on('agricola', (msg) => {
+    io.emit('agricola', msg);
+  });
 });
 
 app.get("/", (req, res) => {

@@ -1,3 +1,6 @@
 [build]
-	command = "turbo run build --filter board-game-tools"
-	publish = "build"
+command = "turbo run build --filter board-game-tools"
+publish = "build"
+
+[functions]
+node_bundler = "esbuild"
