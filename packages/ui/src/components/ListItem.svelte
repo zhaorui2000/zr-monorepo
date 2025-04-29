@@ -1,6 +1,7 @@
 <script>
-    let {children} = $props()
+  let { children, ...restProps } = $props();
 </script>
-<li class="list-row">
-    {@render children?.()}
+
+<li class="list-row" {...restProps}>
+  {@render children?.()}
 </li>

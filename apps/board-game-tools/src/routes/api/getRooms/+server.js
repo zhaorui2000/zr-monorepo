@@ -5,15 +5,13 @@ import getHostAddress from "$lib/server/getHostAddress.js";
 export async function GET() {
   const dbHandler = new DbHandler("board_game_tools.sqlite");
   const db = await dbHandler.init();
-  const ip = getHostAddress();
+  let row = [];
   try {
-    db.run("INSERT INTO rooms (ip) VALUES (:ip)", {
-      ":ip": ip,
-    });
+    [row] = db.exec("SELECT ip FROM rooms");
   } catch (error) {
     console.error(error);
   } finally {
     await dbHandler.endSQL();
   }
-  return json({});
+  return json(row);
 }

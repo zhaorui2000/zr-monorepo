@@ -3,6 +3,10 @@
   import Button from "@zr/ui/Button";
   import Icon from "@zr/ui/Icon";
   import Badge from "@zr/ui/Badge";
+  import { socket } from "../../store";
+  import { onMount } from "svelte";
+  import { fromEvent } from "rxjs";
+  import { debounceTime } from "rxjs/operators";
 
   let normalItems = [
     { title: "翻牌" },
@@ -26,6 +30,19 @@
   let endStep = $derived(
     normalItems.length + (isSpecialRound ? specialItems.length : 0)
   );
+  let subscription;
+
+  onMount(() => {
+    const socket$ = fromEvent($socket, "agricola");
+    subscription = socket$.pipe(debounceTime(10)).subscribe((msg) => {
+      round = msg.round;
+      currentStep = msg.currentStep;
+    });
+
+    return () => {
+      subscription?.unsubscribe();
+    };
+  });
   $effect(() => {
     if (currentStep >= endStep) {
       currentStep = -1;
@@ -35,6 +52,7 @@
       alert("游戏结束");
       round = 1;
     }
+    $socket.emit("agricola", { round, currentStep });
   });
 </script>
 
