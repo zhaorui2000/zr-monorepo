@@ -4,7 +4,6 @@ import getHostAddress from "$lib/server/getHostAddress.js";
 
 export async function GET() {
   let result = {};
-
   try {
     const dbHandler = new DbHandler("board_game_tools.sqlite");
     const db = await dbHandler.init();
@@ -15,13 +14,13 @@ export async function GET() {
       });
     } catch (error) {
       console.error(error);
-      result = { error, msg: "创建房间失败1" };
+      result = { error: error.message, msg: "创建房间失败1" };
     } finally {
       await dbHandler.endSQL();
     }
   } catch (error) {
     console.error(error);
-    result = { error, msg: "创建房间失败2" };
+    result = { error: error.message, msg: "创建房间失败2" };
   }
   return json(result);
 }
