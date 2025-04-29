@@ -1,1 +1,0 @@
-import{t as o,a as r}from"../chunks/DMgJVOKm.js";import"../chunks/DuZoAYNu.js";var t=o('<div class="flex flex-col gap-2 text-2xl p-4"><a href="/agricola">农场主</a> <a href="/create">创建服务</a> <a href="/join">加入服务</a></div>');function f(a){var e=t();r(a,e)}export{f as component};
