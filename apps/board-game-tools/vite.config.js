@@ -5,6 +5,9 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
   plugins: [sveltekit(), tailwindcss()],
+  build: {
+    assetsInlineLimit: 0, // 禁用资源内联
+  },
   server: {
     headers: {
       "Cross-Origin-Opener-Policy": "same-origin",

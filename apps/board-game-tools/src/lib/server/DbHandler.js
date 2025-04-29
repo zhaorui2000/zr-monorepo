@@ -1,5 +1,4 @@
 import fs from "fs";
-import { mkdir } from "fs/promises";
 import initSqlJs from "sql.js";
 
 export default class DbHandler {
