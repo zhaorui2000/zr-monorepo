@@ -19,6 +19,7 @@
     "sql.js": "^1.13.0"
   },
   "devDependencies": {
+    "@sveltejs/adapter-netlify": "^5.0.0",
     "@sveltejs/adapter-static": "^3.0.8",
     "@sveltejs/kit": "^2.20.7",
     "@tauri-apps/cli": "^2.5.0",
