@@ -15,13 +15,13 @@ export async function GET() {
       });
     } catch (error) {
       console.error(error);
-      result = { error };
+      result = { error, msg: "创建房间失败1" };
     } finally {
       await dbHandler.endSQL();
     }
   } catch (error) {
     console.error(error);
-    result = { error };
+    result = { error, msg: "创建房间失败2" };
   }
   return json(result);
 }
