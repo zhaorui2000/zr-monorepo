@@ -1,18 +1,10 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "ui": "tui",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["apps/anki-template/dist/**"]
-    },
-    "dev": {
-      "inputs": [
-        "packages/ui/dist/**"
-      ],
-      "cache": false,
-      "persistent": true
     }
   }
 }

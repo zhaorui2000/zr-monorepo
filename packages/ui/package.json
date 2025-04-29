@@ -10,7 +10,8 @@
     "./index.js": "./dist/index.js"
   },
   "scripts": {
-    "dev": "vite build --watch"
+    "dev": "vite build --watch",
+    "build": "vite build"
   },
   "dependencies": {
     "@leafer-in/find": "^1.6.0",
