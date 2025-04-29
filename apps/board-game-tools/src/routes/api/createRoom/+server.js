@@ -6,6 +6,7 @@ export async function GET() {
   const dbHandler = new DbHandler("board_game_tools.sqlite");
   const db = await dbHandler.init();
   const ip = getHostAddress();
+  console.log(ip);
   try {
     db.run("INSERT INTO rooms (ip) VALUES (:ip)", {
       ":ip": ip,
