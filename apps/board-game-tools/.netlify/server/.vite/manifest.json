@@ -1,0 +1,165 @@
+{
+  "../../node_modules/.pnpm/@sveltejs+kit@2.20.7_@sveltejs+vite-plugin-svelte@5.0.3_svelte@5.28.2_vite@6.3.3_@types+node@_ckgvubk6ezj4bhrohuayjucqsa/node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte": {
+    "file": "entries/fallbacks/error.svelte.js",
+    "name": "entries/fallbacks/error.svelte",
+    "src": "../../node_modules/.pnpm/@sveltejs+kit@2.20.7_@sveltejs+vite-plugin-svelte@5.0.3_svelte@5.28.2_vite@6.3.3_@types+node@_ckgvubk6ezj4bhrohuayjucqsa/node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_exports.js"
+    ]
+  },
+  "../../node_modules/.pnpm/@sveltejs+kit@2.20.7_@sveltejs+vite-plugin-svelte@5.0.3_svelte@5.28.2_vite@6.3.3_@types+node@_ckgvubk6ezj4bhrohuayjucqsa/node_modules/@sveltejs/kit/src/runtime/server/index.js": {
+    "file": "index.js",
+    "name": "index",
+    "src": "../../node_modules/.pnpm/@sveltejs+kit@2.20.7_@sveltejs+vite-plugin-svelte@5.0.3_svelte@5.28.2_vite@6.3.3_@types+node@_ckgvubk6ezj4bhrohuayjucqsa/node_modules/@sveltejs/kit/src/runtime/server/index.js",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_internal.js",
+      "_index2.js",
+      "_exports.js"
+    ]
+  },
+  ".svelte-kit/generated/server/internal.js": {
+    "file": "internal.js",
+    "name": "internal",
+    "src": ".svelte-kit/generated/server/internal.js",
+    "isEntry": true,
+    "imports": [
+      "_internal.js"
+    ]
+  },
+  "_Button.js": {
+    "file": "chunks/Button.js",
+    "name": "Button",
+    "imports": [
+      "_index.js",
+      "_index3.js"
+    ]
+  },
+  "_DbHandler.js": {
+    "file": "chunks/DbHandler.js",
+    "name": "DbHandler"
+  },
+  "_exports.js": {
+    "file": "chunks/exports.js",
+    "name": "exports",
+    "imports": [
+      "_index.js"
+    ]
+  },
+  "_index.js": {
+    "file": "chunks/index.js",
+    "name": "index"
+  },
+  "_index2.js": {
+    "file": "chunks/index2.js",
+    "name": "index"
+  },
+  "_index3.js": {
+    "file": "chunks/index3.js",
+    "name": "index",
+    "imports": [
+      "_index.js"
+    ]
+  },
+  "_index4.js": {
+    "file": "chunks/index4.js",
+    "name": "index"
+  },
+  "_internal.js": {
+    "file": "chunks/internal.js",
+    "name": "internal",
+    "imports": [
+      "_index.js"
+    ],
+    "dynamicImports": [
+      "src/hooks.server.js"
+    ]
+  },
+  "src/hooks.server.js": {
+    "file": "chunks/hooks.server.js",
+    "name": "hooks.server",
+    "src": "src/hooks.server.js",
+    "isDynamicEntry": true
+  },
+  "src/routes/+layout.js": {
+    "file": "entries/pages/_layout.js",
+    "name": "entries/pages/_layout",
+    "src": "src/routes/+layout.js",
+    "isEntry": true
+  },
+  "src/routes/+layout.svelte": {
+    "file": "entries/pages/_layout.svelte.js",
+    "name": "entries/pages/_layout.svelte",
+    "src": "src/routes/+layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_index3.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_layout.CpohY2BK.css"
+    ]
+  },
+  "src/routes/+page.svelte": {
+    "file": "entries/pages/_page.svelte.js",
+    "name": "entries/pages/_page.svelte",
+    "src": "src/routes/+page.svelte",
+    "isEntry": true
+  },
+  "src/routes/agricola/+page.svelte": {
+    "file": "entries/pages/agricola/_page.svelte.js",
+    "name": "entries/pages/agricola/_page.svelte",
+    "src": "src/routes/agricola/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_index3.js",
+      "_Button.js",
+      "_index4.js"
+    ]
+  },
+  "src/routes/api/createRoom/+server.js": {
+    "file": "entries/endpoints/api/createRoom/_server.js",
+    "name": "entries/endpoints/api/createRoom/_server",
+    "src": "src/routes/api/createRoom/+server.js",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_DbHandler.js"
+    ]
+  },
+  "src/routes/api/getRooms/+server.js": {
+    "file": "entries/endpoints/api/getRooms/_server.js",
+    "name": "entries/endpoints/api/getRooms/_server",
+    "src": "src/routes/api/getRooms/+server.js",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_DbHandler.js"
+    ]
+  },
+  "src/routes/create/+page.svelte": {
+    "file": "entries/pages/create/_page.svelte.js",
+    "name": "entries/pages/create/_page.svelte",
+    "src": "src/routes/create/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_Button.js"
+    ]
+  },
+  "src/routes/join/+page.svelte": {
+    "file": "entries/pages/join/_page.svelte.js",
+    "name": "entries/pages/join/_page.svelte",
+    "src": "src/routes/join/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_Button.js",
+      "_index4.js"
+    ]
+  }
+}

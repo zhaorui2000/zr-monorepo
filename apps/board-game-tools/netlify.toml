@@ -1,3 +1,0 @@
-[build]
-	command = "turbo run build --filter board-game-tools"
-	publish = "apps/board-game-tools/.netlify"

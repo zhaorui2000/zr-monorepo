@@ -5,7 +5,6 @@ node_modules
 /package
 .env
 .env.*
-.netlify
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*

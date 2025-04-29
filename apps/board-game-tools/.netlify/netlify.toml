@@ -1,0 +1,47 @@
+plugins = []
+functionsDirectory = "/Users/zhaorui/Documents/project/zr/apps/board-game-tools/.netlify/functions"
+functionsDirectoryOrigin = "config-v1"
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "/Users/zhaorui/Documents/project/zr/apps/board-game-tools/apps/board-game-tools/.netlify"
+publishOrigin = "config"
+commandOrigin = "config"
+base = "/Users/zhaorui/Documents/project/zr/apps/board-game-tools"
+command = "turbo run build --filter board-game-tools"
+functions = "/Users/zhaorui/Documents/project/zr/apps/board-game-tools/.netlify/functions"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[[headers]]
+for = "/_app/immutable/*"
+
+[headers.values]
+cache-control = "public, immutable, max-age=31536000"
+
+[[redirects]]
+from = "*"
+to = "/.netlify/functions/sveltekit-render"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
