@@ -1,5 +1,5 @@
 {
-  "name": "board-game-tools",
+  "name": "@zr/board-game-tools",
   "version": "0.1.0",
   "description": "",
   "type": "module",

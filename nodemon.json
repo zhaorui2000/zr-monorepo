@@ -1,0 +1,4 @@
+{
+    "ignore": ["**/ui/dist/**"],
+    "ext":"svelte,css,json"
+}

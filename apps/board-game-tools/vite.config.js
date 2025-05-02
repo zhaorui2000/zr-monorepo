@@ -11,6 +11,7 @@ export default defineConfig(async () => ({
   //   assetsInlineLimit: 0, // 禁用资源内联
   // },
   server: {
+    port: 5174,
     headers: {
       "Cross-Origin-Opener-Policy": "same-origin",
       "Cross-Origin-Embedder-Policy": "require-corp",
