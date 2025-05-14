@@ -1,5 +1,5 @@
 [build]
-command = "turbo run build --filter board-game-tools"
+command = "turbo run build --filter @zr/board-game-tools"
 publish = "build"
 
 [functions]
