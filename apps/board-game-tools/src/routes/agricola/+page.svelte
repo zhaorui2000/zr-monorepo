@@ -2,6 +2,9 @@
   import Container from "@zr/ui/Container";
   import List from "@zr/ui/List";
   import ScoreItems from "./modules/scoreItems.svelte";
+  import Badge from "@zr/ui/Badge";
+
+  let totalScore = $derived(scoreArr.reduce((pre, cur) => pre + cur, 0));
   const ScoreList = {
     animal: [
       {
@@ -117,48 +120,75 @@
           return value * -3;
         },
       },
-      {
-        name: "卡牌分",
-        max: 20,
-        compScore: (value) => {
-          return value;
-        },
-      },
     ],
   };
+  let scoreArr = $state([
+    ...new Array(ScoreList.board.length).fill(-1),
+    ...new Array(ScoreList.animal.length).fill(-1),
+    ...new Array(ScoreList.grain.length).fill(-1),
+    ...new Array(ScoreList.other.length).fill(0),
+  ]);
 </script>
 
-<Container>
+<Container className="relative">
   <List>
     {#snippet title()}
       动物
     {/snippet}
-    {#each ScoreList.animal as { compScore, max, name }}
-      <ScoreItems {compScore} {max}>{name}</ScoreItems>
+    {#each ScoreList.animal as { compScore, max, name }, index}
+      <ScoreItems
+        onChangeScore={(score) => (scoreArr[index] = score)}
+        {compScore}
+        {max}>{name}</ScoreItems
+      >
     {/each}
   </List>
   <List>
     {#snippet title()}
       板块
     {/snippet}
-    {#each ScoreList.board as { compScore, max, name }}
-      <ScoreItems {compScore} {max}>{name}</ScoreItems>
+    {#each ScoreList.board as { compScore, max, name }, index}
+      <ScoreItems
+        onChangeScore={(score) =>
+          (scoreArr[index + ScoreList.animal.length] = score)}
+        {compScore}
+        {max}>{name}</ScoreItems
+      >
     {/each}
   </List>
   <List>
     {#snippet title()}
       粮食
     {/snippet}
-    {#each ScoreList.grain as { compScore, max, name }}
-      <ScoreItems {compScore} {max}>{name}</ScoreItems>
+    {#each ScoreList.grain as { compScore, max, name }, index}
+      <ScoreItems
+        onChangeScore={(score) =>
+          (scoreArr[index + ScoreList.animal.length + ScoreList.board.length] =
+            score)}
+        {compScore}
+        {max}>{name}</ScoreItems
+      >
     {/each}
   </List>
   <List>
     {#snippet title()}
       其他
     {/snippet}
-    {#each ScoreList.other as { compScore, max, name }}
-      <ScoreItems {compScore} {max}>{name}</ScoreItems>
+    {#each ScoreList.other as { compScore, max, name }, index}
+      <ScoreItems
+        onChangeScore={(score) =>
+          (scoreArr[
+            index +
+              ScoreList.animal.length +
+              ScoreList.board.length +
+              ScoreList.grain.length
+          ] = score)}
+        {compScore}
+        {max}>{name}</ScoreItems
+      >
     {/each}
   </List>
+  <div class="sticky bottom-0 flex justify-end">
+    <Badge size="xl">总分：{totalScore}</Badge>
+  </div>
 </Container>
