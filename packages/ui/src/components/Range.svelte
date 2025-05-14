@@ -1,7 +1,16 @@
 <script>
   import { cva, cx } from "class-variance-authority";
-  const { step, initValue, max, min, className, color, size, ...restProps } =
-    $props();
+  let {
+    step,
+    initValue,
+    max,
+    min,
+    className,
+    color,
+    size,
+    value = $bindable(initValue),
+    ...restProps
+  } = $props();
   const rangeClass = cva("range w-full", {
     variants: {
       color: {
@@ -28,11 +37,11 @@
 
 <div class="w-full">
   <input
+    bind:value
     {...restProps}
     type="range"
     {min}
     {max}
-    value={initValue}
     {step}
     class={cx(rangeClass({ color, size }), className)}
   />

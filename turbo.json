@@ -6,7 +6,7 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["apps/anki-template/dist/**"]
     },
-    "@zr/anki-template#dev": {
+    "@zr/board-game-tools#dev": {
       "dependsOn": ["^build"]
     }
   }

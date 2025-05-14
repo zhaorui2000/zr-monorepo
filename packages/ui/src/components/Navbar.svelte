@@ -22,7 +22,7 @@
     {@render start?.()}
   </div>
   <div class="navbar-center">
-    <a class="btn btn-ghost text-xl">{@render children?.()}</a>
+    <a href="" class="btn btn-ghost text-xl">{@render children?.()}</a>
   </div>
   <div class="navbar-end">
     {@render end?.()}

@@ -4,6 +4,6 @@
 </script>
 
 <div class="h-full w-full grid" style="grid-template-rows: min-content 1fr;">
-  <Navbar>------</Navbar>
+  <Navbar>-----</Navbar>
   <slot></slot>
 </div>
