@@ -32,13 +32,6 @@
           return Math.floor(value / 2);
         },
       },
-      // {
-      //   name: "马🐴",
-      //   max: 8,
-      //   compScore: (value) => {
-      //     return value;
-      //   },
-      // },
     ],
     board: [
       {
