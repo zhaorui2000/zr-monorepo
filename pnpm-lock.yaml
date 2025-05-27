@@ -104,6 +104,9 @@ importers:
       '@tauri-apps/cli':
         specifier: ^2.5.0
         version: 2.5.0
+      '@zr/svelte-actions':
+        specifier: workspace:*
+        version: link:../../packages/svelte-actions
       '@zr/ui':
         specifier: workspace:*
         version: link:../../packages/ui

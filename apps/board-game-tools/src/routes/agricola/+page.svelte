@@ -3,6 +3,9 @@
   import List from "@zr/ui/List";
   import ScoreItems from "./modules/scoreItems.svelte";
   import Badge from "@zr/ui/Badge";
+  import Button from "@zr/ui/Button";
+  import beforeDestroyWarn from "@zr/svelte-actions/beforeDestroyWarn";
+  import { onMount } from "svelte";
 
   let totalScore = $derived(scoreArr.reduce((pre, cur) => pre + cur, 0));
   const ScoreList = {
@@ -115,6 +118,7 @@
       },
     ],
   };
+
   let scoreArr = $state([
     ...new Array(ScoreList.board.length).fill(-1),
     ...new Array(ScoreList.animal.length).fill(-1),
@@ -123,7 +127,8 @@
   ]);
 </script>
 
-<Container className="relative">
+<div use:beforeDestroyWarn></div>
+<Container className="relative grid gap-y-2">
   <List>
     {#snippet title()}
       动物
@@ -132,7 +137,7 @@
       <ScoreItems
         onChangeScore={(score) => (scoreArr[index] = score)}
         {compScore}
-        {max}>{name}</ScoreItems
+        {max}><span class="pl-2">{name}</span></ScoreItems
       >
     {/each}
   </List>
@@ -145,7 +150,7 @@
         onChangeScore={(score) =>
           (scoreArr[index + ScoreList.animal.length] = score)}
         {compScore}
-        {max}>{name}</ScoreItems
+        {max}><span class="pl-2">{name}</span></ScoreItems
       >
     {/each}
   </List>
@@ -159,7 +164,7 @@
           (scoreArr[index + ScoreList.animal.length + ScoreList.board.length] =
             score)}
         {compScore}
-        {max}>{name}</ScoreItems
+        {max}><span class="pl-2">{name}</span></ScoreItems
       >
     {/each}
   </List>
@@ -177,7 +182,7 @@
               ScoreList.grain.length
           ] = score)}
         {compScore}
-        {max}>{name}</ScoreItems
+        {max}><span class="pl-2">{name}</span></ScoreItems
       >
     {/each}
   </List>

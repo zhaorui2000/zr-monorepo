@@ -102,9 +102,10 @@
   )}
   {...restProps}
 >
+  {#if loading}
     <span class="loading loading-spinner"></span>
   {/if}
   {#if !loading}
     {@render children?.()}
   {/if}
-  </button>
+</button>

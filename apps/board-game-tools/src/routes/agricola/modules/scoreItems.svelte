@@ -13,7 +13,8 @@
 <ListItem class="grid mt-4" style="grid-template-columns: 3rem 1fr 5rem">
   <div>{@render children?.()}</div>
   <Range min={0} {max} step={1} bind:value onchange={handleChange}></Range>
-  <div class="flex justify-end gap-0.5">
-    <Badge>{value}</Badge><Badge color="success">{score}</Badge>
+  <div class="flex flex-col items-center gap-1">
+    <Badge>{value}</Badge>
+    <Badge color="success">分:{score}</Badge>
   </div></ListItem
 >
