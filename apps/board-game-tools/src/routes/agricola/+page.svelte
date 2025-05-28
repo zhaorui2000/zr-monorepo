@@ -75,7 +75,7 @@
     ],
     other: [
       {
-        name: "未使用格子",
+        name: "未使用格",
         max: 9,
         compScore: (value) => {
           return -value;

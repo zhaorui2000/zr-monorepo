@@ -16,6 +16,7 @@
   let lineIds = [];
   let lineGroup;
   export function undo() {
+    if (lineIds.length === 0) return;
     lineGroup.remove(lineIds.at(-1));
     lineIds.pop();
   }
