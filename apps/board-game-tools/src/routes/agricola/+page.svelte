@@ -11,7 +11,7 @@
   const ScoreList = {
     animal: [
       {
-        name: "牛🐂",
+        name: "牛",
         max: 6,
         compScore: (value) => {
           if (value === 0) return -1;
@@ -19,7 +19,7 @@
         },
       },
       {
-        name: "猪🐷",
+        name: "猪",
         max: 7,
         compScore: (value) => {
           if (value === 0) return -1;
@@ -27,7 +27,7 @@
         },
       },
       {
-        name: "羊🐑",
+        name: "羊",
         max: 8,
         compScore: (value) => {
           if (value === 0) return -1;
@@ -137,7 +137,7 @@
       <ScoreItems
         onChangeScore={(score) => (scoreArr[index] = score)}
         {compScore}
-        {max}><span class="pl-2">{name}</span></ScoreItems
+        {max}><div class="pl-2">{name}</div></ScoreItems
       >
     {/each}
   </List>
@@ -150,7 +150,7 @@
         onChangeScore={(score) =>
           (scoreArr[index + ScoreList.animal.length] = score)}
         {compScore}
-        {max}><span class="pl-2">{name}</span></ScoreItems
+        {max}><div class="pl-2">{name}</div></ScoreItems
       >
     {/each}
   </List>
@@ -164,7 +164,7 @@
           (scoreArr[index + ScoreList.animal.length + ScoreList.board.length] =
             score)}
         {compScore}
-        {max}><span class="pl-2">{name}</span></ScoreItems
+        {max}><div class="pl-2">{name}</div></ScoreItems
       >
     {/each}
   </List>
@@ -182,7 +182,7 @@
               ScoreList.grain.length
           ] = score)}
         {compScore}
-        {max}><span class="pl-2">{name}</span></ScoreItems
+        {max}><div class="pl-2">{name}</div></ScoreItems
       >
     {/each}
   </List>

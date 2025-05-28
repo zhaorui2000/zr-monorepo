@@ -11,6 +11,22 @@
     value = $bindable(initValue),
     ...restProps
   } = $props();
+  const textClass = cva("", {
+    variants: {
+      color: {
+        undefined: [""],
+        primary: ["text-primary"],
+        secondary: ["text-secondary"],
+        accent: ["text-accent"],
+        neutral: ["text-neutral"],
+        info: ["text-info"],
+        success: ["text-success"],
+        warning: ["text-warning"],
+        error: ["text-error"],
+      },
+    },
+  });
+
   const rangeClass = cva("range w-full", {
     variants: {
       color: {
@@ -35,7 +51,7 @@
   });
 </script>
 
-<div class="w-full">
+<div class={cx("w-full", textClass({ color }))}>
   <input
     bind:value
     {...restProps}
