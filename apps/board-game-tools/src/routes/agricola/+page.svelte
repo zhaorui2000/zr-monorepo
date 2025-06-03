@@ -17,7 +17,7 @@
 </script>
 
 <div use:beforeDestroyWarn></div>
-<Container maxWidth="5xl" className="relative w-full gap-y-2">
+<Container maxWidth="5xl" className="relative w-full grid gap-y-2">
   <List>
     {#snippet title()}
       动物
@@ -95,7 +95,7 @@
       >
     {/each}
   </List>
-  <div class="sticky bottom-0 flex justify-end">
+  <div class="fixed bottom-1 right-1 flex justify-end">
     <Badge size="xl">总分：{totalScore}</Badge>
   </div>
 </Container>

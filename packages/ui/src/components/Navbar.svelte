@@ -14,7 +14,7 @@
       },
     },
   });
-  let { start, end, color, children } = $props();
+  let { start, end, color, onclickCenter, children } = $props();
 </script>
 
 <div class={cx(navbarVariants({ color }))}>
@@ -22,7 +22,9 @@
     {@render start?.()}
   </div>
   <div class="navbar-center">
-    <a href="" class="btn btn-ghost text-xl">{@render children?.()}</a>
+    <a href="" class="btn btn-ghost text-xl" onclick={onclickCenter}
+      >{@render children?.()}</a
+    >
   </div>
   <div class="navbar-end">
     {@render end?.()}
