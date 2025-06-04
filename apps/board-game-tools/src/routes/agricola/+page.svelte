@@ -95,7 +95,7 @@
       >
     {/each}
   </List>
-  <div class="fixed bottom-1 right-1 flex justify-end">
+  <div class="sticky bottom-1 right-1 flex justify-end">
     <Badge size="xl">总分：{totalScore}</Badge>
   </div>
 </Container>

@@ -96,3 +96,7 @@
 html {
     @apply bg-base-100;
 }
+
+table{
+  @apply table;
+}
