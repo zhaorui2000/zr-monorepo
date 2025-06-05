@@ -16,7 +16,8 @@ html {
     );
 }
 ::-webkit-scrollbar{
-  display:none
+  display:none;
+  width: 0;
 }
 h1 {
   font-size: 2rem;

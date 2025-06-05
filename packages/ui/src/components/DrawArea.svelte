@@ -7,6 +7,7 @@
   import isTouchDevice from "@zr/utils/DOM/isTouchDevice";
   import preventDefault from "@zr/svelte-actions/preventDefault";
   import "@leafer-in/find";
+  import ExpandCollapseButton from "./ExpandCollapseButton.svelte";
 
   const { children, className, enabled = $bindable(true) } = $props();
 
@@ -60,10 +61,7 @@
   });
 </script>
 
-<div
-  class={cx("relative grid gap-x-1", className)}
-  style="grid-template-columns: 1fr min-content"
->
+<div class={cx("relative grid", className)}>
   <div
     use:preventDefault={"touchmove"}
     class={cx({ "user-select-none": !enabled })}
@@ -71,14 +69,17 @@
   >
     {@render children?.()}
   </div>
-  <div
-    class="flex flex-col gap-y-1 absolute right-0 bottom-0 h-fit overflow-hidden opacity-50"
-  >
-    <Button responsive circle color="error" onclick={clear}>
-      <Icon iconClass="icon-[material-symbols--delete-outline-rounded]"></Icon>
-    </Button>
-    <Button responsive circle onclick={undo}>
-      <Icon iconClass="icon-[material-symbols--undo-rounded]"></Icon>
-    </Button>
+  <div class="flex justify-end items-center sticky bottom-0 h-0">
+    <ExpandCollapseButton className="-translate-y-[50%]">
+      {#snippet buttons()}
+        <Button responsive circle color="error" onclick={clear}>
+          <Icon iconClass="icon-[material-symbols--delete-outline-rounded]"
+          ></Icon>
+        </Button>
+        <Button responsive circle onclick={undo}>
+          <Icon iconClass="icon-[material-symbols--undo-rounded]"></Icon>
+        </Button>
+      {/snippet}
+    </ExpandCollapseButton>
   </div>
 </div>

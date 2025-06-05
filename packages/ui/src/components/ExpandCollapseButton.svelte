@@ -2,16 +2,46 @@
   import { fade } from "svelte/transition";
   import Button from "./Button.svelte";
   import Icon from "./Icon.svelte";
-  let { buttons } = $props();
+  import { cva, cx } from "class-variance-authority";
+  let { buttons, direction = "left", className } = $props();
   let show = $state(false);
+
+  let toggleStyle = cva("opacity-50", {
+    variants: {
+      direction: {
+        left: ["order-2"],
+        right: ["order-1"],
+      },
+    },
+  });
+  let buttonStyle = cva("", {
+    variants: {
+      direction: {
+        left: ["order-1"],
+        right: ["order-2"],
+      },
+    },
+  });
 </script>
 
 <div
-  class="flex justify-end items-center gap-2"
-  transition:fade={{ duration: 300 }}
+  class={cx("inline-grid overflow-hidden relative", className)}
+  style="grid-template-columns: min-content min-content"
 >
-  {@render buttons?.()}
-  <Button onclick={() => (show = !show)} circle responsive>
+  {#if show}
+    <div
+      class="inline-flex justify-end items-center gap-2 order-2"
+      transition:fade={{ duration: 300 }}
+    >
+      {@render buttons?.()}
+    </div>
+  {/if}
+  <Button
+    className={cx(toggleStyle({ direction }), "m-1")}
+    onclick={() => (show = !show)}
+    circle
+    responsive
+  >
     <Icon responsive iconClass="icon-[material-symbols--more-horiz]"></Icon>
   </Button>
 </div>

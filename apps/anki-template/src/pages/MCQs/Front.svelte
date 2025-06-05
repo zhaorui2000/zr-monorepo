@@ -47,7 +47,7 @@
   className="grid gap-y-2"
   style="grid-template-rows: 1fr min-content;"
 >
-  <DrawArea className="overflow-y-scroll min-h-[6.75rem]">
+  <DrawArea className="overflow-y-auto min-h-[6.75rem]">
     <Card responsive className="h-full" color="primary" title="单选题"
       >{@html ANKI_QUESTION}</Card
     >
