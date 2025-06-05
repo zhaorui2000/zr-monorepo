@@ -71,7 +71,9 @@
   >
     {@render children?.()}
   </div>
-  <div class="flex flex-col gap-y-1 sticky top-0 h-fit">
+  <div
+    class="flex flex-col gap-y-1 absolute right-0 bottom-0 h-fit overflow-hidden opacity-50"
+  >
     <Button responsive circle color="error" onclick={clear}>
       <Icon iconClass="icon-[material-symbols--delete-outline-rounded]"></Icon>
     </Button>

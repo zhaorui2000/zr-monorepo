@@ -1,5 +1,4 @@
 import { marked } from "marked";
-import katex from "katex";
 
 export default {
   paragraph({ text }) {
