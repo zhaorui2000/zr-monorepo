@@ -1,6 +1,25 @@
 import { marked } from "marked";
+import katex from "katex";
 
 export default {
+  paragraph({ text }) {
+    let str = text.replace(
+      /\$(.*?)\$|\$\$(.*?)\$\$/g,
+      function (_, inline, display) {
+        const content = inline || display;
+        try {
+          // 使用 katex.renderToString 渲染 LaTeX 内容
+          return katex.renderToString(content, {
+            throwOnError: false,
+          });
+        } catch (e) {
+          // 如果渲染失败，保留原始内容（或可选地显示错误）
+          return content ?? "";
+        }
+      }
+    );
+    return `<p>${str}</p>`;
+  },
   strong({ text }) {
     return `<span class="font-bold">${text}</span>`;
   },

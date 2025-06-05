@@ -71,14 +71,6 @@ export const scoreList = atom({
   ],
   keyDev: [
     {
-      name: "井",
-      max: 1,
-      compScore: (value) => {
-        if (value === 0) return 0;
-        if (value === 1) return 4;
-      },
-    },
-    {
       name: "木工坊",
       max: 7,
       compScore: (value) => {

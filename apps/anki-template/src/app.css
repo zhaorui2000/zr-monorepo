@@ -41,3 +41,6 @@ h5 {
 h6 {
   font-size: 1rem;
 }
+.katex-html {
+  @apply hidden;
+}
