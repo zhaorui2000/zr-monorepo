@@ -11,11 +11,15 @@
 
   const { children, className, enabled = $bindable(true) } = $props();
 
-  let drawCanvas;
   let drawCanvasWrap;
   let line;
   let lineIds = [];
   let lineGroup;
+  let leafer;
+
+  let isDrawMode = $state(false);
+  $inspect(isDrawMode);
+
   export function undo() {
     if (lineIds.length === 0) return;
     lineGroup.remove(lineIds.at(-1));
@@ -28,7 +32,7 @@
   onMount(() => {
     if (!enabled) return;
     let isDrawing;
-    let leafer = new Leafer({
+    leafer = new Leafer({
       view: drawCanvasWrap,
       pointer: {
         touch: true,
@@ -59,6 +63,15 @@
       line.points = [...line.points, x, y];
     });
   });
+  $effect(() => {
+    const canvasElement = leafer.view;
+    console.log(canvasElement);
+    if (isDrawMode) {
+      canvasElement.style.display = "block";
+    } else {
+      canvasElement.style.display = "none";
+    }
+  });
 </script>
 
 <div class={cx("relative grid", className)}>
@@ -70,7 +83,11 @@
     {@render children?.()}
   </div>
   <div class="flex justify-end items-center sticky bottom-0 h-0">
-    <ExpandCollapseButton className="-translate-y-[50%]">
+    <ExpandCollapseButton
+      toggleIconClass="icon-[material-symbols--draw-outline-rounded]"
+      bind:show={isDrawMode}
+      className="-translate-y-[50%]"
+    >
       {#snippet buttons()}
         <Button responsive circle color="error" onclick={clear}>
           <Icon iconClass="icon-[material-symbols--delete-outline-rounded]"

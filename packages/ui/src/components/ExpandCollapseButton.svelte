@@ -3,10 +3,15 @@
   import Button from "./Button.svelte";
   import Icon from "./Icon.svelte";
   import { cva, cx } from "class-variance-authority";
-  let { buttons, direction = "left", className } = $props();
-  let show = $state(false);
+  let {
+    buttons,
+    toggleIconClass = "icon-[material-symbols--more-horiz]",
+    show = $bindable(false),
+    direction = "left",
+    className,
+  } = $props();
 
-  let toggleStyle = cva("opacity-50", {
+  let toggleStyle = cva("", {
     variants: {
       direction: {
         left: ["order-2"],
@@ -37,11 +42,11 @@
     </div>
   {/if}
   <Button
-    className={cx(toggleStyle({ direction }), "m-1")}
+    className={cx(toggleStyle({ direction }), "m-1", { "opacity-25": !show })}
     onclick={() => (show = !show)}
     circle
     responsive
   >
-    <Icon responsive iconClass="icon-[material-symbols--more-horiz]"></Icon>
+    <Icon responsive iconClass={toggleIconClass}></Icon>
   </Button>
 </div>
