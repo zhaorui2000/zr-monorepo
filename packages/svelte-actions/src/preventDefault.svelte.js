@@ -1,5 +1,9 @@
-export default function preventDefault(node, eventName) {
+export default function preventDefault(
+  node,
+  { eventName, beforePrevent = () => true }
+) {
   function handle(event) {
+    if (!beforePrevent(event)) return;
     event.preventDefault();
   }
   if (Array.isArray(eventName)) {

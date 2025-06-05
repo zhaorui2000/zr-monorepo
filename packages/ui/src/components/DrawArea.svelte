@@ -76,7 +76,10 @@
 
 <div class={cx("relative grid", className)}>
   <div
-    use:preventDefault={"touchmove"}
+    use:preventDefault={{
+      eventName: "touchmove",
+      beforePrevent: () => isDrawMode,
+    }}
     class={cx({ "user-select-none": !enabled })}
     bind:this={drawCanvasWrap}
   >
