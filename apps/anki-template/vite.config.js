@@ -10,7 +10,6 @@ export default defineConfig({
     // Do not compress, compressed and pasted to anki template recognition problem
     minify: false,
     rollupOptions: {
-      external: ["katex"],
       output: {
         format: "iife",
       },
