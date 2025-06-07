@@ -1,9 +1,7 @@
 <script>
   import Card from "@zr/ui/Card";
-  import { marked } from "marked";
-  import markedRender from "@utils/markedRender.svelte.js";
   import Collapse from "@zr/ui/Collapse";
-  import markedHooks from "@utils/markedHooks.svelte.js";
+  import marked from "@utils/marked";
   const extension = String.raw`{{补充}}`
     .replaceAll(/<br\s*(\/?)>/g, "\n")
     .replaceAll(/&nbsp;/g, " ")
@@ -13,7 +11,6 @@
     .replaceAll(/<br\s*(\/?)>/g, "\n")
     .replaceAll(/&nbsp;/g, " ");
   const hasExtensionCollapsible = `{{#折叠内容}}1{{/折叠内容}}`;
-  marked.use({ renderer: markedRender, hooks: markedHooks });
 </script>
 
 <Card responsive color="warning" title="补充">

@@ -65,10 +65,12 @@
               value={OPTION_LABELS[row]}
               name={radioName}
             >
-              <Badge responsive className="mr-2" color="primary"
-                >{OPTION_LABELS[row]}</Badge
-              >{@html ANKI_OPTIONS[row]}</Radio
-            >
+              <div class="flex">
+                <Badge responsive className="mr-2" color="primary"
+                  >{OPTION_LABELS[row]}</Badge
+                >{@html ANKI_OPTIONS[row]}
+              </div>
+            </Radio>
           {/each}
         </div>
         {#snippet actions()}
