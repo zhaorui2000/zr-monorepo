@@ -6,7 +6,9 @@
   import markedHooks from "@utils/markedHooks.svelte.js";
   const extension = String.raw`{{补充}}`
     .replaceAll(/<br\s*(\/?)>/g, "\n")
-    .replaceAll(/&nbsp;/g, " ");
+    .replaceAll(/&nbsp;/g, " ")
+    .replaceAll(/&gt;/g, ">")
+    .replaceAll(/&lt;/g, "<");
   const extensionCollapsible = String.raw`{{折叠内容}}`
     .replaceAll(/<br\s*(\/?)>/g, "\n")
     .replaceAll(/&nbsp;/g, " ");
