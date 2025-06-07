@@ -1,10 +1,8 @@
 export default {
   preprocess(markdown) {
-    console.log(markdown);
     let str = markdown.replace(
       /\$\$(.*?)\$\$|\$(.*?)\$/gs,
       function (_, display, inline) {
-        console.log({ inline, display, _ });
         const content = inline || display;
         try {
           // 使用 katex.renderToString 渲染 LaTeX 内容

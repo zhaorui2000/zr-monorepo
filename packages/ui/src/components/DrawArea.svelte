@@ -65,7 +65,6 @@
   });
   $effect(() => {
     const canvasElement = leafer.view;
-    console.log(canvasElement);
     if (isDrawMode) {
       canvasElement.style.display = "block";
     } else {
