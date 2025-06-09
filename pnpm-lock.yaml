@@ -17,6 +17,9 @@ importers:
       turbo:
         specifier: ^2.5.4
         version: 2.5.4
+      uuid:
+        specifier: ^11.1.0
+        version: 11.1.0
     devDependencies:
       '@iconify-json/material-symbols':
         specifier: ^1.2.24
@@ -63,9 +66,6 @@ importers:
       marked:
         specifier: ^15.0.12
         version: 15.0.12
-      uuid:
-        specifier: ^11.1.0
-        version: 11.1.0
     devDependencies:
       '@sveltejs/vite-plugin-svelte':
         specifier: ^5.1.0

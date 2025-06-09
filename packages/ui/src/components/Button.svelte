@@ -10,6 +10,7 @@
     dash = false,
     circle = false,
     outline = false,
+    block = false,
     content,
     className,
     ghost = false,
@@ -97,6 +98,7 @@
       soft,
       outline,
       circle,
+      block,
     }),
     className
   )}
