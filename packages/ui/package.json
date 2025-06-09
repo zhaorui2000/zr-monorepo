@@ -17,7 +17,6 @@
     "@leafer-in/find": "^1.7.0",
     "@zr/svelte-actions": "workspace:*",
     "@zr/utils": "workspace:*",
-    "class-variance-authority": "^0.7.1",
     "daisyui": "^5.0.43",
     "leafer-ui": "^1.7.0",
     "theme-change": "^2.5.0"
