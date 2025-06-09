@@ -10,7 +10,7 @@
   }
 </script>
 
-<div class="overflow-auto flex shadow items-center justify-around">
+<div class="flex overflow-x-scroll w-full">
   <div class="grid gap-3 h-fit py-3">
     {#each square as row}
       <div class="flex gap-3 px-3">

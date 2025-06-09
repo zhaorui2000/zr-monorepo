@@ -1,5 +1,4 @@
 <script>
-  import StickyContainer from "@zr/ui/StickyContainer";
   import { cx, cva } from "class-variance-authority";
   import { onMount } from "svelte";
   let { children, className, maxWidth, ...restProps } = $props();

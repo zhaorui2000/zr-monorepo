@@ -6,7 +6,7 @@
   import Container from "@zr/ui/Container";
   import { v4 as uuid } from "uuid";
   import formatTime from "@zr/utils/Time/FormatTime";
-  import StickyContainer from "@zr/ui/StickyContainer";
+  import StickyPanel from "@zr/ui/StickyPanel";
   import {
     answer,
     duration,
@@ -44,9 +44,7 @@
 
 <Container className="flex flex-col gap-y-2">
   {#snippet children({ stickyClass })}
-    <StickyContainer
-      className={cx("shrink-0", stickyClass({ position: "top" }))}
-    >
+    <StickyPanel className={cx("shrink-0", stickyClass({ position: "top" }))}>
       <Card
         responsive
         color="primary"
@@ -80,7 +78,7 @@
           <CopyQuestion></CopyQuestion>
         {/snippet}
       </Card>
-    </StickyContainer>
+    </StickyPanel>
     <Alert
       responsive
       type={isCorrect ? "success" : "error"}
