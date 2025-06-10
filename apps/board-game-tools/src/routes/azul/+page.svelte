@@ -1,13 +1,15 @@
 <script>
   import Button from "@zr/ui/Button";
   import Floor from "./modules/Floor.svelte";
-  let arr = $state([
+  import Badge from "@zr/ui/Badge";
+  let initArr = [
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
-  ]);
+  ];
+  let arr = $state(initArr);
   let currentScore = $state(0);
   let totalScore = $state(0);
   function handleCalc() {
@@ -106,6 +108,19 @@
     {/each}
   </div>
 </div>
-<span>当前得分：{currentScore}</span>
-<span>总得分：{totalScore}</span>
-<Button onclick={handleCalc}>计算分数</Button>
+<div class="flex flex-col gap-2 p-2 items-end">
+  <div>当前：<Badge>{currentScore}</Badge></div>
+  <div>总分：<Badge color="primary">{totalScore}</Badge></div>
+</div>
+<div class="flex w-full justify-center gap-1 p-1">
+  <Button
+    style="flex-grow: 1"
+    color="error"
+    onclick={() => {
+      location.reload();
+    }}>重置</Button
+  >
+  <Button color="primary" style="flex-grow: 3" onclick={handleCalc}
+    >计算分数</Button
+  >
+</div>
