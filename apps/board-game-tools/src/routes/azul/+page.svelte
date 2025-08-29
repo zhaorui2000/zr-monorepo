@@ -5,18 +5,27 @@
   import Option from "./modules/Option.svelte";
   import MainFloor from "./modules/MainFloor.svelte";
   import MinueFloor from "./modules/MinueFloor.svelte";
+  import Container from "@zr/ui/Container";
+  import StickyPanel from "@zr/ui/StickyPanel";
+  import { cx } from "class-variance-authority";
 </script>
 
-<div class="flex items-center justify-center">
-  <div>
-    <MainFloor></MainFloor>
-    <Divider />
-    <MinueFloor></MinueFloor>
-  </div>
-</div>
-<div class="flex px-2">
-  <Option></Option>
-  <Message></Message>
-</div>
-
-<Bottom></Bottom>
+<Container>
+  {#snippet children({ stickyClass })}
+    <Option></Option>
+    <div class="flex items-center flex-col">
+      <MainFloor></MainFloor>
+      <Divider />
+      <MinueFloor></MinueFloor>
+    </div>
+    <StickyPanel
+      insetShadow
+      className={cx("mt-4", stickyClass({ position: "bottom" }))}
+    >
+      <div>
+        <Message></Message>
+        <Bottom></Bottom>
+      </div>
+    </StickyPanel>
+  {/snippet}
+</Container>

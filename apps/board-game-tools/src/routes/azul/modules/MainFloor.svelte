@@ -23,15 +23,17 @@
   }
 </script>
 
-{#each { length: 5 }, row}
-  <div>
-    {#each { length: 5 }, col}
-      <Floor
-        disable={Number($arrStatus[row][col]) === IS_BLOCK}
-        isTranslucen={Number($arrStatus[row][col]) === IS_TRANSLUCEN}
-        onChange={(e) => handleChangeFloor({ e, row, col })}
-        >{isShowFlowMsg({ row, col }) ? $arr[row][col] : ""}</Floor
-      >
-    {/each}
-  </div>
-{/each}
+<div>
+  {#each { length: 5 }, row}
+    <div>
+      {#each { length: 5 }, col}
+        <Floor
+          disable={Number($arrStatus[row][col]) === IS_BLOCK}
+          isTranslucen={Number($arrStatus[row][col]) === IS_TRANSLUCEN}
+          onChange={(e) => handleChangeFloor({ e, row, col })}
+          >{isShowFlowMsg({ row, col }) ? $arr[row][col] : ""}</Floor
+        >
+      {/each}
+    </div>
+  {/each}
+</div>

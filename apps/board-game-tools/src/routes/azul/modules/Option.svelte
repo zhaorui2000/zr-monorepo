@@ -27,6 +27,8 @@
   }
 </script>
 
-<Checkbox bind:checked={$isCheatMode} onchange={handleChangeCheatMode}
-  >自动计算空块分数</Checkbox
->
+<div class="flex items-center">
+  <Checkbox bind:checked={$isCheatMode} onchange={handleChangeCheatMode}
+    >自动计算空块分数</Checkbox
+  >
+</div>
