@@ -15,6 +15,6 @@
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
-    "marked": "^16.1.1"
+    "marked": "^16.2.1"
   }
 }
