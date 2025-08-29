@@ -1,8 +1,5 @@
-import { atom } from "nanostores";
-export const floorArr = atom([
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-]);
+import { persistentAtom } from "@nanostores/persistent";
+export const isCheatMode = persistentAtom("isCheatMode", false, {
+  decode: (s) => s === "true",
+  encode: (b) => (b ? "true" : "false"),
+});

@@ -3,116 +3,147 @@
   import Floor from "./modules/Floor.svelte";
   import Badge from "@zr/ui/Badge";
   import Divider from "@zr/ui/Divider";
+  import Checkbox from "@zr/ui/Checkbox";
+  import { isCheatMode } from "./store";
   const IS_TRANSLUCEN = -1;
   const IS_BASE = 0;
+  const IS_BLOCK = 1;
   let initArr = [
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1],
+  ];
+  let initState = [
+    [IS_BASE, IS_BASE, IS_BASE, IS_BASE, IS_BASE],
+    [IS_BASE, IS_BASE, IS_BASE, IS_BASE, IS_BASE],
+    [IS_BASE, IS_BASE, IS_BASE, IS_BASE, IS_BASE],
+    [IS_BASE, IS_BASE, IS_BASE, IS_BASE, IS_BASE],
+    [IS_BASE, IS_BASE, IS_BASE, IS_BASE, IS_BASE],
   ];
   let arr = $state(initArr);
+  let arrStatus = $state(initState);
   let minusArrValue = [-1, -1, -2, -2, -2, -3, -3];
   let minusArrState = $state(new Array(minusArrValue.length).fill(false));
   let currentScore = $state(0);
   let totalScore = $state(0);
-  function calcCellScore({ col, row }) {
+  // --------------------- [ 计算每个格子的分数 ] ---------------------
+  function calcCellScore({ row, col, includeTranslucen = false }) {
     let len = arr.length;
-    function _calcBase({ col, row }) {
+    let validStatus = includeTranslucen
+      ? [IS_BLOCK, IS_TRANSLUCEN]
+      : [IS_BLOCK];
+    // --------------------- [ 计算基本分 ] ---------------------
+    function _calcBase() {
       let result = 1;
-      arr[row][col] = 1;
-      for (let i = row - 1; i >= 0; --i) {
-        let item = arr[i][col];
-        if ([IS_BASE, IS_TRANSLUCEN].includes(Number(item))) {
-          break;
-        }
-        result += 1;
-        arr[row][col] = result;
-      }
-      for (let i = row + 1; i < len; ++i) {
-        let item = arr[i][col];
-        if ([IS_BASE, IS_TRANSLUCEN].includes(Number(item))) {
-          break;
-        }
-        result += 1;
-        arr[row][col] = result;
-      }
+      // --------------------- [ 计算行 ] ---------------------
       for (let j = col - 1; j >= 0; --j) {
-        let item = arr[row][j];
-        if ([IS_BASE, IS_TRANSLUCEN].includes(Number(item))) {
+        if (validStatus.includes(arrStatus[row][j])) {
+          result++;
+        } else {
           break;
         }
-        result = result + 1;
-        arr[row][col] = result;
       }
       for (let j = col + 1; j < len; ++j) {
-        let item = arr[row][j];
-        if ([IS_BASE, IS_TRANSLUCEN].includes(Number(item))) {
+        if (validStatus.includes(arrStatus[row][j])) {
+          result++;
+        } else {
           break;
         }
-        result = result + 1;
-        arr[row][col] = result;
+      }
+      // --------------------- [ 计算列 ] ---------------------
+      for (let i = row - 1; i >= 0; --i) {
+        if (validStatus.includes(arrStatus[i][col])) {
+          result++;
+        } else {
+          break;
+        }
+      }
+      for (let i = row + 1; i < len; ++i) {
+        if (validStatus.includes(arrStatus[i][col])) {
+          result++;
+        } else {
+          break;
+        }
       }
       return result;
     }
-    function _calcSpecial({ row, col }) {
+    // --------------------- [ 计算特殊分 ] ---------------------
+    function _calcSpecial() {
       let result = 0;
-      for (let i = 0; i < len; ++i) {
-        if ([IS_BASE, IS_TRANSLUCEN].includes(Number(arr[i][col]))) {
-          break;
-        }
-        if (i === len - 1) {
-          result = result + 2;
-          arr[row][col] += result;
-        }
-      }
-      for (let j = 0; j < len; ++j) {
-        if ([IS_BASE, IS_TRANSLUCEN].includes(Number(arr[row][j]))) {
+      // --------------------- [ 铺满一行 +7 ] ---------------------
+      for (let j = 1; j < len; ++j) {
+        if (!validStatus.includes(arrStatus[row][(col + j) % len])) {
           break;
         }
         if (j === len - 1) {
-          result = result + 7;
-          arr[row][col] += result;
+          result += 7;
         }
       }
-      for (let i = 0; i < len; ++i) {
+      // --------------------- [ 铺满一列 +2] ---------------------
+      for (let i = 1; i < len; ++i) {
+        if (!validStatus.includes(arrStatus[(row + i) % len][col])) {
+          break;
+        }
+        if (i === len - 1) {
+          result += 2;
+        }
+      }
+      // --------------------- [ 铺满一个颜色 +10] ---------------------
+      for (let i = 1; i < len; ++i) {
         if (
-          [IS_BASE, IS_TRANSLUCEN].includes(
-            Number(arr[(row + i) % len][(col + i) % len])
-          )
+          !validStatus.includes(arrStatus[(row + i) % len][(col + i) % len])
         ) {
           break;
         }
         if (i === len - 1) {
-          result = result + 10;
-          arr[row][col] += result;
+          result += 10;
         }
       }
       return result;
     }
-    return _calcBase({ row, col }) + _calcSpecial({ row, col });
+    // --------------------- [ 计算总分 ] ---------------------
+    arr[row][col] = _calcBase() + _calcSpecial();
+    return arr[row][col];
   }
-  function handleCalcTotal() {
-    let len = arr.length;
-    function _calcMinus() {
-      let result = minusArrValue
-        .filter((_, index) => minusArrState[index])
-        .reduce((pre, cur) => pre + cur, 0);
-      minusArrState = new Array(minusArrValue.length).fill(false);
-      return result;
-    }
+  // --------------------- [ 计算减分 ] ---------------------
+  function calcMinusScore() {
+    let minusScore = minusArrValue
+      .filter((_, index) => minusArrState[index])
+      .reduce((pre, cur) => pre + cur, 0);
+    return minusScore;
+  }
+  // --------------------- [ 计算透明格子分数 ] ---------------------
+  function calcTranslucenScore() {
     let result = 0;
+    let len = arr.length;
     for (let row = 0; row < len; ++row) {
       for (let col = 0; col < len; ++col) {
-        let item = arr[row][col];
-        if (item === IS_TRANSLUCEN) {
-          result = result + calcCellScore({ row, col });
+        if (arrStatus[row][col] !== IS_TRANSLUCEN) {
+          continue;
+        }
+        result += calcCellScore({ row, col });
+        arrStatus[row][col] = IS_BLOCK;
+      }
+    }
+    return result + calcMinusScore();
+  }
+  function calcAllScore() {
+    if (!$isCheatMode) {
+      return;
+    }
+    let result = 0;
+    let len = arr.length;
+    for (let row = 0; row < len; ++row) {
+      for (let col = 0; col < len; ++col) {
+        result = 0;
+        if (arrStatus[row][col] === IS_BASE) {
+          result += calcCellScore({ row, col, includeTranslucen: true });
+          arr[row][col] = result;
         }
       }
     }
-    currentScore = result + _calcMinus();
-    totalScore += currentScore;
   }
 </script>
 
@@ -122,11 +153,15 @@
       <div>
         {#each { length: 5 }, col}
           <Floor
-            disable={Number(arr[row][col]) >= 1}
-            isTranslucen={Number(arr[row][col]) === IS_TRANSLUCEN}
+            disable={Number(arrStatus[row][col]) === IS_BLOCK}
+            isTranslucen={Number(arrStatus[row][col]) === IS_TRANSLUCEN}
             onChange={(e) => {
-              arr[row][col] = e.target.checked ? IS_TRANSLUCEN : 0;
-            }}>{arr[row][col] >= 1 ? arr[row][col] : ""}</Floor
+              arrStatus[row][col] = e.target.checked ? IS_TRANSLUCEN : IS_BASE;
+              calcAllScore();
+            }}
+            >{$isCheatMode || arrStatus[row][col] === IS_BLOCK
+              ? arr[row][col]
+              : ""}</Floor
           >
         {/each}
       </div>
@@ -134,7 +169,6 @@
     <Divider />
     {#each { length: minusArrValue.length }, index}
       <Floor
-        isTranslucen
         bind:checked={minusArrState[index]}
         onChange={(e) => (minusArrState[index] = e.target.checked)}
         >{minusArrValue[index]}</Floor
@@ -142,9 +176,27 @@
     {/each}
   </div>
 </div>
-<div class="flex flex-col gap-2 p-2 items-end">
-  <div>当前：<Badge>{currentScore}</Badge></div>
-  <div>总分：<Badge color="primary">{totalScore}</Badge></div>
+<div class="flex px-2">
+  <Checkbox
+    bind:checked={$isCheatMode}
+    onchange={(e) => {
+      if (e.target.checked) {
+        calcAllScore();
+      } else {
+        arrStatus.forEach((_, rowIndex) => {
+          arrStatus[rowIndex].forEach((_, colIndex) => {
+            if (arrStatus[rowIndex][colIndex] !== IS_BLOCK) {
+              arr[rowIndex][colIndex] = 1;
+            }
+          });
+        });
+      }
+    }}>自动计算空块分数</Checkbox
+  >
+  <div class="flex flex-col gap-2 p-2 grow items-end">
+    <div>当前：<Badge>{currentScore}</Badge></div>
+    <div>总分：<Badge color="primary">{totalScore}</Badge></div>
+  </div>
 </div>
 
 <div class="flex w-full justify-center gap-1 p-1">
@@ -155,7 +207,13 @@
       location.reload();
     }}>重置</Button
   >
-  <Button color="primary" style="flex-grow: 3" onclick={handleCalcTotal}
-    >计算分数</Button
+  <Button
+    color="primary"
+    style="flex-grow: 3"
+    onclick={() => {
+      currentScore = calcTranslucenScore();
+      totalScore += currentScore;
+      minusArrState = new Array(minusArrValue.length).fill(false);
+    }}>计算分数</Button
   >
 </div>

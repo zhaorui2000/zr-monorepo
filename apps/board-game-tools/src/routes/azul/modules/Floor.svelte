@@ -1,5 +1,6 @@
 <script>
   import Swap from "@zr/ui/Swap";
+  import Block from "@zr/ui/Block";
   import { cx } from "class-variance-authority";
   let {
     onChange,
@@ -9,7 +10,6 @@
     children,
     checked = $bindable(false),
   } = $props();
-  import Block from "@zr/ui/Block";
 </script>
 
 <Swap

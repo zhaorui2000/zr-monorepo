@@ -3,11 +3,12 @@
   let {
     children,
     disabled,
-    checked,
+    checked = $bindable(false),
     className,
     responsive = false,
     color = "",
     size = "",
+    onChange,
     ...restProps
   } = $props();
   const checkboxVariants = cva("checkbox", {
