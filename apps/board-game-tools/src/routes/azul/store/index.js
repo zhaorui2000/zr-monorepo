@@ -76,22 +76,22 @@ export function calcCellScore({ row, col, includeTranslucen = false }) {
   // --------------------- [ 计算特殊分 ] ---------------------
   function _calcSpecial() {
     let result = 0;
-    // --------------------- [ 铺满一行 +7 ] ---------------------
+    // --------------------- [ 铺满一行 +2 ] ---------------------
     for (let j = 1; j < len; ++j) {
       if (!validStatus.includes(arrStatus.get()[row][(col + j) % len])) {
         break;
       }
       if (j === len - 1) {
-        result += 7;
+        result += 2;
       }
     }
-    // --------------------- [ 铺满一列 +2] ---------------------
+    // --------------------- [ 铺满一列 +7] ---------------------
     for (let i = 1; i < len; ++i) {
       if (!validStatus.includes(arrStatus.get()[(row + i) % len][col])) {
         break;
       }
       if (i === len - 1) {
-        result += 2;
+        result += 7;
       }
     }
     // --------------------- [ 铺满一个颜色 +10] ---------------------
