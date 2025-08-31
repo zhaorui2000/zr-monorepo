@@ -1,13 +1,8 @@
 <script>
   import Checkbox from "@zr/ui/Checkbox";
   import { produce } from "immer";
-  import {
-    isCheatMode,
-    arrStatus,
-    arr,
-    calcAllScore,
-    IS_BLOCK,
-  } from "../store";
+  import calcAllScore from "../utils/calcAllScore";
+  import { isCheatMode, arrStatus, arr, IS_BLOCK } from "../store";
   function handleChangeCheatMode(e) {
     if (e.target.checked) {
       calcAllScore();

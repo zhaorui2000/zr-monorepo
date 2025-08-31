@@ -1,13 +1,13 @@
 <script>
   import Floor from "../components/Floor.svelte";
   import { produce } from "immer";
+  import calcAllScore from "../utils/calcAllScore";
   import {
     arrStatus,
     arr,
     IS_BLOCK,
     IS_TRANSLUCEN,
     isCheatMode,
-    calcAllScore,
     IS_BASE,
   } from "../store";
   function isShowFlowMsg({ row, col }) {

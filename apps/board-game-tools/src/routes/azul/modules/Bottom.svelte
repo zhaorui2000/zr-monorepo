@@ -1,13 +1,13 @@
 <script>
   import Button from "@zr/ui/Button";
   import { produce } from "immer";
+  import calcCellScore from "../utils/calcCellScore";
   import {
     currentScore,
     totalScore,
     minusArrState,
     arrStatus,
     arr,
-    calcCellScore,
     IS_TRANSLUCEN,
     IS_BLOCK,
     MINUS_ARRAY,
