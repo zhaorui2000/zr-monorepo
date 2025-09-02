@@ -124,7 +124,9 @@
       {@render children?.()}
     </p>
 
-    <div class="card-actions justify-end items-center gap-2 w-full flex-nowrap">
+    <div
+      class="card-actions justify-end items-center gap-2 w-full flex-nowrap absolute right-1 bottom-1"
+    >
       {@render actions?.()}
       {#if showCollapsedActions}
         <div
@@ -140,7 +142,6 @@
           circle
           responsive
           className={cx("", {
-            "absolute right-1 bottom-1": !showCollapsedActions && !actions,
             "opacity-25": !showCollapsedActions,
             "opacity-75": showCollapsedActions,
           })}
