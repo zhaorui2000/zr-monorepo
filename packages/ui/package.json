@@ -17,7 +17,7 @@
     "@leafer-in/find": "^1.9.5",
     "@zr/svelte-actions": "workspace:*",
     "@zr/utils": "workspace:*",
-    "daisyui": "^5.0.54",
+    "daisyui": "^5.1.5",
     "leafer-ui": "^1.9.5",
     "theme-change": "^2.5.0"
   }
