@@ -91,7 +91,7 @@
       [stickyClass]: sticky,
       "rounded-none": sticky,
     },
-    "pb-5",
+    { "pb-5": actions },
     className,
   )}
 >

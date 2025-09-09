@@ -25,7 +25,8 @@
   onclick={() => dialog.showModal()}
 >
   <Icon
-    className="text-2xl"
+    responsive
+    scale={1.5}
     color="neutral"
     iconClass="icon-[material-symbols--tv-options-input-settings-outline-rounded]"
   ></Icon>

@@ -8,6 +8,9 @@
     },
     "@zr/board-game-tools#dev": {
       "dependsOn": ["^build"]
+    },
+    "@zr/anki-template#dev": {
+      "dependsOn": ["^build"]
     }
   }
 }

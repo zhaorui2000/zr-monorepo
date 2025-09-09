@@ -1,6 +1,13 @@
 <script>
   import { cx, cva } from "class-variance-authority";
-  const { className, color, iconClass, responsive, ...restProps } = $props();
+  const {
+    className,
+    color,
+    iconClass,
+    responsive,
+    scale = 1,
+    ...restProps
+  } = $props();
   const iconVariants = cva("icon", {
     variants: {
       color: {
@@ -29,6 +36,10 @@
 
 <!-- icon url: https://icones.js.org/collection/material-symbols -->
 <span
+  style="transform:scale({scale})"
   {...restProps}
   class={cx(iconVariants({ color, responsive }), iconClass, className)}
 ></span>
+
+<style>
+</style>

@@ -13,6 +13,7 @@
     className,
     color,
     duration = 0,
+    isShowRemaining = false,
     soft,
     outline,
     dash,
@@ -24,6 +25,9 @@
     ...restProps
   } = $props();
   let isShow = $state(true);
+  let remaining = $state(Number(duration));
+  let countdownController = null;
+
   const alertVariants = cva("alert", {
     variants: {
       color: {
@@ -70,12 +74,20 @@
 
 {#if isShow}
   <div
+    onmousemove={() => countdownController.pause()}
+    onmouseleave={() => countdownController.restart()}
     transition:fade={{ duration: 300 }}
     use:countDown={{
+      setController(value) {
+        countdownController = value;
+      },
       duration,
-      onCountdownEnd(){
+      onTick(value) {
+        remaining = Number((value / 1000).toFixed(0));
+      },
+      onCountdownEnd() {
         isShow = false;
-      }
+      },
     }}
     role="alert"
     class={cx(
@@ -88,18 +100,21 @@
         vertical,
         horizontal,
       }),
-      className
+      className,
     )}
     {...restProps}
   >
     <Icon iconClass={ALERT_ICON_TYPE[type]}></Icon>
     {@render children?.()}
+    {#if isShowRemaining}
+      <span>{remaining}s</span>
+    {/if}
     {#if closeable}
       <Icon
         iconClass="icon-[material-symbols--close-rounded]"
         className="cursor-pointer"
         onclick={() => {
-          isShow = false;
+          countdownController.finish();
         }}
       ></Icon>
     {/if}
