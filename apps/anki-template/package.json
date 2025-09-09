@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@zr/ui": "workspace:*",
+    "@zr/svelte-actions": "workspace:*",
     "@zr/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "marked": "^16.2.1"

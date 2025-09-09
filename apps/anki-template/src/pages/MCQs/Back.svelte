@@ -3,10 +3,11 @@
   import Card from "@zr/ui/Card";
   import Radio from "@zr/ui/Radio";
   import Alert from "@zr/ui/Alert";
+  import Drawer from "@zr/ui/Drawer";
   import Container from "@zr/ui/Container";
+  import Button from "@zr/ui/Button";
   import { v4 as uuid } from "uuid";
   import formatTime from "@zr/utils/Time/FormatTime";
-  import StickyPanel from "@zr/ui/StickyPanel";
   import {
     answer,
     duration,
@@ -44,51 +45,59 @@
 
 <Container className="flex flex-col gap-y-2">
   {#snippet children({ stickyClass })}
-    <StickyPanel className={cx("shrink-0", stickyClass({ position: "top" }))}>
-      <Card
-        responsive
-        color="primary"
-        title="单选题"
-        stickyAble
-        stickyClass="sm:-top-2 md:-top-4 -top-1">{@html ANKI_QUESTION}</Card
-      >
-
-      <Card responsive>
-        <div class="grid pointer-events-none">
-          {#each { length: OPTION_LABELS.length }, row}
-            <Radio
-              className={orderClass({ order: $randomOrder[row] })}
-              bg={calcBg(row)}
-              responsive
-              value={OPTION_LABELS[row]}
-              name={radioName}
+    <Drawer btnProps={{ color: "primary", circle: true }}>
+      {#snippet children({ onclick })}
+        <Button color="primary" className="right-1 top-1 fixed" circle {onclick}
+          >题目</Button
+        >
+      {/snippet}
+      {#snippet sidebar()}
+        <div class="grid h-full" style="grid-template-rows: 1fr min-content">
+          <div class="overflow-y-scroll">
+            <Card responsive color="primary" title="单选题"
+              >{@html ANKI_QUESTION}</Card
             >
-              <div class="flex">
-                <Badge responsive className="mr-2" color="primary"
-                  >{OPTION_LABELS[row]}</Badge
-                >{@html ANKI_OPTIONS[row]}
-              </div>
-            </Radio>
-          {/each}
+          </div>
+          <Card responsive>
+            <div class="grid pointer-events-none">
+              {#each { length: OPTION_LABELS.length }, row}
+                <Radio
+                  className={orderClass({ order: $randomOrder[row] })}
+                  bg={calcBg(row)}
+                  responsive
+                  value={OPTION_LABELS[row]}
+                  name={radioName}
+                >
+                  <div class="flex">
+                    <Badge responsive className="mr-2" color="primary"
+                      >{OPTION_LABELS[row]}</Badge
+                    >{@html ANKI_OPTIONS[row]}
+                  </div>
+                </Radio>
+              {/each}
+            </div>
+            {#snippet actions()}
+              <RandomOrderCheckbox></RandomOrderCheckbox>
+            {/snippet}
+            {#snippet collapsedActions()}
+              <CopyQuestion></CopyQuestion>
+            {/snippet}
+          </Card>
         </div>
-        {#snippet actions()}
-          <RandomOrderCheckbox></RandomOrderCheckbox>
-        {/snippet}
-        {#snippet collapsedActions()}
-          <CopyQuestion></CopyQuestion>
-        {/snippet}
-      </Card>
-    </StickyPanel>
+      {/snippet}
+    </Drawer>
+    <Extension />
     <Alert
+      className="sticky bottom-0.5 z-[999]"
+      duration={3000}
       responsive
       type={isCorrect ? "success" : "error"}
       soft
       color={isCorrect ? "success" : "error"}
       >【{isCorrect ? "正确" : "错误"}】用时：({formatTime(
         "mm:ss",
-        $duration
+        $duration,
       )})</Alert
     >
-    <Extension />
   {/snippet}
 </Container>

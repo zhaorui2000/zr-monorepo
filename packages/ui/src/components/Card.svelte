@@ -91,7 +91,8 @@
       [stickyClass]: sticky,
       "rounded-none": sticky,
     },
-    className
+    "pb-5",
+    className,
   )}
 >
   <div class="card-body overflow-y-scroll">
