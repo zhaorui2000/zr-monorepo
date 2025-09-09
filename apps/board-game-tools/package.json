@@ -23,7 +23,7 @@
   "devDependencies": {
     "@sveltejs/adapter-netlify": "^5.2.3",
     "@sveltejs/adapter-static": "^3.0.9",
-    "@sveltejs/kit": "^2.37.0",
+    "@sveltejs/kit": "^2.37.1",
     "@tauri-apps/cli": "^2.8.4",
     "@zr/svelte-actions": "workspace:*",
     "@zr/ui": "workspace:*",
