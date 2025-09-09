@@ -2,6 +2,8 @@
   import Icon from "./Icon.svelte";
   import { cx, cva } from "class-variance-authority";
   import { fade } from "svelte/transition";
+  import countDown from "@zr/svelte-actions/countDown";
+
   export const ALERT_ICON_TYPE = {
     success: "icon-[material-symbols--check-circle-rounded]",
     error: "icon-[material-symbols--error-outline-rounded]",
@@ -10,6 +12,7 @@
     type,
     className,
     color,
+    duration = 0,
     soft,
     outline,
     dash,
@@ -68,6 +71,12 @@
 {#if isShow}
   <div
     transition:fade={{ duration: 300 }}
+    use:countDown={{
+      duration,
+      onCountdownEnd(){
+        isShow = false;
+      }
+    }}
     role="alert"
     class={cx(
       alertVariants({
