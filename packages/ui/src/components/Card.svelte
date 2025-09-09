@@ -125,7 +125,7 @@
     </p>
 
     <div
-      class="card-actions justify-end items-center gap-2 w-full flex-nowrap absolute right-1 bottom-1"
+      class="card-actions justify-end items-center gap-2 flex-nowrap absolute right-1 bottom-1"
     >
       {@render actions?.()}
       {#if showCollapsedActions}

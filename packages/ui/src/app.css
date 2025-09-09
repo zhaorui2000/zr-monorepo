@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui"{
-    themes: light, dark --prefersdark, 
+    themes: light, dark --prefersdark,
+    "light",
     "cupcake",
     "bumblebee",
     "emerald",
@@ -35,61 +36,6 @@
     "abyss",
     "silk";
 }
-@plugin "daisyui/theme" {
-  name: "ghibli";
-  default: true;
-  prefersdark: false;
-  color-scheme: light;
-
-  /* 背景和基础文字色，营造出温暖旧纸质感 */
-  --color-base-100: oklch(97% 0.02 85);   /* 温暖米白色 */
-  --color-base-200: oklch(93% 0.03 90);   /* 柔和浅黄褐 */
-  --color-base-300: oklch(85% 0.05 95);   /* 旧纸感米黄色 */
-  --color-base-content: oklch(25% 0.05 100); /* 低对比的深褐色文字 */
-
-  /* 自然核心色调 */
-  --color-primary: oklch(58% 0.26 190);      /* 低饱和度青绿色 */
-  --color-primary-content: oklch(98% 0.02 190);
-
-  --color-secondary: oklch(72% 0.22 80);     /* 柔和金黄，犹如午后阳光 */
-  --color-secondary-content: oklch(20% 0.06 80);
-
-  --color-accent: oklch(62% 0.27 20);        /* 低饱和红砖色 */
-  --color-accent-content: oklch(98% 0.02 20);
-
-  --color-neutral: oklch(45% 0.04 240);      /* 带灰蓝感的柔和中性色 */
-  --color-neutral-content: oklch(95% 0.02 240);
-
-  /* 附加提示色彩 */
-  --color-info: oklch(68% 0.18 220);         /* 柔和的浅蓝色，仿佛晴朗的天空 */
-  --color-info-content: oklch(98% 0.01 220);
-
-  --color-success: oklch(60% 0.22 135);      /* 柔和的森林绿 */
-  --color-success-content: oklch(98% 0.01 135);
-
-  --color-warning: oklch(78% 0.24 70);       /* 温暖的柔和橙色 */
-  --color-warning-content: oklch(20% 0.06 70);
-
-  --color-error: oklch(62% 0.28 10);         /* 低饱和深红，带复古感 */
-  --color-error-content: oklch(98% 0.01 10);
-
-  /* 复古手绘风格的边角与边框 */
-  --radius-selector: 1rem;
-  --radius-field: 0.5rem;
-  --radius-box: 0.75rem;
-  --border: 1px;
-
-  /* 增强画面层次感及手绘质感 */
-  --size-selector: 0.3rem;
-  --size-field: 0.35rem;
-  --depth: 2;
-  --noise: 0.07; /* 手绘质感——细微的“噪点”效果 */
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* 轻微阴影，增强立体感 */
-
-  /* 可选：增加背景纸张纹理（需自行准备纹理图片） */
-  /* --paper-texture: url('/path/to/paper-texture.png'); */
-}
-
 @plugin "@tailwindcss/typography";
 @plugin "@iconify/tailwind4";
 

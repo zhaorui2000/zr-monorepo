@@ -38,8 +38,7 @@
     "sunset",
     "caramellatte",
     "abyss",
-    "silk",
-    "ghibli",
+    "silk"
   ];
   const { className, ...restProps } = $props();
   export function randomTheme() {
