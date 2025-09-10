@@ -30,7 +30,7 @@
     <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"
     ></label>
     <div
-      class="bg-base-200 text-base-content h-full p-2"
+      class="bg-base-200 text-base-content h-screen p-2"
       style="width: {width}%"
     >
       {@render sidebar?.()}

@@ -16,10 +16,11 @@
     stickyClass = "top-0 bottom-0",
     responsive = false,
     children,
+    style,
   } = $props();
   let sticky = $state(false);
   let showCollapsedActions = $state(false);
-  const cardVariants = cva("card relative", {
+  const cardVariants = cva("card overflow-y-scroll", {
     variants: {
       color: {
         neutral: ["bg-neutral text-neutral-content"],
@@ -85,6 +86,7 @@
 </script>
 
 <div
+  {style}
   class={cx(
     cardVariants({ color, size, responsive, border, dash, sticky }),
     {
@@ -95,7 +97,7 @@
     className,
   )}
 >
-  <div class="card-body overflow-y-scroll">
+  <div class="card-body">
     {#if stickyAble}
       <Button
         className="text-2xl absolute top-2 right-2 z-1 opacity-25"
@@ -117,14 +119,11 @@
     {/if}
     <h3
       class={cx(cardTitleVariants({ color }))}
-      style="top: calc(-1 * var(--card-p, 1.5rem))"
+      style="top: calc(-1 * var(--card-p, 1.5rem) + .25rem)"
     >
       {title}
     </h3>
-    <p>
       {@render children?.()}
-    </p>
-
     <div
       class="card-actions justify-end items-center gap-2 flex-nowrap absolute right-1 bottom-1"
     >

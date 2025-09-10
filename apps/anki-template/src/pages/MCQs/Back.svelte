@@ -52,39 +52,39 @@
         >
       {/snippet}
       {#snippet sidebar()}
-        <div class="flex flex-col max-h-full h-fit">
-          <div class="overflow-y-scroll shrink">
-            <Card responsive color="primary" title="单选题"
-              >{@html ANKI_QUESTION}</Card
-            >
-          </div>
-          <div class="grow-1 h-fit">
-            <Card responsive>
-              <div class="grid pointer-events-none">
-                {#each { length: OPTION_LABELS.length }, row}
-                  <Radio
-                    className={orderClass({ order: $randomOrder[row] })}
-                    bg={calcBg(row)}
-                    responsive
-                    value={OPTION_LABELS[row]}
-                    name={radioName}
-                  >
-                    <div class="flex">
-                      <Badge responsive className="mr-2" color="primary"
-                        >{OPTION_LABELS[row]}</Badge
-                      >{@html ANKI_OPTIONS[row]}
-                    </div>
-                  </Radio>
-                {/each}
-              </div>
-              {#snippet actions()}
-                <RandomOrderCheckbox></RandomOrderCheckbox>
-              {/snippet}
-              {#snippet collapsedActions()}
-                <CopyQuestion></CopyQuestion>
-              {/snippet}
-            </Card>
-          </div>
+        <div class="flex flex-col h-full">
+          <Card
+            className="grow max-h-[40%]"
+            responsive
+            color="primary"
+            title="单选题">{@html ANKI_QUESTION}</Card
+          >
+
+          <Card className="shrink-0 max-h-[60%]" responsive>
+            <div class="grid pointer-events-none">
+              {#each { length: OPTION_LABELS.length }, row}
+                <Radio
+                  className={orderClass({ order: $randomOrder[row] })}
+                  bg={calcBg(row)}
+                  responsive
+                  value={OPTION_LABELS[row]}
+                  name={radioName}
+                >
+                  <div class="flex">
+                    <Badge responsive className="mr-2" color="primary"
+                      >{OPTION_LABELS[row]}</Badge
+                    >{@html ANKI_OPTIONS[row]}
+                  </div>
+                </Radio>
+              {/each}
+            </div>
+            {#snippet actions()}
+              <RandomOrderCheckbox></RandomOrderCheckbox>
+            {/snippet}
+            {#snippet collapsedActions()}
+              <CopyQuestion></CopyQuestion>
+            {/snippet}
+          </Card>
         </div>
       {/snippet}
     </Drawer>
