@@ -93,7 +93,6 @@
       [stickyClass]: sticky,
       "rounded-none": sticky,
     },
-    { "pb-5": actions },
     className,
   )}
 >
@@ -123,9 +122,10 @@
     >
       {title}
     </h3>
-      {@render children?.()}
+    {@render children?.()}
     <div
-      class="card-actions justify-end items-center gap-2 flex-nowrap absolute right-1 bottom-1"
+      class="card-actions justify-end items-center gap-2 flex-nowrap sticky"
+      style="bottom:var(--card-p,1.5rem)"
     >
       {@render actions?.()}
       {#if showCollapsedActions}
