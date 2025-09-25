@@ -124,7 +124,7 @@
     </h3>
     {@render children?.()}
     <div
-      class="card-actions justify-end items-center gap-2 flex-nowrap sticky"
+      class="card-actions justify-end items-center flex-nowrap sticky"
       style="bottom:var(--card-p,1.5rem)"
     >
       {@render actions?.()}

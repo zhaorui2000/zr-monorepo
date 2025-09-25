@@ -8,7 +8,6 @@
     responsive = false,
     color = "",
     size = "",
-    onChange,
     ...restProps
   } = $props();
   const checkboxVariants = cva("checkbox", {
