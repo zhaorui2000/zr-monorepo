@@ -12,10 +12,10 @@
     "vite-plugin-singlefile": "^2.3.0"
   },
   "dependencies": {
-    "@zr/ui": "workspace:*",
     "@zr/svelte-actions": "workspace:*",
+    "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
-    "marked": "^16.2.1"
+    "marked": "^16.3.0"
   }
 }
