@@ -1,40 +1,27 @@
 <script>
   import { cx, cva } from "class-variance-authority";
+  import { v4 as uuid } from "uuid";
   let {
     children,
     className,
     fullScreenCloseAble = true,
     title,
+    isShow = $bindable(false),
     ...restProps
   } = $props();
-  let dialog;
-  export function showModal() {
-    dialog.showModal();
-  }
-  export function close() {
-    dialog.close();
-  }
-  const modalVariants = cva("modal", {
-    variants: {},
-  });
+  const id = uuid();
 </script>
 
-<dialog class="modal" bind:this={dialog}>
-  <div class={cx("modal-box min-h-[40dvh]")}>
-    <h3 class="font-bold text-lg">{@render title?.()}</h3>
-    <div class={className} {...restProps}>
-      {@render children?.()}
-    </div>
+<input
+  type="checkbox"
+  bind:checked={isShow}
+  class="modal-toggle"
+  {id}
+  {...restProps}
+/>
+<div class="modal" role="dialog">
+  <div class={cx("modal-box min-h-[40dvh] overflow-y-hidden", className)}>
+    <h3 class="text-lg font-bold">{@render title?.()}</h3>
+    {@render children?.()}
   </div>
-  {#if fullScreenCloseAble}
-    <form method="dialog" class="modal-backdrop">
-      <button>close</button>
-    </form>
-  {:else}
-    <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-        >✕</button
-      >
-    </form>
-  {/if}
-</dialog>
+</div>

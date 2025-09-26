@@ -6,7 +6,7 @@
   import Range from "@zr/ui/Range";
   import { baseFontSize } from "./../store";
 
-  let dialog;
+  let isShow = $state(false);
   let theme;
 
   const handleChangeFontSize = (e) => {
@@ -22,7 +22,7 @@
   responsive
   circle
   className="fixed top-1 left-1 z-1 text-[40px] opacity-25"
-  onclick={() => dialog.showModal()}
+  onclick={() => isShow = true}
 >
   <Icon
     responsive
@@ -33,7 +33,7 @@
 </Button>
 
 <Model
-  bind:this={dialog}
+  isShow={dialog}
   className="grid items-center gap-y-4"
   style="grid-template-rows: min-content min-content;grid-template-columns: 1fr 3fr;"
 >

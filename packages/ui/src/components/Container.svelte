@@ -1,6 +1,7 @@
 <script>
   import { cx, cva } from "class-variance-authority";
   import { onMount } from "svelte";
+  import bgBaseClass from "./common_class_variance_authority/bg_base.js";
   let { children, className, maxWidth, position, ...restProps } = $props();
   let isLoading = $state(true);
   onMount(() => {
@@ -48,10 +49,16 @@
 </script>
 
 <div class={cx(containerClassVariants({ maxWidth }), className)} {...restProps}>
-  <div class={cx({ hidden: !isLoading },"h-full w-full flex items-center justify-center z-9999 absolute bg-base-100")}>
-    <span
-      class={cx( "loading loading-spinner loading-xl")}
-    ></span>
+  <div
+    class={cx(
+      { hidden: !isLoading },
+      "h-full w-full flex items-center justify-center z-9999 absolute bg-base-100",
+    )}
+  >
+    <span class={cx("loading loading-spinner loading-xl")}></span>
   </div>
-  {@render children?.({ stickyClass: stickyClass({ position }) })}
+  {@render children?.({
+    stickyClass: stickyClass({ position }),
+    bgBaseClass,
+  })}
 </div>

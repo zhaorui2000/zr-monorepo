@@ -10,7 +10,7 @@
   }
 </script>
 
-<div class="h-full w-full grid" style="grid-template-rows: min-content 1fr;">
+<div class="h-full w-full grid" style="grid-template-rows: min-content 1fr;grid-template-columns: 100lvw">
   <Navbar>
     {#snippet start()}
       <Button ghost circle onclick={handleBack}>
