@@ -11,7 +11,7 @@
     className,
     children,
   } = $props();
-  const badgeVariants = cva("badge", {
+  const badgeVariants = cva("badge whitespace-nowrap", {
     variants: {
       responsive: {
         true: [
