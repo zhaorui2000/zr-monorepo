@@ -43,7 +43,7 @@
           <th class="sticky left-0 bg-white">名称</th>
           <th class="max-sm:hidden">ep</th>
           <th class="max-sm:hidden">类型</th>
-          <th class="max-sm:hidden">伤害</th>
+          <th>伤害</th>
           <th class="max-sm:hidden">指向</th>
           <th class="max-sm:hidden">效果</th>
           <th class="sticky right-0 bg-white"></th>
@@ -57,7 +57,7 @@
             </td>
             <td class="max-sm:hidden"><Badge>{magic.ep_cost}</Badge></td>
             <td class="max-sm:hidden">{magic.type}</td>
-            <td class="max-sm:hidden">
+            <td>
               <GameIcon name={magic.damage} />
             </td>
             <td class="max-sm:hidden whitespace-nowrap">
