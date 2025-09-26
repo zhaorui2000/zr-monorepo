@@ -43,7 +43,7 @@
 </script>
 
 <span
-  class="mx-1 bg-no-repeat inline-block"
+  class="mx-1 bg-no-repeat inline-block align-middle"
   style="height: 24px;width: 24px;background-size: 512px 512px;background-image: url({icons});background-position: {iconMap[
     name
   ]};"

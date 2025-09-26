@@ -14,7 +14,6 @@ export default function countDown(
   let isFinished = false;
   let remainingAtPause = 0;
 
-  // 核心：创建基于 rAF 的倒计时流
   const createCountdown$ = () => {
     return new Observable((observer) => {
       const tick = () => {
@@ -36,7 +35,7 @@ export default function countDown(
       startTime = performance.now();
       animationFrameScheduler.schedule(tick);
 
-      return () => {};
+      return () => { };
     });
   };
 
@@ -77,6 +76,7 @@ export default function countDown(
     },
 
     restart(newDuration = duration) {
+      if (isFinished) return;
       duration = newDuration;
       pausedTime = 0;
       isPaused = false;
@@ -95,22 +95,15 @@ export default function countDown(
 
   onMount(() => {
     if (duration <= 0) {
-      onTick?.(0);
-      onCountdownEnd?.();
       isFinished = true;
       setController(controller);
       return;
     }
     startCountdown();
-
-    // ⭐ 返回控制器给 Svelte（通过 action 返回值）
     setController(controller);
   });
 
   onDestroy(() => {
     if (subscription) subscription.unsubscribe();
   });
-
-  // ⭐ Svelte action 可以返回一个 update 函数或对象
-  // 我们在这里返回控制器对象，供外部调用
 }

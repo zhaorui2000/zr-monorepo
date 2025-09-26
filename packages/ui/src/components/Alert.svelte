@@ -74,8 +74,8 @@
 
 {#if isShow}
   <div
-    onmousemove={() => countdownController.pause()}
-    onmouseleave={() => countdownController.restart()}
+    onmousemove={() => countdownController?.pause()}
+    onmouseleave={() => countdownController?.restart()}
     transition:fade={{ duration: 300 }}
     use:countDown={{
       setController(value) {
@@ -100,12 +100,13 @@
         vertical,
         horizontal,
       }),
-      className,
     )}
     {...restProps}
   >
     <Icon iconClass={ALERT_ICON_TYPE[type]}></Icon>
-    {@render children?.()}
+    <div class={className}>
+      {@render children?.()}
+    </div>
     {#if isShowRemaining}
       <span>{remaining}s</span>
     {/if}
@@ -114,7 +115,7 @@
         iconClass="icon-[material-symbols--close-rounded]"
         className="cursor-pointer"
         onclick={() => {
-          countdownController.finish();
+          isShow = false;
         }}
       ></Icon>
     {/if}

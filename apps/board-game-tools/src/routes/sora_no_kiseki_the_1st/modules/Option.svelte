@@ -31,7 +31,7 @@
         color="primary"
         step={1}
         initValue={$comboSize}
-        max={4}
+        max={6}
         min={1}
         onchange={handleChangeRange}
       ></Range>
