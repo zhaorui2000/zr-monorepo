@@ -29,7 +29,7 @@
 </script>
 
 <Model
-  className="h-[40dvh]"
+  className="h-[60dvh]"
   isShow={$showMagic}
   onchange={(e) => showMagic.set(!!e.target?.checked)}
 >

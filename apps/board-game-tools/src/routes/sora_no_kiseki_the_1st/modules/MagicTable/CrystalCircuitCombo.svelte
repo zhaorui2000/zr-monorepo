@@ -5,7 +5,7 @@
   let { validCombosForMagic, magicName, isShow, onchange } = $props();
 </script>
 
-<Model className="h-[40dvh]" {isShow} {onchange}>
+<Model className="h-[60dvh]" {isShow} {onchange}>
   {#snippet title()}{magicName}{/snippet}
   <div class="space-y-2 p-2">
     {#each validCombosForMagic.get(magicName) as { comboNames }, index}
