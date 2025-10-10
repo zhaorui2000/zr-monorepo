@@ -20,7 +20,7 @@
     </div>
     <StickyPanel
       insetShadow
-      className={cx("mt-4", stickyClass({ position: "bottom" }))}
+      className={cx("mt-4", stickyClass)}
     >
       <div>
         <Message></Message>
