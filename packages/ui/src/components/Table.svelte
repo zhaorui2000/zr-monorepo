@@ -28,6 +28,7 @@
   <thead>
     {@render thead?.()}
   </thead>
+  <!-- body -->
   <tbody>
     {@render tbody?.()}
   </tbody>
