@@ -33,7 +33,7 @@
 </Button>
 
 <Model
-  isShow={dialog}
+  isShow={isShow}
   className="grid items-center gap-y-4"
   style="grid-template-rows: min-content min-content;grid-template-columns: 1fr 3fr;"
 >
