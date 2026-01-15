@@ -1,7 +1,7 @@
 <script>
   import { cx, cva } from "class-variance-authority";
   import { onMount } from "svelte";
-  import bgBaseClass from "./common_class_variance_authority/bg_base.js";
+  import bgBaseClass from "./common/bg_base.js";
   let { children, className, maxWidth, position, ...restProps } = $props();
   let isLoading = $state(true);
   onMount(() => {
