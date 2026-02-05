@@ -40,6 +40,3 @@
   {...restProps}
   class={cx(iconVariants({ color, responsive }), iconClass, className)}
 ></span>
-
-<style>
-</style>

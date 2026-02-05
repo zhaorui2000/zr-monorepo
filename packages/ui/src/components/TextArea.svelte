@@ -9,6 +9,7 @@
     color = "",
     size = "",
     ghost = false,
+    value = $bindable(""),
     className,
   } = $props();
   const textAreaVariants = cva("textarea", {
@@ -45,6 +46,7 @@
     {disabled}
     {placeholder}
     class={cx(textAreaVariants({ color, size, ghost }),"w-full")}
+    {value}
   >
   </textarea>
   {#if label}
