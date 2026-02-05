@@ -45,12 +45,11 @@
   {#snippet sidebar()}
     <div class="flex flex-col h-full">
       <Card
-        className="grow max-h-[40%]"
+        style="max-height: 40%; overflow: auto"
         responsive
         color="primary"
         title="单选题">{@html ANKI_QUESTION}</Card
       >
-
       <Card className="shrink-0 max-h-[60%]" responsive>
         <div class="grid pointer-events-none">
           {#each { length: OPTION_LABELS.length }, row}

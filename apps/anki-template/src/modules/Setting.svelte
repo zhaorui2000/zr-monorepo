@@ -44,7 +44,7 @@
   {/snippet}
   <div class="flex flex-col gap-y-4">
     <div class="flex items-center gap-x-4">
-      <div>主题</div>
+      <div class="whitespace-nowrap">主题</div>
       <div>
         <ThemeController bind:this={themeControllerRef} className="max-h-[7rem]" />
         <Button size="sm" onclick={() => themeControllerRef.randomTheme()}>随机</Button>

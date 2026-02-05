@@ -5,7 +5,7 @@
     variants: {
       color: {
         undefined: ["bg-base-100"],
-        none: [""],
+        none: [""], 
         neutral: ["bg-neutral text-neutral-content"],
         primary: ["bg-primary text-primary-content"],
         secondary: ["bg-secondary text-secondary-content"],
