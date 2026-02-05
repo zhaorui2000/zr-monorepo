@@ -7,7 +7,7 @@
   import { baseFontSize } from "./../store";
 
   let isShow = $state(false);
-  let theme;
+  let themeControllerRef;
 
   const handleChangeFontSize = (e) => {
     document.documentElement.style.fontSize = `${e.target.value}px`;
@@ -22,7 +22,9 @@
   responsive
   circle
   className="fixed top-1 left-1 z-1 text-[40px] opacity-25"
-  onclick={() => isShow = true}
+  onclick={() => {
+    isShow = true;
+  }}
 >
   <Icon
     responsive
@@ -33,24 +35,30 @@
 </Button>
 
 <Model
-  isShow={isShow}
+  bind:isShow
   className="grid items-center gap-y-4"
   style="grid-template-rows: min-content min-content;grid-template-columns: 1fr 3fr;"
 >
   {#snippet title()}
     设置
   {/snippet}
-  <span>主题：</span>
-  <div>
-    <ThemeController bind:this={theme} className="max-h-[7rem]" />
-    <Button size="sm" onclick={() => theme.randomTheme()}>随机</Button>
+  <div class="flex flex-col gap-y-4">
+    <div class="flex items-center gap-x-4">
+      <div>主题</div>
+      <div>
+        <ThemeController bind:this={themeControllerRef} className="max-h-[7rem]" />
+        <Button size="sm" onclick={() => themeControllerRef.randomTheme()}>随机</Button>
+      </div>
+    </div>
+    <div class="flex items-center gap-x-4">
+      <div class="whitespace-nowrap">基础字体</div>
+      <Range
+        onchange={handleChangeFontSize}
+        initValue={$baseFontSize}
+        min={16}
+        max={32}
+        step={4}
+      ></Range>
+    </div>
   </div>
-  <span>基础字体(px)：</span>
-  <Range
-    onchange={handleChangeFontSize}
-    initValue={$baseFontSize}
-    min={16}
-    max={32}
-    step={4}
-  ></Range>
 </Model>

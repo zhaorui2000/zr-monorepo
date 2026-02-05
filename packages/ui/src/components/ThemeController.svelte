@@ -41,14 +41,17 @@
     "silk"
   ];
   const { className, ...restProps } = $props();
+  let currentTheme = $state("");
   export function randomTheme() {
     const randomIndex = getRandomIntInclusive(0, themeList.length - 1);
     const randomTheme = themeList[randomIndex];
     document.documentElement.setAttribute("data-theme", randomTheme);
     localStorage.setItem("theme", randomTheme);
+    currentTheme = randomTheme;
   }
   onMount(() => {
     themeChange(false);
+    currentTheme = localStorage.getItem("theme") || "light";
   });
 </script>
 
@@ -81,6 +84,7 @@
           aria-label={theme}
           value={theme}
           data-set-theme={theme}
+          checked={currentTheme === theme}
         />
       </li>
     {/each}
