@@ -2,14 +2,16 @@
   import Card from "@zr/ui/Card";
   import Collapse from "@zr/ui/Collapse";
   import marked from "@utils/marked";
-  const extension = String.raw`{{补充}}`
-    .replaceAll(/<br\s*(\/?)>/g, "\n")
-    .replaceAll(/&nbsp;/g, " ")
-    .replaceAll(/&gt;/g, ">")
-    .replaceAll(/&lt;/g, "<");
-  const extensionCollapsible = String.raw`{{折叠内容}}`
-    .replaceAll(/<br\s*(\/?)>/g, "\n")
-    .replaceAll(/&nbsp;/g, " ");
+
+  const unescapeHtml = (str) =>
+    str
+      .replaceAll(/<br\s*(\/?)>/g, "\n")
+      .replaceAll(/&nbsp;/g, " ")
+      .replaceAll(/&gt;/g, ">")
+      .replaceAll(/&lt;/g, "<");
+
+  const extension = unescapeHtml(String.raw`{{补充}}`);
+  const extensionCollapsible = unescapeHtml(String.raw`{{折叠内容}}`);
   const hasExtensionCollapsible = `{{#折叠内容}}1{{/折叠内容}}`;
 </script>
 
