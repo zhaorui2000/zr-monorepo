@@ -12,25 +12,25 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@sveltejs/adapter-node": "^5.5.3",
+    "@sveltejs/adapter-node": "^5.5.4",
     "express": "^5.2.1",
     "immer": "^11.1.4",
     "socket.io": "^4.8.3",
     "socket.io-client": "^4.8.3",
-    "sql.js": "^1.14.0",
+    "sql.js": "^1.14.1",
     "xstate": "^5.28.0"
   },
   "devDependencies": {
-    "@sveltejs/adapter-netlify": "^6.0.3",
+    "@sveltejs/adapter-netlify": "^6.0.4",
     "@sveltejs/adapter-static": "^3.0.10",
-    "@sveltejs/kit": "^2.53.0",
-    "@tauri-apps/cli": "^2.10.0",
+    "@sveltejs/kit": "^2.55.0",
+    "@tauri-apps/cli": "^2.10.1",
     "@zr/svelte-actions": "workspace:*",
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
-    "svelte-check": "^4.4.3",
+    "svelte-check": "^4.4.5",
     "typescript": "~5.9.3",
     "vite-plugin-top-level-await": "^1.6.0",
-    "vite-plugin-wasm": "^3.5.0"
+    "vite-plugin-wasm": "^3.6.0"
   }
 }

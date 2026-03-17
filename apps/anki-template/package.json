@@ -9,13 +9,13 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite-plugin-singlefile": "^2.3.0"
+    "vite-plugin-singlefile": "^2.3.2"
   },
   "dependencies": {
     "@zr/svelte-actions": "workspace:*",
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
-    "class-variance-authority": "^0.7.1", 
-    "marked": "^17.0.3"
+    "class-variance-authority": "^0.7.1",
+    "marked": "^17.0.4"
   }
 }
