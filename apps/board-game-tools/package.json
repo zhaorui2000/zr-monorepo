@@ -18,18 +18,18 @@
     "socket.io": "^4.8.3",
     "socket.io-client": "^4.8.3",
     "sql.js": "^1.14.1",
-    "xstate": "^5.28.0"
+    "xstate": "^5.30.0"
   },
   "devDependencies": {
     "@sveltejs/adapter-netlify": "^6.0.4",
     "@sveltejs/adapter-static": "^3.0.10",
-    "@sveltejs/kit": "^2.55.0",
+    "@sveltejs/kit": "^2.58.0",
     "@tauri-apps/cli": "^2.10.1",
     "@zr/svelte-actions": "workspace:*",
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
-    "svelte-check": "^4.4.5",
-    "typescript": "~5.9.3",
+    "svelte-check": "^4.4.6",
+    "typescript": "~6.0.3",
     "vite-plugin-top-level-await": "^1.6.0",
     "vite-plugin-wasm": "^3.6.0"
   }
