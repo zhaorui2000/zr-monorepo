@@ -2,15 +2,23 @@
   "$schema": "node_modules/turbo/schema.json",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["apps/anki-template/dist/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*"
+      ],
+      "outputs": [
+        "apps/anki-template/dist/**"
+      ]
     },
-    "@zr/board-game-tools#dev": {
-      "dependsOn": ["^build"]
-    },
-    "@zr/anki-template#dev": {
-      "dependsOn": ["^build"]
+    "dev": {
+      "dependsOn": [
+        "^build"
+      ],
+      "persistent": true,
+      "cache": false
     }
   }
 }
