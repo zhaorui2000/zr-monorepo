@@ -100,7 +100,7 @@
       circle,
       block,
     }),
-    className
+    className,
   )}
   {...restProps}
 >
