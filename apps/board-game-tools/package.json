@@ -29,8 +29,6 @@
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
     "svelte-check": "^4.4.6",
-    "typescript": "~6.0.3",
-    "vite-plugin-top-level-await": "^1.6.0",
-    "vite-plugin-wasm": "^3.6.0"
+    "typescript": "~6.0.3"
   }
 }
