@@ -1,14 +1,13 @@
 <script>
   import Clock from "./modules/Clock.svelte";
   import Operate from "./modules/Operate.svelte";
-  import Card from "@zr/ui/Card";
   import StatusViewer from "./modules/StatusViewer.svelte";
+  import KeepWake from "./modules/KeepWake.svelte";
 </script>
 
 <div class="p-4">
   <Clock></Clock>
-  <Card>
-    <StatusViewer></StatusViewer>
-  </Card>
+  <StatusViewer></StatusViewer>
+  <KeepWake></KeepWake>
 </div>
 <Operate></Operate>

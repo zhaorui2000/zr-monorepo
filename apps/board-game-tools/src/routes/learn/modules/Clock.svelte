@@ -2,13 +2,9 @@
   import dayjs from "dayjs";
   import duration from "dayjs/plugin/duration";
   import NumberBlock from "../components/NumberBlock.svelte";
-  import { onDestroy } from "svelte";
-  import { isLearning, value } from "../store";
+  import { onDestroy, onMount } from "svelte";
+  import { isLearning, value, operateTime } from "../store";
   dayjs.extend(duration);
-
-  $isLearning = false;
-  $value = 0;
-  let hiddenTime = $state(0);
 
   setInterval(() => {
     if ($isLearning) {
@@ -18,16 +14,8 @@
     }
   }, 1000);
 
-  function handleVisibilityChange() {
-    if (document.visibilityState === "hidden") {
-      hiddenTime = dayjs();
-    } else {
-      $value = Math.floor(dayjs().diff(hiddenTime) / 1000);
-      console.log($value);
-    }
-  }
   onDestroy(() => {
-    document.removeEventListener("visibilitychange", handleVisibilityChange);
+    $operateTime = 0;
   });
 
   let hour = $derived(Math.floor($value / 60 / 60));
