@@ -19,7 +19,7 @@
   });
 
   let hour = $derived(Math.floor($value / 60 / 60));
-  let minute = $derived(Math.floor($value / 60));
+  let minute = $derived(Math.floor($value / 60) % 60);
   let second = $derived($value % 60);
 </script>
 
