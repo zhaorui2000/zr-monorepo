@@ -12,7 +12,7 @@
   import dayjs from "dayjs";
   import { onMount } from "svelte";
   import isToday from "../utils/isToday";
-  import copy from "@zr/utils/Dom/copy";
+  import copy from "@zr/utils/DOM/copy";
   import formatSeconds from "@zr/utils/String/formatSeconds";
 
   onMount(() => {
