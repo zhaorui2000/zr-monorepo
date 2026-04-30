@@ -1,8 +1,25 @@
 <script>
-  import { isLearning, value, operateTime } from "../store";
+  import {
+    isLearning,
+    value,
+    operateTime,
+    totalTime,
+    lastRecordDate,
+  } from "../store";
   import Badge from "@zr/ui/Badge";
   import Card from "@zr/ui/Card";
   import dayjs from "dayjs";
+  import utc from "dayjs/plugin/utc";
+  import { onMount } from "svelte";
+  import isToday from "../utils/isToday";
+  dayjs.extend(utc);
+  onMount(() => {
+    if (!isToday($lastRecordDate)) {
+      $lastRecordDate = dayjs().format("YYYY-MM-DD");
+      $isLearning = false;
+      $totalTime = 0;
+    }
+  });
 </script>
 
 <Card>
@@ -25,9 +42,16 @@
     {:else}
       <Badge size="lg">休息时间：</Badge>
     {/if}
-
     <Badge size="lg" color="primary"
       >{dayjs($operateTime).format("HH:mm:ss")}</Badge
+    >
+  </div>
+</Card>
+<Card>
+  <div class="flex justify-around">
+    <Badge size="lg">学习总时：</Badge>
+    <Badge size="lg" color="primary"
+      >{dayjs.utc($totalTime * 1000).format("HH:mm:ss")}</Badge
     >
   </div>
 </Card>
