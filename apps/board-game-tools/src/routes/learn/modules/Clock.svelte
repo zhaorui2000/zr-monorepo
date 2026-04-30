@@ -2,7 +2,7 @@
   import dayjs from "dayjs";
   import duration from "dayjs/plugin/duration";
   import NumberBlock from "../components/NumberBlock.svelte";
-  import { onDestroy, onMount } from "svelte";
+  import { onDestroy } from "svelte";
   import { isLearning, value, operateTime } from "../store";
   dayjs.extend(duration);
 

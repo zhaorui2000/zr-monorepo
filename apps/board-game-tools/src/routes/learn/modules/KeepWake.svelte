@@ -51,18 +51,17 @@
     }
   }
 
-  // $effect 天生跳过 SSR，安全
-  $effect(() => {
-    if ($isWakeLock) {
-      acquireWakeLock();
-    } else {
-      releaseWakeLock();
-    }
-  });
-
   // onMount 天生跳过 SSR，安全
   onMount(() => {
     document.addEventListener("visibilitychange", handleVisibilityChange);
+    isWakeLock.listen((newVal) => {
+      if (newVal) {
+        acquireWakeLock();
+      } else {
+        console.log("[WakeLock] 取消唤醒，释放锁");
+        releaseWakeLock();
+      }
+    });
   });
 
   // ⚠️ onDestroy 会在 SSR 执行，必须加 typeof 防护！
