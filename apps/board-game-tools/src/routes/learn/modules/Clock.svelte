@@ -1,24 +1,26 @@
 <script>
-  import dayjs from "dayjs";
-  import duration from "dayjs/plugin/duration";
   import NumberBlock from "../components/NumberBlock.svelte";
-  import { onDestroy } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import { isLearning, value, operateTime } from "../store";
-  dayjs.extend(duration);
+  import isToday from "../utils/isToday";
 
-  setInterval(() => {
-    if ($isLearning) {
-      $value = $value + 1;
-    } else {
-      $value = $value - 1;
+  let timer;
+
+  onMount(() => {
+    if (!isToday($operateTime)) {
+      $value = 0;
     }
-  }, 1000);
+    timer = setInterval(() => {
+      $value += $isLearning ? 1 : -1;
+    }, 1000);
+  });
 
   onDestroy(() => {
+    clearInterval(timer);
     $operateTime = 0;
   });
 
-  let hour = $derived(Math.floor($value / 60 / 60));
+  let hour = $derived(Math.floor($value / 3600));
   let minute = $derived(Math.floor($value / 60) % 60);
   let second = $derived($value % 60);
 </script>

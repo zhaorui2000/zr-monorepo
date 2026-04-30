@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy } from "svelte";
+  import { onMount } from "svelte";
   import { isWakeLock } from "../store";
   import Swap from "@zr/ui/Swap";
   import Badge from "@zr/ui/Badge";
@@ -7,33 +7,13 @@
 
   let wakeLock = null;
 
-  async function acquireWakeLock() {
-    // 防护 1：阻止 SSR 报错
-    if (typeof window === "undefined") {
-      console.log("[WakeLock] 阻击 SSR 执行");
-      return false;
-    }
-
-    // 检查浏览器是否支持
-    if (!("wakeLock" in navigator)) {
-      console.warn("[WakeLock] 当前浏览器不支持 Wake Lock API");
-      return false;
-    }
-
-    // 检查是否已经持有（防止重复请求）
-    if (wakeLock && !wakeLock.released) {
-      console.log("[WakeLock] 已持有锁，跳过重复请求");
-      return true;
-    }
-
+  async function requestWakeLock() {
+    if (!("wakeLock" in navigator)) return false;
+    if (wakeLock && !wakeLock.released) return true;
     try {
-      console.log("[WakeLock] 正在向系统请求屏幕常亮...");
       wakeLock = await navigator.wakeLock.request("screen");
-      console.log("[WakeLock] ✅ 请求成功，屏幕将保持常亮");
       return true;
-    } catch (e) {
-      // 常见原因：没有在用户交互（如点击）中触发，或者系统电量过低拒绝
-      console.error("[WakeLock] ❌ 请求失败:", e.name, e.message);
+    } catch {
       return false;
     }
   }
@@ -47,29 +27,20 @@
 
   function handleVisibilityChange() {
     if (document.visibilityState === "visible" && $isWakeLock) {
-      acquireWakeLock();
+      requestWakeLock();
     }
   }
 
-  // onMount 天生跳过 SSR，安全
   onMount(() => {
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    isWakeLock.listen((newVal) => {
-      if (newVal) {
-        acquireWakeLock();
-      } else {
-        console.log("[WakeLock] 取消唤醒，释放锁");
-        releaseWakeLock();
-      }
+    const unsub = isWakeLock.listen((on) => {
+      on ? requestWakeLock() : releaseWakeLock();
     });
-  });
-
-  // ⚠️ onDestroy 会在 SSR 执行，必须加 typeof 防护！
-  onDestroy(() => {
-    if (typeof document !== "undefined") {
+    return () => {
+      unsub();
       document.removeEventListener("visibilitychange", handleVisibilityChange);
-    }
-    releaseWakeLock(); // 内部已经有 typeof window 判断，安全
+      releaseWakeLock();
+    };
   });
 </script>
 

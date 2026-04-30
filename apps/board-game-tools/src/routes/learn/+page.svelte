@@ -1,13 +1,13 @@
 <script>
   import Clock from "./modules/Clock.svelte";
-  import Operate from "./modules/Operate.svelte";
   import StatusViewer from "./modules/StatusViewer.svelte";
   import KeepWake from "./modules/KeepWake.svelte";
+  import Operate from "./modules/Operate.svelte";
 </script>
 
 <div class="p-4">
-  <Clock></Clock>
-  <StatusViewer></StatusViewer>
-  <KeepWake></KeepWake>
+  <Clock />
+  <StatusViewer />
+  <KeepWake />
 </div>
-<Operate></Operate>
+<Operate />
