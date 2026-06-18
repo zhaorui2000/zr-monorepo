@@ -18,17 +18,17 @@
     "socket.io": "^4.8.3",
     "socket.io-client": "^4.8.3",
     "sql.js": "^1.14.1",
-    "xstate": "^5.31.1"
+    "xstate": "^5.32.1"
   },
   "devDependencies": {
     "@sveltejs/adapter-netlify": "^6.0.4",
     "@sveltejs/adapter-static": "^3.0.10",
-    "@sveltejs/kit": "^2.61.0",
+    "@sveltejs/kit": "^2.65.2",
     "@tauri-apps/cli": "^2.11.2",
     "@zr/svelte-actions": "workspace:*",
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
-    "svelte-check": "^4.4.8",
+    "svelte-check": "^4.6.0",
     "typescript": "~6.0.3"
   }
 }
