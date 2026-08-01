@@ -1,38 +1,48 @@
 <script>
   import Floor from "../components/Floor.svelte";
-  import { produce } from "immer";
   import calcAllScore from "../utils/calcAllScore";
   import {
+    isCheatMode,
     arrStatus,
     arr,
+    IS_BASE,
     IS_BLOCK,
     IS_TRANSLUCEN,
-    isCheatMode,
-    IS_BASE,
+    BOARD_SIZE,
+    setCellStatus,
   } from "../store";
-  function isShowFlowMsg({ row, col }) {
+
+  // 作弊模式或已锁定时显示分数
+  /** @param {number} row @param {number} col */
+  function isShowScore(row, col) {
     return $isCheatMode || $arrStatus[row][col] === IS_BLOCK;
   }
-  function handleChangeFloor({ e, row, col }) {
-    arrStatus.set(
-      produce(arrStatus.get(), (draft) => {
-        draft[row][col] = e.target.checked ? IS_TRANSLUCEN : IS_BASE;
-      })
-    );
-    calcAllScore();
+
+  // 点击切换：空 ⇄ 半透明（已锁定格 disable，不会触发）
+  /** @param {number} row @param {number} col */
+  function handleToggle(row, col) {
+    const current = $arrStatus[row][col];
+    setCellStatus(row, col, current === IS_BASE ? IS_TRANSLUCEN : IS_BASE);
   }
+
+  // 作弊模式或任意格子状态变化时，重算空格预览分
+  $effect(() => {
+    calcAllScore($isCheatMode, $arrStatus);
+  });
 </script>
 
-<div>
-  {#each { length: 5 }, row}
-    <div>
-      {#each { length: 5 }, col}
+<div class="flex flex-col items-center gap-2">
+  {#each Array(BOARD_SIZE) as _, row}
+    <div class="flex gap-2">
+      {#each Array(BOARD_SIZE) as _, col}
         <Floor
-          disable={Number($arrStatus[row][col]) === IS_BLOCK}
+          checked={Number($arrStatus[row][col]) !== IS_BASE}
           isTranslucen={Number($arrStatus[row][col]) === IS_TRANSLUCEN}
-          onChange={(e) => handleChangeFloor({ e, row, col })}
-          >{isShowFlowMsg({ row, col }) ? $arr[row][col] : ""}</Floor
+          disable={Number($arrStatus[row][col]) === IS_BLOCK}
+          onChange={() => handleToggle(row, col)}
         >
+          {isShowScore(row, col) ? $arr[row][col] : ""}
+        </Floor>
       {/each}
     </div>
   {/each}
