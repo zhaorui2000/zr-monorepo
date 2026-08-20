@@ -14,11 +14,11 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@leafer-in/find": "2.1.7",
+    "@leafer-in/find": "2.2.9",
     "@zr/svelte-actions": "workspace:*",
     "@zr/utils": "workspace:*",
-    "daisyui": "^5.5.23",
-    "leafer-ui": "2.1.7",
+    "daisyui": "^5.7.19",
+    "leafer-ui": "2.2.9",
     "theme-change": "^3.0.4"
   }
 }

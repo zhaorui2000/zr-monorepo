@@ -1,31 +1,32 @@
 <script>
   import Model from "@zr/ui/Model";
-  import GameIcon from "../GameIcon.svelte";
+  import Badge from "@zr/ui/Badge";
+  import CrystalCircuitCombo from "./CrystalCircuitCombo.svelte";
+  import MagicTable from "./MagicTable.svelte";
   import {
     showMagic,
     selectedCrystalCircuit,
     comboSize,
     circuitMap,
   } from "../../store";
-  import Badge from "@zr/ui/Badge";
-  import Button from "@zr/ui/Button";
-  import CrystalCircuitCombo from "./CrystalCircuitCombo.svelte";
-  import calcMagicListCompUtil from "../../utils/calcMagicListComp.js";
+  import calcMagicListComp from "../../utils/calcMagicListComp.js";
 
   let magicListComp = $state([]);
   let validCombosForMagic = $state(new Map());
   let showCombo = $state(false);
   let selectedMagicName = $state("");
 
+  // 由已选回路与空槽数量派生：可用魔法列表 + 每个魔法对应的最小回路组合
   $effect(() => {
-    const result = calcMagicListCompUtil(
-      $selectedCrystalCircuit,
-      $comboSize,
-      circuitMap,
-    );
+    const result = calcMagicListComp($selectedCrystalCircuit, $comboSize, circuitMap);
     magicListComp = result.magicListComp;
     validCombosForMagic = result.validCombosForMagic;
   });
+
+  function openCombo(name) {
+    selectedMagicName = name;
+    showCombo = true;
+  }
 </script>
 
 <Model
@@ -36,51 +37,7 @@
   {#snippet title()}
     魔法列表（<Badge color="primary">{magicListComp.length}</Badge>可用）
   {/snippet}
-  <div class="w-full h-full overflow-x-scroll overflow-y-scroll">
-    <table class="table w-fit h-fit">
-      <thead class="sticky top-0 bg-white z-10">
-        <tr>
-          <th class="sticky left-0 bg-white">名称</th>
-          <th class="max-sm:hidden">ep</th>
-          <th class="max-sm:hidden">类型</th>
-          <th>伤害</th>
-          <th class="max-sm:hidden">指向</th>
-          <th class="max-sm:hidden">效果</th>
-          <th class="sticky right-0 bg-white"></th>
-        </tr>
-      </thead>
-      <tbody>
-        {#each magicListComp as magic}
-          <tr>
-            <td class="sticky left-0 bg-white text-nowrap h-full">
-              <GameIcon name={`${magic.attribute}-magic`} />{magic.name}
-            </td>
-            <td class="max-sm:hidden"><Badge>{magic.ep_cost}</Badge></td>
-            <td class="max-sm:hidden">{magic.type}</td>
-            <td>
-              <GameIcon name={magic.damage} />
-            </td>
-            <td class="max-sm:hidden whitespace-nowrap">
-              <GameIcon name={`${magic.target}-${magic.range}`} /><Badge
-                >{magic.rangeAppend}</Badge
-              >
-            </td>
-            <td class="max-sm:hidden">{magic.effect}</td>
-            <td class="text-nowrap sticky right-0 bg-white">
-              <Button
-                onclick={() => {
-                  selectedMagicName = magic.name;
-                  showCombo = true;
-                }}
-              >
-                组合
-              </Button>
-            </td>
-          </tr>
-        {/each}
-      </tbody>
-    </table>
-  </div>
+  <MagicTable magicList={magicListComp} onSelect={openCombo} />
 </Model>
 
 <CrystalCircuitCombo

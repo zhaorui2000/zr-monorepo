@@ -12,23 +12,23 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@sveltejs/adapter-node": "^5.5.4",
+    "@sveltejs/adapter-node": "^5.5.7",
     "express": "^5.2.1",
-    "immer": "^11.1.8",
+    "immer": "^11.1.18",
     "socket.io": "^4.8.3",
     "socket.io-client": "^4.8.3",
-    "sql.js": "^1.14.1",
-    "xstate": "^5.32.1"
+    "sql.js": "^1.14.2",
+    "xstate": "^5.32.5"
   },
   "devDependencies": {
     "@sveltejs/adapter-netlify": "^6.0.4",
     "@sveltejs/adapter-static": "^3.0.10",
-    "@sveltejs/kit": "^2.65.2",
-    "@tauri-apps/cli": "^2.11.2",
+    "@sveltejs/kit": "^2.70.3",
+    "@tauri-apps/cli": "^2.11.4",
     "@zr/svelte-actions": "workspace:*",
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
-    "svelte-check": "^4.6.0",
-    "typescript": "~6.0.3"
+    "svelte-check": "^4.7.6",
+    "typescript": "~7.0.2"
   }
 }

@@ -9,19 +9,19 @@
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
-    "@iconify-json/material-symbols": "^1.2.78",
+    "@iconify-json/material-symbols": "^1.2.89",
     "@iconify/tailwind4": "^1.2.3",
-    "@nanostores/persistent": "^1.3.4",
-    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@nanostores/persistent": "^1.3.5",
+    "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "@tailwindcss/typography": "^0.5.20",
-    "@tailwindcss/vite": "^4.3.1",
+    "@tailwindcss/vite": "^4.3.3",
     "class-variance-authority": "^0.7.1",
-    "nanostores": "^1.3.0",
-    "prettier": "3.8.4",
+    "nanostores": "^1.5.1",
+    "prettier": "3.9.6",
     "prettier-plugin-svelte": "^4.1.1",
-    "svelte": "^5.56.3",
-    "tailwindcss": "^4.3.1",
-    "vite": "^8.0.16"
+    "svelte": "^5.56.9",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.1"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
@@ -35,9 +35,9 @@
     ]
   },
   "dependencies": {
-    "dayjs": "^1.11.21",
+    "dayjs": "^1.11.23",
     "rxjs": "^7.8.2",
-    "turbo": "^2.9.18",
-    "uuid": "^14.0.0"
+    "turbo": "^2.10.10",
+    "uuid": "^14.0.2"
   }
 }

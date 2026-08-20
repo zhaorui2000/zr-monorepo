@@ -1,82 +1,54 @@
 <script>
   import CrystalCircuit from "../store/crystal_circuit";
-  import Checkbox from "@zr/ui/Checkbox";
   import { selectedCrystalCircuit } from "../store";
-  import { produce } from "immer";
-  import GameIcon from "./GameIcon.svelte";
+  import { ELEMENTS } from "../store/elements";
   import Badge from "@zr/ui/Badge";
-  function handleChangeCheckbox(e, { id }) {
+  import Checkbox from "@zr/ui/Checkbox";
+  import GameIcon from "./GameIcon.svelte";
+
+  // 勾选/取消勾选结晶回路（nanostores 无 update 方法，用 get/set）
+  function toggleCircuit(id, checked) {
+    const list = selectedCrystalCircuit.get();
     selectedCrystalCircuit.set(
-      produce(selectedCrystalCircuit.get(), (draft) => {
-        let draftSet = new Set(draft);
-        if (e.target.checked) {
-          draftSet.add(Number(id));
-        } else {
-          draftSet.delete(Number(id));
-        }
-        return Array.from(draftSet);
-      }),
+      checked
+        ? [...list, Number(id)]
+        : list.filter((c) => c !== Number(id)),
     );
   }
 </script>
 
-<div class="overflow-y-scroll overflow-x-scroll">
+<div class="overflow-auto">
   <table class="table w-fit h-fit">
     <thead class="sticky -top-1 bg-white z-10">
       <tr>
         <th class="sticky left-0 bg-white">名称</th>
-        <th class="max-sm:hidden">地</th>
-        <th class="max-sm:hidden">水</th>
-        <th class="max-sm:hidden">火</th>
-        <th class="max-sm:hidden">风</th>
-        <th class="max-sm:hidden">时</th>
-        <th class="max-sm:hidden">空</th>
-        <th class="max-sm:hidden">幻</th>
+        {#each ELEMENTS as { label }}
+          <th class="max-sm:hidden">{label}</th>
+        {/each}
         <th>属性</th>
         <th>效果</th>
         <th class="sticky right-0 bg-white">选择</th>
       </tr>
     </thead>
-    <tbody class="overflow-y-scroll overflow-x-scroll">
-      {#each CrystalCircuit as { name, attribute, earth, water, fire, wind, time, space, illusion, effect, bonus, id }}
+    <tbody>
+      {#each CrystalCircuit as circuit (circuit.id)}
         <tr>
-          <td class="text-nowrap sticky left-0 bg-white"
-            ><GameIcon name={attribute}></GameIcon>{name}</td
-          >
-          <td class="max-sm:hidden"
-            ><Badge ghost className={{ hidden: earth === 0 }}>{earth}</Badge
-            ></td
-          >
-          <td class="max-sm:hidden"
-            ><Badge ghost className={{ hidden: water === 0 }}>{water}</Badge
-            ></td
-          >
-          <td class="max-sm:hidden"
-            ><Badge ghost className={{ hidden: fire === 0 }}>{fire}</Badge></td
-          >
-          <td class="max-sm:hidden"
-            ><Badge ghost className={{ hidden: wind === 0 }}>{wind}</Badge></td
-          >
-          <td class="max-sm:hidden"
-            ><Badge ghost className={{ hidden: time === 0 }}>{time}</Badge></td
-          >
-          <td class="max-sm:hidden"
-            ><Badge ghost className={{ hidden: space === 0 }}>{space}</Badge
-            ></td
-          >
-          <td class="max-sm:hidden"
-            ><Badge ghost className={{ hidden: illusion === 0 }}
-              >{illusion}</Badge
-            ></td
-          >
-          <td>{bonus}</td>
-          <td>{effect}</td>
-          <td class="sticky right-0 bg-white"
-            ><Checkbox
-              checked={$selectedCrystalCircuit.includes(Number(id))}
-              onchange={(e) => handleChangeCheckbox(e, { id })}
-            ></Checkbox></td
-          >
+          <td class="text-nowrap sticky left-0 bg-white">
+            <GameIcon name={circuit.attribute} />{circuit.name}
+          </td>
+          {#each ELEMENTS as { key }}
+            <td class="max-sm:hidden">
+              <Badge ghost className={{ hidden: circuit[key] === 0 }}>{circuit[key]}</Badge>
+            </td>
+          {/each}
+          <td>{circuit.bonus}</td>
+          <td>{circuit.effect}</td>
+          <td class="sticky right-0 bg-white">
+            <Checkbox
+              checked={$selectedCrystalCircuit.includes(Number(circuit.id))}
+              onchange={(e) => toggleCircuit(circuit.id, e.target.checked)}
+            />
+          </td>
         </tr>
       {/each}
     </tbody>
