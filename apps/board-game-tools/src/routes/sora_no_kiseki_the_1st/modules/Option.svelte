@@ -2,7 +2,7 @@
   import Button from "@zr/ui/Button";
   import Range from "@zr/ui/Range";
   import FieldSet from "@zr/ui/FieldSet";
-  import { showMagic, comboSize, selectedCrystalCircuit } from "../store";
+  import { showMagic, comboSize, selectedCrystalCircuit, requiredCrystalCircuit } from "../store";
 
   function handleShowMagic() {
     showMagic.set(!showMagic.get());
@@ -14,6 +14,7 @@
 
   function handleClear() {
     selectedCrystalCircuit.set([]);
+    requiredCrystalCircuit.set([]);
   }
 </script>
 

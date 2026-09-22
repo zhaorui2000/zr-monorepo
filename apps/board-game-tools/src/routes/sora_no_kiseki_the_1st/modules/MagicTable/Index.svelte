@@ -6,6 +6,7 @@
   import {
     showMagic,
     selectedCrystalCircuit,
+    requiredCrystalCircuit,
     comboSize,
     circuitMap,
   } from "../../store";
@@ -16,9 +17,9 @@
   let showCombo = $state(false);
   let selectedMagicName = $state("");
 
-  // 由已选回路与空槽数量派生：可用魔法列表 + 每个魔法对应的最小回路组合
+  // 由已选回路、必带回路与空槽数量派生：可用魔法列表 + 每个魔法对应的最小回路组合
   $effect(() => {
-    const result = calcMagicListComp($selectedCrystalCircuit, $comboSize, circuitMap);
+    const result = calcMagicListComp($selectedCrystalCircuit, $requiredCrystalCircuit, $comboSize, circuitMap);
     magicListComp = result.magicListComp;
     validCombosForMagic = result.validCombosForMagic;
   });

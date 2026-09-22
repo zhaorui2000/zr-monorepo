@@ -8,6 +8,12 @@ export const selectedCrystalCircuit = persistentAtom("sora_no_kiseki_the_1st-sel
   decode: (s) => s.split(",").map(Number),
   encode: (b) => b.join(","),
 })
+
+// 必带的结晶回路ID列表（计算魔法组合时固定包含，且自动视为已选择）
+export const requiredCrystalCircuit = persistentAtom("sora_no_kiseki_the_1st-required-crystal_circuit", [], {
+  decode: (s) => s.split(",").map(Number),
+  encode: (b) => b.join(","),
+})
 export let showMagic = persistentAtom("sora_no_kiseki_the_1st-show-magic", false, {
   decode: (s) => s === "true",
   encode: String
