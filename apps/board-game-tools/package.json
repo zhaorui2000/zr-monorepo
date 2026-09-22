@@ -18,13 +18,13 @@
     "socket.io": "^4.8.3",
     "socket.io-client": "^4.8.3",
     "sql.js": "^1.14.2",
-    "xstate": "^5.32.5"
+    "xstate": "^5.33.2"
   },
   "devDependencies": {
     "@sveltejs/adapter-netlify": "^6.0.4",
     "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "^2.70.3",
-    "@tauri-apps/cli": "^2.11.4",
+    "@tauri-apps/cli": "^2.11.5",
     "@zr/svelte-actions": "workspace:*",
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
