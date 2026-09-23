@@ -2,7 +2,12 @@
   import Button from "@zr/ui/Button";
   import Range from "@zr/ui/Range";
   import FieldSet from "@zr/ui/FieldSet";
-  import { showMagic, comboSize, selectedCrystalCircuit, requiredCrystalCircuit } from "../store";
+  import {
+    showMagic,
+    comboSize,
+    selectedCrystalCircuit,
+    requiredCrystalCircuit,
+  } from "../store";
 
   function handleShowMagic() {
     showMagic.set(!showMagic.get());
@@ -16,9 +21,19 @@
     selectedCrystalCircuit.set([]);
     requiredCrystalCircuit.set([]);
   }
+
+  // 仅清除必带，保留已选回路
+  function handleClearRequired() {
+    requiredCrystalCircuit.set([]);
+  }
 </script>
 
 <div class="flex gap-x-4 items-center flex-row-reverse w-full px-4">
+  <Button
+    color="warning"
+    className="w-fit shrink-0"
+    onclick={handleClearRequired}>清除必带</Button
+  >
   <Button color="error" className="w-fit shrink-0" onclick={handleClear}
     >清空</Button
   >
