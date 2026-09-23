@@ -26,13 +26,13 @@
 <table class={cx(tableVariants({ size, zebra, pinRows, pinCols }))}>
   <!-- head -->
   <thead>
-    {@render thead?.()}
+    {@render thead()}
   </thead>
   <!-- body -->
   <tbody>
     {@render tbody({
-      activeClass: "bg-base-200",
-      hoverClass: "hover:bg-base-200",
+      activeClass: "bg-primary text-primary-content",
+      baseBg: "bg-base-100",
     })}
   </tbody>
 </table>

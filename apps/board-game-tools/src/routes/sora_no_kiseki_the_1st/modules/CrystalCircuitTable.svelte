@@ -41,17 +41,16 @@
   <Table pinRows pinCols>
     {#snippet thead()}
       <tr>
-        <th>选择</th>
-        <th>必带</th>
-        <td>名称</td>
+        <th>名称</th>
         {#each ELEMENTS as { label }}
           <td class="max-sm:hidden">{label}</td>
         {/each}
         <td>属性</td>
-        <td>效果</td>
+        <td class="min-w-36">效果</td>
+        <th>必带</th>
       </tr>
     {/snippet}
-    {#snippet tbody({ activeClass = "", hoverClass = "" })}
+    {#snippet tbody({ activeClass = "", hoverClass = "", baseBg = "" })}
       {#each CrystalCircuit as circuit (circuit.id)}
         <tr
           class={cx(hoverClass, {
@@ -63,20 +62,13 @@
               !$selectedCrystalCircuit.includes(Number(circuit.id)),
             )}
         >
-          <th>
-            <Checkbox
-              checked={$selectedCrystalCircuit.includes(Number(circuit.id))}
-              onchange={(e) => toggleCircuit(circuit.id, e.target.checked)}
-            />
-          </th>
-          <th class="left-15">
-            <Checkbox
-              color="primary"
-              checked={$requiredCrystalCircuit.includes(Number(circuit.id))}
-              onchange={(e) => toggleRequired(circuit.id, e.target.checked)}
-            />
-          </th>
-          <td class="text-nowrap">
+          <td
+            class={cx("text-nowrap sticky left-0", baseBg, {
+              [activeClass]: $selectedCrystalCircuit.includes(
+                Number(circuit.id),
+              ),
+            })}
+          >
             <GameIcon name={circuit.attribute} />{circuit.name}
           </td>
           {#each ELEMENTS as { key }}
@@ -87,7 +79,13 @@
             </td>
           {/each}
           <td>{circuit.bonus}</td>
-          <td>{circuit.effect}</td>
+          <td class="min-w-36">{circuit.effect}</td>
+          <th>
+            <Checkbox
+              checked={$requiredCrystalCircuit.includes(Number(circuit.id))}
+              onchange={(e) => toggleRequired(circuit.id, e.target.checked)}
+            />
+          </th>
         </tr>
       {/each}
     {/snippet}
