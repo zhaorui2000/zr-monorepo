@@ -35,6 +35,13 @@
       toggleCircuit(id, true);
     }
   }
+
+  function calcTrbgClass(id, { primaryClass, warningClass, hoverClass }) {
+    return cx(hoverClass, {
+      [primaryClass]: $selectedCrystalCircuit.includes(Number(id)),
+      [warningClass]: $requiredCrystalCircuit.includes(Number(id)),
+    });
+  }
 </script>
 
 <div class="overflow-auto">
@@ -50,24 +57,37 @@
         <th>必带</th>
       </tr>
     {/snippet}
-    {#snippet tbody({ activeClass = "", hoverClass = "", baseBg = "" })}
+    {#snippet tbody({
+      primaryClass = "",
+      warningClass = "",
+      hoverClass = "",
+      baseBg = "",
+    })}
       {#each CrystalCircuit as circuit (circuit.id)}
         <tr
-          class={cx(hoverClass, {
-            [activeClass]: $selectedCrystalCircuit.includes(Number(circuit.id)),
-          })}
-          onclick={(e) =>
-            toggleCircuit(
-              circuit.id,
-              !$selectedCrystalCircuit.includes(Number(circuit.id)),
-            )}
+          class={cx(
+            calcTrbgClass(circuit.id, {
+              primaryClass,
+              warningClass,
+              hoverClass,
+            }),
+          )}
         >
           <td
-            class={cx("text-nowrap sticky left-0", baseBg, {
-              [activeClass]: $selectedCrystalCircuit.includes(
-                Number(circuit.id),
-              ),
-            })}
+            onclick={(e) =>
+              toggleCircuit(
+                circuit.id,
+                !$selectedCrystalCircuit.includes(Number(circuit.id)),
+              )}
+            class={cx(
+              "text-nowrap sticky left-0 select-none",
+              baseBg,
+              calcTrbgClass(circuit.id, {
+                primaryClass,
+                warningClass,
+                hoverClass,
+              }),
+            )}
           >
             <GameIcon name={circuit.attribute} />{circuit.name}
           </td>

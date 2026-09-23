@@ -31,7 +31,8 @@
   <!-- body -->
   <tbody>
     {@render tbody({
-      activeClass: "bg-primary text-primary-content",
+      primaryClass: "bg-primary text-primary-content",
+      warningClass: "bg-warning text-warning-content",
       baseBg: "bg-base-100",
     })}
   </tbody>
