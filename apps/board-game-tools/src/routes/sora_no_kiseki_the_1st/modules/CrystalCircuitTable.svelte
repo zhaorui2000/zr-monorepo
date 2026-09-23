@@ -5,6 +5,8 @@
   import Badge from "@zr/ui/Badge";
   import Checkbox from "@zr/ui/Checkbox";
   import GameIcon from "./GameIcon.svelte";
+  import Table from "@zr/ui/Table";
+  import { cx } from "class-variance-authority";
 
   // 勾选/取消勾选结晶回路（nanostores 无 update 方法，用 get/set）
   function toggleCircuit(id, checked) {
@@ -36,23 +38,45 @@
 </script>
 
 <div class="overflow-auto">
-  <table class="table w-fit h-fit">
-    <thead class="sticky -top-1 bg-white z-10">
+  <Table pinRows pinCols>
+    {#snippet thead()}
       <tr>
-        <th class="sticky left-0 bg-white">名称</th>
+        <th>选择</th>
+        <th>必带</th>
+        <td>名称</td>
         {#each ELEMENTS as { label }}
-          <th class="max-sm:hidden">{label}</th>
+          <td class="max-sm:hidden">{label}</td>
         {/each}
-        <th>属性</th>
-        <th>效果</th>
-        <th class="sticky right-16 bg-white">选择</th>
-        <th class="sticky right-0 bg-white w-16">必带</th>
+        <td>属性</td>
+        <td>效果</td>
       </tr>
-    </thead>
-    <tbody>
+    {/snippet}
+    {#snippet tbody({ activeClass = "", hoverClass = "" })}
       {#each CrystalCircuit as circuit (circuit.id)}
-        <tr>
-          <td class="text-nowrap sticky left-0 bg-white">
+        <tr
+          class={cx(hoverClass, {
+            [activeClass]: $selectedCrystalCircuit.includes(Number(circuit.id)),
+          })}
+          onclick={(e) =>
+            toggleCircuit(
+              circuit.id,
+              !$selectedCrystalCircuit.includes(Number(circuit.id)),
+            )}
+        >
+          <th>
+            <Checkbox
+              checked={$selectedCrystalCircuit.includes(Number(circuit.id))}
+              onchange={(e) => toggleCircuit(circuit.id, e.target.checked)}
+            />
+          </th>
+          <th class="left-15">
+            <Checkbox
+              color="primary"
+              checked={$requiredCrystalCircuit.includes(Number(circuit.id))}
+              onchange={(e) => toggleRequired(circuit.id, e.target.checked)}
+            />
+          </th>
+          <td class="text-nowrap">
             <GameIcon name={circuit.attribute} />{circuit.name}
           </td>
           {#each ELEMENTS as { key }}
@@ -64,21 +88,8 @@
           {/each}
           <td>{circuit.bonus}</td>
           <td>{circuit.effect}</td>
-          <td class="sticky right-16 bg-white">
-            <Checkbox
-              checked={$selectedCrystalCircuit.includes(Number(circuit.id))}
-              onchange={(e) => toggleCircuit(circuit.id, e.target.checked)}
-            />
-          </td>
-          <td class="sticky right-0 bg-white w-16">
-            <Checkbox
-              color="primary"
-              checked={$requiredCrystalCircuit.includes(Number(circuit.id))}
-              onchange={(e) => toggleRequired(circuit.id, e.target.checked)}
-            />
-          </td>
         </tr>
       {/each}
-    </tbody>
-  </table>
+    {/snippet}
+  </Table>
 </div>

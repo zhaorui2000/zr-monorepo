@@ -1,6 +1,6 @@
 <script>
   import { cva, cx } from "class-variance-authority";
-  let { thead, tbody, size, zebra, pinRows, pinCols } = $props();
+  let { thead, tbody, size, zebra = false, pinRows, pinCols } = $props();
   const tableVariants = cva("table", {
     variants: {
       size: {
@@ -23,13 +23,16 @@
   });
 </script>
 
-<table class={cx(tableVariants({size,zebra,pinRows,pinCols}))}>
+<table class={cx(tableVariants({ size, zebra, pinRows, pinCols }))}>
   <!-- head -->
   <thead>
     {@render thead?.()}
   </thead>
   <!-- body -->
   <tbody>
-    {@render tbody?.()}
+    {@render tbody({
+      activeClass: "bg-base-200",
+      hoverClass: "hover:bg-base-200",
+    })}
   </tbody>
 </table>
