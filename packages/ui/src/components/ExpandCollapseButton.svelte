@@ -30,8 +30,8 @@
 </script>
 
 <div
-  class={cx("inline-grid overflow-hidden relative", className)}
-  style="grid-template-columns: min-content min-content"
+  class={cx("inline-grid overflow-hidden relative items-center", className)}
+  style="grid-template-columns: auto auto;"
 >
   {#if show}
     <div
