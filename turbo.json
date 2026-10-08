@@ -10,7 +10,9 @@
         ".env*"
       ],
       "outputs": [
-        "apps/anki-template/dist/**"
+        "dist/**",
+        "build/**",
+        ".svelte-kit/output/**"
       ]
     },
     "dev": {

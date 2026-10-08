@@ -29,6 +29,6 @@
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
     "svelte-check": "^4.7.6",
-    "typescript": "~7.0.2"
+    "typescript": "^6.0.0"
   }
 }
