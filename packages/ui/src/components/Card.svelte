@@ -10,13 +10,13 @@
     sizeVariants,
   } from "./common/variants.js";
   let {
-    color,
-    size,
+    color = "",
+    size = "",
     dash = false,
     border = false,
     title = "",
-    actions,
-    collapsedActions,
+    actions = undefined,
+    collapsedActions = undefined,
     className = "",
     stickyAble = false,
     stickyClass = "top-0 bottom-0",

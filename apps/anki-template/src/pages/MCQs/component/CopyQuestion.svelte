@@ -1,44 +1,112 @@
 <script>
+  import { onDestroy } from "svelte";
   import Button from "@zr/ui/Button";
-  import copy from "@zr/utils/DOM/copy";
   import { ANKI_QUESTION, ANKI_OPTIONS, OPTION_LABELS } from "../store";
   import Tooltip from "@zr/ui/Tooltip";
   import Icon from "@zr/ui/Icon";
+
   let loading = $state(false);
-  let result = $state(false);
-  const handleClick = async () => {
-    let domparser = new DOMParser();
-    loading = true;
-    try {
-      let res = await copy(
-        `${domparser.parseFromString(ANKI_QUESTION, "text/html").documentElement.textContent}\n\n${ANKI_OPTIONS.map((option, index) => `${OPTION_LABELS[index]}. ${domparser.parseFromString(option, "text/html").documentElement.textContent}`).join("\n")}`
-      );
-      result = true;
-    } catch (error) {
-      result = false;
+  let status = $state("");
+  /** @type {number | undefined} */
+  let resetTimer;
+
+  const statusText = $derived(
+    status === "success"
+      ? "已复制"
+      : status === "error"
+        ? "复制失败，请长按题目手动复制"
+        : "复制",
+  );
+
+  /** @param {string} content */
+  async function copyText(content) {
+    if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(content);
+        return;
+      } catch {}
     }
 
-    setTimeout(() => {
+    const textarea = document.createElement("textarea");
+    textarea.value = content;
+    textarea.readOnly = true;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    textarea.style.pointerEvents = "none";
+    document.body.append(textarea);
+    textarea.focus({ preventScroll: true });
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+
+    try {
+      if (!document.execCommand("copy")) {
+        throw new Error("Copy command was rejected");
+      }
+    } finally {
+      textarea.remove();
+    }
+  }
+
+  const handleClick = async () => {
+    if (loading) return;
+
+    loading = true;
+    status = "";
+    const parser = new DOMParser();
+    const question = parser.parseFromString(ANKI_QUESTION, "text/html")
+      .documentElement.textContent;
+    const options = ANKI_OPTIONS.map((option, index) => {
+      const text = parser.parseFromString(option, "text/html").documentElement
+        .textContent;
+      return `${OPTION_LABELS[index]}. ${text}`;
+    }).join("\n");
+
+    try {
+      await copyText(`${question}\n\n${options}`);
+      status = "success";
+    } catch {
+      status = "error";
+    } finally {
       loading = false;
-    }, 700);
-    setTimeout(() => {
-      result = false;
-    }, 700);
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(
+        () => (status = ""),
+        status === "error" ? 3000 : 1600,
+      );
+    }
   };
+
+  onDestroy(() => clearTimeout(resetTimer));
 </script>
 
-<Tooltip position="top" color={result ? "success" : "neutral"}>
-  {#snippet content()}
-    {result ? "复制成功" : "复制"}
-  {/snippet}
-  <Button
-    responsive
-    color="secondary"
-    circle
-    onclick={handleClick}
-    {loading}
-    size="sm"
+<div class="flex items-center justify-end gap-2">
+  {#if status}
+    <span
+      class="text-xs text-base-content/70"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      {statusText}
+    </span>
+  {/if}
+  <Tooltip
+    position="top"
+    color={status === "error" ? "error" : status ? "success" : "neutral"}
   >
-    <Icon responsive iconClass="icon-[material-symbols--content-copy]" />
-  </Button>
-</Tooltip>
+    {#snippet content()}
+      {statusText}
+    {/snippet}
+    <Button
+      responsive
+      color="secondary"
+      circle
+      onclick={handleClick}
+      {loading}
+      size="sm"
+      aria-label={statusText}
+    >
+      <Icon responsive iconClass="icon-[material-symbols--content-copy]" />
+    </Button>
+  </Tooltip>
+</div>

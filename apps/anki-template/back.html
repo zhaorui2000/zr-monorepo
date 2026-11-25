@@ -1,0 +1,31 @@
+<!doctype html>
+<html class="text-[16px]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anki Card Back</title>
+    <script>
+      try {
+        const fontSize = Number(localStorage.getItem("baseFontSize"));
+        if (Number.isFinite(fontSize) && fontSize >= 16 && fontSize <= 32) {
+          document.documentElement.style.fontSize = `${fontSize}px`;
+        }
+      } catch {}
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://s4.zstatic.net/npm/katex@0.17.0/dist/katex.min.css"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://s4.zstatic.net/npm/katex@0.17.0/dist/katex.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div id="app" class="h-dvh w-dvw relative"></div>
+    <script type="module" src="/src/back.js"></script>
+  </body>
+</html>

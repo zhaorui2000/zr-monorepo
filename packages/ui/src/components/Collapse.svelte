@@ -4,10 +4,10 @@
   import { colorVariants } from "./common/variants.js";
 
   let {
-    color = "base",
-    border,
-    icon,
-    title,
+    color = /** @type {string} */ ("base"),
+    border = false,
+    icon = undefined,
+    title = "",
     className = "",
     children = undefined,
     ...restProps

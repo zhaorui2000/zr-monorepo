@@ -1,7 +1,7 @@
 <script>
-  import TEMp from "../MCQs/Front.svelte";
+  import Front from "../MCQs/Front.svelte";
   import Setting from "../../modules/Setting.svelte";
 </script>
 
-<Setting></Setting>
-<TEMp />
+<Setting />
+<Front />

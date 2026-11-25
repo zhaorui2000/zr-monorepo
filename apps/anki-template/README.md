@@ -39,6 +39,6 @@ pnpm install
 pnpm run build
 ```
 
-> 构建后的文件位于  `dist/`  目录
+> 构建后的文件位于 `dist/` 目录
 
-将`dist`目录中`index.html`内容粘贴到anki卡片内容模板
+将 `dist/front.html` 内容粘贴到 Anki 卡片正面模板，将 `dist/back.html` 内容粘贴到卡片反面模板。两个文件均为独立 HTML，可分别使用。

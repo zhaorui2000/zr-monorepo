@@ -5,17 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "node scripts/build.mjs",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./jsconfig.json"
   },
   "devDependencies": {
+    "svelte-check": "^4.7.8",
     "vite-plugin-singlefile": "^2.3.4"
   },
   "dependencies": {
-    "@zr/svelte-actions": "workspace:*",
+    "@nanostores/persistent": "^1.3.5",
     "@zr/ui": "workspace:*",
     "@zr/utils": "workspace:*",
-    "class-variance-authority": "^0.7.1",
     "marked": "^18.3.0"
   }
 }

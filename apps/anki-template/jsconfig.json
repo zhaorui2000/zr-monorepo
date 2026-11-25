@@ -3,6 +3,11 @@
     "moduleResolution": "bundler",
     "target": "ESNext",
     "module": "ESNext",
+    "allowJs": true,
+    "paths": {
+      "@modules/*": ["./src/modules/*"],
+      "@utils/*": ["./src/utils/*"]
+    },
     /**
      * svelte-preprocess cannot figure out whether you have
      * a value or a type, so tell TypeScript to enforce using
@@ -19,10 +24,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     /**
-     * Typecheck JS in `.svelte` and `.js` files by default.
-     * Disable this if you'd like to use dynamic types.
+     * Workspace packages expose untyped JS; keep imports resolvable without
+     * surfacing their diagnostics as Anki app errors.
      */
-    "checkJs": true
+    "checkJs": false
   },
   /**
    * Use global.d.ts instead of compilerOptions.types

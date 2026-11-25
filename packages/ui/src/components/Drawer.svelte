@@ -2,12 +2,12 @@
   import { cva } from "class-variance-authority";
   import { cn } from "./common/cn.js";
 
-  const {
+  let {
     sidebar,
     children,
     width = 80,
-    side = "left",
-    btnProps,
+    side = /** @type {string} */ ("left"),
+    btnProps = undefined,
     open = $bindable(false),
     className = "",
     ...restProps

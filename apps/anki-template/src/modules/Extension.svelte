@@ -3,6 +3,7 @@
   import Collapse from "@zr/ui/Collapse";
   import marked from "@utils/marked";
 
+  /** @param {string} str */
   const unescapeHtml = (str) =>
     str
       .replaceAll(/<br\s*(\/?)>/g, "\n")
@@ -18,8 +19,8 @@
 <Card responsive color="warning" title="补充">
   {#if Number(hasExtensionCollapsible) === 1}
     <Collapse color="neutral" icon="plus" title="折叠内容">
-      {@html marked(extensionCollapsible)}
+      {@html marked.parse(extensionCollapsible, { async: false })}
     </Collapse>
   {/if}
-  {@html marked(extension)}
+  {@html marked.parse(extension, { async: false })}
 </Card>

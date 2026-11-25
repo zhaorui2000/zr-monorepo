@@ -6,9 +6,7 @@
 </script>
 
 <Container className="flex flex-col gap-y-2">
-  {#snippet children()}
-    <QuestionDrawerButton></QuestionDrawerButton>
-    <Extension />
-    <BackAlert></BackAlert>
-  {/snippet}
+  <QuestionDrawerButton />
+  <Extension />
+  <BackAlert />
 </Container>

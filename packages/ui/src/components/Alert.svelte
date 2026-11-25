@@ -15,19 +15,19 @@
   };
 
   const {
-    type,
+    type = "",
     className = "",
-    color,
+    color = "",
     duration = 0,
     isShowRemaining = false,
-    soft,
-    outline,
-    dash,
-    vertical,
+    soft = false,
+    outline = false,
+    dash = false,
+    vertical = false,
     closeable = true,
     closable = undefined,
-    horizontal,
-    responsive,
+    horizontal = false,
+    responsive = false,
     children = undefined,
     ...restProps
   } = $props();

@@ -7,12 +7,9 @@
   import { baseFontSize } from "./../store";
 
   let isShow = $state(false);
+  /** @type {any} */
   let themeControllerRef;
 
-  const handleChangeFontSize = (e) => {
-    document.documentElement.style.fontSize = `${e.target.value}px`;
-    $baseFontSize = e.target.value;
-  };
   $effect(() => {
     document.documentElement.style.fontSize = `${$baseFontSize}px`;
   });
@@ -21,7 +18,9 @@
 <Button
   responsive
   circle
-  className="fixed top-1 left-1 z-1 text-[40px] opacity-25"
+  className="fixed left-1 z-dropdown text-[40px] opacity-60 hover:opacity-100 focus-visible:opacity-100"
+  style="top: max(0.25rem, env(safe-area-inset-top)); left: max(0.25rem, env(safe-area-inset-left));"
+  aria-label="打开设置"
   onclick={() => {
     isShow = true;
   }}
@@ -34,31 +33,32 @@
   ></Icon>
 </Button>
 
-<Model
-  bind:isShow
-  className="grid items-center gap-y-4"
-  style="grid-template-rows: min-content min-content;grid-template-columns: 1fr 3fr;"
->
+<Model bind:isShow className="w-[min(28rem,calc(100vw-2rem))]">
   {#snippet title()}
     设置
   {/snippet}
-  <div class="flex flex-col gap-y-4">
-    <div class="flex items-center gap-x-4">
+  <div class="grid gap-4 p-4">
+    <div class="grid gap-2 sm:grid-cols-[5rem_1fr] sm:items-center">
       <div class="whitespace-nowrap">主题</div>
-      <div>
-        <ThemeController bind:this={themeControllerRef} className="max-h-[7rem]" />
-        <Button size="sm" onclick={() => themeControllerRef.randomTheme()}>随机</Button>
+      <div class="flex min-w-0 flex-wrap items-center gap-2">
+        <ThemeController
+          bind:this={themeControllerRef}
+          className="max-h-[10rem]"
+        />
+        <Button size="sm" onclick={() => themeControllerRef?.randomTheme()}>
+          随机
+        </Button>
       </div>
     </div>
-    <div class="flex items-center gap-x-4">
+    <div class="grid gap-2 sm:grid-cols-[5rem_1fr] sm:items-center">
       <div class="whitespace-nowrap">基础字体</div>
       <Range
-        onchange={handleChangeFontSize}
-        initValue={$baseFontSize}
+        bind:value={$baseFontSize}
+        aria-label="基础字体大小"
         min={16}
         max={32}
         step={4}
-      ></Range>
+      />
     </div>
   </div>
 </Model>
