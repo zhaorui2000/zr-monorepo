@@ -1,6 +1,8 @@
 <script>
+  import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+  import { colorVariants, sizeVariants } from "./common/variants.js";
 
-  import { cva,cx } from "class-variance-authority";
   let {
     placeholder = "",
     legend = "",
@@ -10,45 +12,31 @@
     size = "",
     ghost = false,
     value = $bindable(""),
-    className,
+    className = "",
+    ...restProps
   } = $props();
+
   const textAreaVariants = cva("textarea", {
     variants: {
       ghost: {
-        true: ["textarea-ghost"],
+        true: "textarea-ghost",
       },
-      color: {
-        primary: ["textarea-primary"],
-        secondary: ["textarea-secondary"],
-        accent: ["textarea-accent"],
-        neutral: ["textarea-neutral"],
-        info: ["textarea-info"],
-        success: ["textarea-success"],
-        warning: ["textarea-warning"],
-        error: ["textarea-error"],
-      },
-      size: {
-        xs: ["textarea-xs"],
-        sm: ["textarea-sm"],
-        md: ["textarea-md"],
-        lg: ["textarea-lg"],
-        xl: ["textarea-xl"],
-      },
+      color: colorVariants.textarea,
+      size: sizeVariants.textarea,
     },
   });
 </script>
 
-<fieldset class={cx("fieldset",className)}>
+<fieldset class={cn("fieldset", className)}>
   {#if legend}
     <legend class="fieldset-legend">{legend}</legend>
   {/if}
   <textarea
     {disabled}
     {placeholder}
-    class={cx(textAreaVariants({ color, size, ghost }),"w-full")}
+    class={cn(textAreaVariants({ color, size, ghost }), "w-full")}
     {value}
-  >
-  </textarea>
+    {...restProps}></textarea>
   {#if label}
     <div class="fieldset-label">{label}</div>
   {/if}

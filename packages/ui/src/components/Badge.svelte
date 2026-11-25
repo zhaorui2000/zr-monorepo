@@ -1,5 +1,11 @@
 <script>
-  import { cva, cx } from "class-variance-authority";
+  import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+  import {
+    colorVariants,
+    responsiveVariants,
+    sizeVariants,
+  } from "./common/variants.js";
   let {
     color = "",
     size = "",
@@ -8,38 +14,17 @@
     dash = false,
     ghost = false,
     responsive = false,
-    className,
-    children,
+    className = "",
+    children = undefined,
+    ...restProps
   } = $props();
   const badgeVariants = cva("badge whitespace-nowrap", {
     variants: {
       responsive: {
-        true: [
-          "badge-xs",
-          "sm:badge-sm",
-          "md:badge-md",
-          "lg:badge-lg",
-          "xl:badge-xl",
-          "2xl:badge-xl",
-        ],
+        true: responsiveVariants.badge,
       },
-      size: {
-        xs: ["badge-xs"],
-        sm: ["badge-sm"],
-        md: ["badge-md"],
-        lg: ["badge-lg"],
-        xl: ["badge-xl"],
-      },
-      color: {
-        primary: ["badge-primary"],
-        secondary: ["badge-secondary"],
-        accent: ["badge-accent"],
-        neutral: ["badge-neutral"],
-        info: ["badge-info"],
-        success: ["badge-success"],
-        warning: ["badge-warning"],
-        error: ["badge-error"],
-      },
+      size: sizeVariants.badge,
+      color: colorVariants.badge,
       soft: {
         true: ["badge-soft"],
       },
@@ -57,8 +42,11 @@
 </script>
 
 <span
-  class={cx(
+  class={cn(
     badgeVariants({ color, size, soft, outline, dash, ghost, responsive }),
-    className
-  )}>{@render children?.()}</span
+    className,
+  )}
+  {...restProps}
 >
+  {@render children?.()}
+</span>

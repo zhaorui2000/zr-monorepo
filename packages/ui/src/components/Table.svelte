@@ -1,15 +1,22 @@
 <script>
-  import { cva, cx } from "class-variance-authority";
-  let { thead, tbody, size, zebra = false, pinRows, pinCols } = $props();
+  import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+  import { colorVariants, sizeVariants } from "./common/variants.js";
+
+  let {
+    thead,
+    tbody,
+    size,
+    zebra = false,
+    pinRows,
+    pinCols,
+    className = "",
+    ...restProps
+  } = $props();
+
   const tableVariants = cva("table", {
     variants: {
-      size: {
-        xs: "table-xs",
-        sm: "table-sm",
-        md: "table-md",
-        lg: "table-lg",
-        xl: "table-xl",
-      },
+      size: sizeVariants.table,
       zebra: {
         true: "table-zebra",
       },
@@ -23,16 +30,17 @@
   });
 </script>
 
-<table class={cx(tableVariants({ size, zebra, pinRows, pinCols }))}>
-  <!-- head -->
+<table
+  class={cn(tableVariants({ size, zebra, pinRows, pinCols }), className)}
+  {...restProps}
+>
   <thead>
     {@render thead()}
   </thead>
-  <!-- body -->
   <tbody>
     {@render tbody({
-      primaryClass: "bg-primary text-primary-content",
-      warningClass: "bg-warning text-warning-content",
+      primaryClass: cn(colorVariants.surface.primary),
+      warningClass: cn(colorVariants.surface.warning),
       baseBg: "bg-base-100",
     })}
   </tbody>

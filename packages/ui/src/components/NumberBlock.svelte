@@ -1,20 +1,18 @@
 <script>
-  import { cx, cva } from "class-variance-authority";
-  const { children, size = "base" } = $props();
+  import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+
+  const { children, size = "base", className = "", ...restProps } = $props();
+
   const numberBlockVariants = cva(
-    cx(
+    [
       "flex items-center justify-center",
-      "bg-gradient-to-br from-blue-50 to-indigo-100",
-      "rounded-lg border border-gray-200 shadow-sm",
+      "bg-gradient-to-br from-primary/10 to-secondary/20",
+      "rounded-lg border border-base-300 shadow-sm",
       "transition-all duration-300 ease-in-out",
       "text-base-content",
-      "size-6",
-      "sm:size-8",
-      "md:size-10",
-      "lg:size-12",
-      "xl:size-14",
-      "2xl:size-16"
-    ),
+      "size-6 sm:size-8 md:size-10 lg:size-12 xl:size-14 2xl:size-16",
+    ],
     {
       variants: {
         size: {
@@ -33,10 +31,16 @@
           "9xl": "text-9xl",
         },
       },
-    }
+    },
   );
 </script>
 
-<div class={numberBlockVariants({ size })}>
+<div
+  class={cn(
+    numberBlockVariants({ size: /** @type {any} */ (size) }),
+    className,
+  )}
+  {...restProps}
+>
   {@render children?.()}
 </div>

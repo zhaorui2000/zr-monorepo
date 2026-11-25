@@ -1,6 +1,7 @@
 <script>
-  import { cx, cva } from "class-variance-authority";
-  const { size = "base", className, children } = $props();
+  import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+  const { size = "base", className = "", children } = $props();
   const blockVariants = cva("", {
     variants: {
       size: {
@@ -49,6 +50,6 @@
   });
 </script>
 
-<div class={cx(blockVariants({ size }), className)}>
+<div class={cn(blockVariants({ size: /** @type {any} */ (size) }), className)}>
   {@render children?.()}
 </div>

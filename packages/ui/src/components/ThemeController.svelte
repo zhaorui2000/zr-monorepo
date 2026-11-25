@@ -1,46 +1,10 @@
 <script>
-  import { cx } from "class-variance-authority";
   import { onMount } from "svelte";
   import { themeChange } from "theme-change";
+  import themeList from "daisyui/functions/themeOrder.js";
   import getRandomIntInclusive from "@zr/utils/Number/getRandomIntInclusive";
-  const themeList = [
-    "light",
-    "dark",
-    "cupcake",
-    "bumblebee",
-    "emerald",
-    "corporate",
-    "synthwave",
-    "retro",
-    "cyberpunk",
-    "valentine",
-    "halloween",
-    "garden",
-    "forest",
-    "aqua",
-    "lofi",
-    "pastel",
-    "fantasy",
-    "wireframe",
-    "black",
-    "luxury",
-    "dracula",
-    "cmyk",
-    "autumn",
-    "business",
-    "acid",
-    "lemonade",
-    "night",
-    "coffee",
-    "winter",
-    "dim",
-    "nord",
-    "sunset",
-    "caramellatte",
-    "abyss",
-    "silk"
-  ];
-  const { className, ...restProps } = $props();
+  import { cn } from "./common/cn.js";
+  const { className = "", ...restProps } = $props();
   let currentTheme = $state("");
   export function randomTheme() {
     const randomIndex = getRandomIntInclusive(0, themeList.length - 1);
@@ -55,7 +19,7 @@
   });
 </script>
 
-<div class="dropdown z-9999">
+<div class="dropdown z-dropdown">
   <div tabindex="0" role="button" class="btn m-1">
     主题
     <svg
@@ -70,9 +34,9 @@
     </svg>
   </div>
   <ul
-    class={cx(
-      "dropdown-content z-1 bg-base-300 rounded-box w-content p-2 shadow-2xl overflow-y-auto",
-      className
+    class={cn(
+      "dropdown-content z-raised bg-base-300 rounded-box w-content p-2 shadow-2xl overflow-y-auto",
+      className,
     )}
   >
     {#each themeList as theme}

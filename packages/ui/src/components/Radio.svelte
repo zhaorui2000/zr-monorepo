@@ -1,74 +1,48 @@
 <script>
-  import { cva, cx } from "class-variance-authority";
+  import { cva } from "class-variance-authority";
   import longPress from "@zr/svelte-actions/longPress";
+  import { cn } from "./common/cn.js";
+  import {
+    colorVariants,
+    responsiveVariants,
+    sizeVariants,
+  } from "./common/variants.js";
+
   let {
     color = "",
     size = "",
     bg = "",
     responsive = false,
     name,
-    className,
-    checked = false,
+    className = "",
+    checked = $bindable(false),
     children,
     ...restProps
   } = $props();
+
   let isShowRadio = $state(true);
 
   const radioVariants = cva("radio", {
     variants: {
-      bg: {
-        neutral: ["bg-neutral"],
-        primary: ["bg-primary"],
-        secondary: ["bg-secondary"],
-        accent: ["bg-accent"],
-        info: ["bg-info"],
-        success: ["bg-success"],
-        warning: ["bg-warning"],
-        error: ["bg-error"],
-      },
-      color: {
-        neutral: ["radio-neutral"],
-        primary: ["radio-primary"],
-        secondary: ["radio-secondary"],
-        accent: ["radio-accent"],
-        info: ["radio-info"],
-        success: ["radio-success"],
-        warning: ["radio-warning"],
-        error: ["radio-error"],
-      },
+      bg: colorVariants.background,
+      color: colorVariants.radio,
       responsive: {
-        true: [
-          "radio-xs",
-          "sm:radio-sm",
-          "md:radio-md",
-          "lg:radio-lg",
-          "xl:radio-xl",
-          "2xl:radio-xl",
-        ],
+        true: responsiveVariants.radio,
       },
-      size: {
-        xs: ["radio-xs"],
-        sm: ["radio-sm"],
-        md: ["radio-md"],
-        lg: ["radio-lg"],
-        xl: ["radio-xl"],
-      },
+      size: sizeVariants.radio,
     },
-    defaultVariants: {},
   });
 </script>
 
 <fieldset
-  class={cx(
+  class={cn(
     "fieldset",
-    {
-      "text-primary": checked,
-    },
-    className
+    checked && colorVariants.text[color || "primary"],
+    className,
   )}
   style="font-size: inherit;"
   use:longPress={{
-    longPress: (e) => {
+    longPress: () => {
       isShowRadio = !isShowRadio;
     },
     eventListenerOptions: {
@@ -81,15 +55,17 @@
       {checked}
       type="radio"
       {name}
-      class={cx(radioVariants({ responsive, color, size, bg }), {
+      class={cn(radioVariants({ responsive, color, size, bg }), {
         "opacity-0": !isShowRadio,
       })}
       {...restProps}
     />
     <span
-      class={cx("select-none", {
+      class={cn("select-none", {
         "line-through": !isShowRadio,
-      })}>{@render children?.()}</span
+      })}
     >
+      {@render children?.()}
+    </span>
   </label>
 </fieldset>

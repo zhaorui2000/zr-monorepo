@@ -1,57 +1,56 @@
 <script>
-  import { cva, cx } from "class-variance-authority";
+  import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+  import { colorVariants, sizeVariants } from "./common/variants.js";
+
   let {
-    step,
-    initValue,
-    max,
-    min,
-    className,
+    step = 1,
+    initValue = 0,
+    max = 100,
+    min = 0,
+    className = "",
     color,
     size,
     value = $bindable(initValue),
     ...restProps
   } = $props();
+
   const textClass = cva("", {
     variants: {
-      color: {
-        undefined: [""],
-        primary: ["text-primary"],
-        secondary: ["text-secondary"],
-        accent: ["text-accent"],
-        neutral: ["text-neutral"],
-        info: ["text-info"],
-        success: ["text-success"],
-        warning: ["text-warning"],
-        error: ["text-error"],
-      },
+      color: colorVariants.text,
     },
   });
 
   const rangeClass = cva("range w-full", {
     variants: {
-      color: {
-        undefined: [""],
-        primary: ["range-primary"],
-        secondary: ["range-secondary"],
-        accent: ["range-accent"],
-        neutral: ["range-neutral"],
-        info: ["range-info"],
-        success: ["range-success"],
-        warning: ["range-warning"],
-        error: ["range-error"],
-      },
-      size: {
-        xs: ["range-xs"],
-        sm: ["range-sm"],
-        md: ["range-md"],
-        lg: ["range-lg"],
-        xl: ["range-xl"],
-      },
+      color: colorVariants.range,
+      size: sizeVariants.range,
     },
+  });
+
+  const ticks = $derived.by(() => {
+    const numericMin = Number(min);
+    const numericMax = Number(max);
+    const numericStep = Number(step);
+
+    if (
+      !Number.isFinite(numericMin) ||
+      !Number.isFinite(numericMax) ||
+      !Number.isFinite(numericStep) ||
+      numericStep <= 0 ||
+      numericMax < numericMin
+    ) {
+      return [];
+    }
+
+    const count = Math.floor((numericMax - numericMin) / numericStep) + 1;
+    return Array.from({ length: count }, (_, index) =>
+      Math.min(numericMax, numericMin + index * numericStep),
+    );
   });
 </script>
 
-<div class={cx("w-full", textClass({ color }))}>
+<div class={cn("w-full", textClass({ color }))}>
   <input
     bind:value
     {...restProps}
@@ -59,16 +58,16 @@
     {min}
     {max}
     {step}
-    class={cx(rangeClass({ color, size }), className)}
+    class={cn(rangeClass({ color, size }), className)}
   />
   <div class="flex justify-between px-2.5 mt-2 text-xs">
-    {#each { length: Math.ceil((max - min) / step) + 1 }}
+    {#each ticks as tick}
       <span>|</span>
     {/each}
   </div>
   <div class="flex justify-between px-2.5 mt-2 text-xs">
-    {#each { length: Math.ceil((max - min) / step) + 1 }, value}
-      <span>{min + value * step}</span>
+    {#each ticks as tick}
+      <span>{tick}</span>
     {/each}
   </div>
 </div>

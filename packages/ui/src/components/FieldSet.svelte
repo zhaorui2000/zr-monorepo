@@ -1,12 +1,12 @@
 <script>
-  import { cva, cx } from "class-variance-authority";
-  let { legend, children, className } = $props();
-  const fieldSetVariants = cva("fieldset", {
-    variants: {},
-  });
+  import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+
+  let { legend = undefined, children, className = "", ...restProps } = $props();
+  const fieldSetVariants = cva("fieldset");
 </script>
 
-<fieldset class={cx(fieldSetVariants(), className)}>
+<fieldset class={cn(fieldSetVariants(), className)} {...restProps}>
   {#if legend}
     <legend class="fieldset-legend">{@render legend?.()}</legend>
   {/if}

@@ -1,8 +1,10 @@
 <script>
-  import { cva, cx } from "class-variance-authority";
+  import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+  import { colorVariants } from "./common/variants.js";
   const {
-    className,
-    children,
+    className = "",
+    children = undefined,
     content,
     color,
     position,
@@ -11,16 +13,7 @@
   } = $props();
   const tooltipClass = cva("tooltip", {
     variants: {
-      color: {
-        primary: ["tooltip-primary"],
-        secondary: ["tooltip-secondary"],
-        accent: ["tooltip-accent"],
-        neutral: ["tooltip-neutral"],
-        info: ["tooltip-info"],
-        success: ["tooltip-success"],
-        warning: ["tooltip-warning"],
-        error: ["tooltip-error"],
-      },
+      color: colorVariants.tooltip,
       position: {
         top: ["tooltip-top"],
         bottom: ["tooltip-bottom"],
@@ -35,7 +28,7 @@
 </script>
 
 <div
-  class={cx(tooltipClass({ open, color, position }), className)}
+  class={cn(tooltipClass({ open, color, position }), className)}
   {...restProps}
 >
   <div class="tooltip-content">

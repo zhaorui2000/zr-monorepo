@@ -1,8 +1,14 @@
 <script>
-  import { cva, cx } from "class-variance-authority";
+  import { cva } from "class-variance-authority";
   import Icon from "./Icon.svelte";
   import Button from "./Button.svelte";
   import { fade } from "svelte/transition";
+  import { cn } from "./common/cn.js";
+  import {
+    colorVariants,
+    responsiveVariants,
+    sizeVariants,
+  } from "./common/variants.js";
   let {
     color,
     size,
@@ -11,43 +17,22 @@
     title = "",
     actions,
     collapsedActions,
-    className,
+    className = "",
     stickyAble = false,
     stickyClass = "top-0 bottom-0",
     responsive = false,
-    children,
-    style,
+    children = undefined,
+    style = undefined,
+    ...restProps
   } = $props();
   let sticky = $state(false);
   let showCollapsedActions = $state(false);
   const cardVariants = cva("card overflow-y-scroll", {
     variants: {
-      color: {
-        neutral: ["bg-neutral text-neutral-content"],
-        primary: ["bg-primary text-primary-content"],
-        secondary: ["bg-secondary text-secondary-content"],
-        accent: ["bg-accent text-accent-content"],
-        info: ["bg-info text-info-content"],
-        success: ["bg-success text-success-content"],
-        warning: ["bg-warning text-warning-content"],
-        error: ["bg-error text-error-content"],
-      },
-      size: {
-        xs: ["card-xs"],
-        sm: ["card-sm"],
-        md: ["card-md"],
-        lg: ["card-lg"],
-        xl: ["card-xl"],
-      },
+      color: colorVariants.surface,
+      size: sizeVariants.card,
       responsive: {
-        true: [
-          "card-xs",
-          "sm:card-sm",
-          "md:card-md",
-          "lg:card-lg",
-          "xl:card-xl",
-          "2xl:card-xl",
-        ],
+        true: responsiveVariants.card,
       },
       border: {
         true: ["card-border"],
@@ -56,7 +41,7 @@
         true: ["card-dash"],
       },
       sticky: {
-        true: ["sticky", "z-2", "max-h-[40dvh]"],
+        true: ["sticky", "z-raised", "max-h-[40dvh]"],
       },
     },
     compoundVariants: [
@@ -70,16 +55,7 @@
   });
   const cardTitleVariants = cva("card-title sticky", {
     variants: {
-      color: {
-        neutral: ["bg-neutral", "text-neutral-content"],
-        primary: ["bg-primary", "text-primary-content"],
-        secondary: ["bg-secondary", "text-secondary-content"],
-        accent: ["bg-accent", "text-accent-content"],
-        info: ["bg-info", "text-info-content"],
-        success: ["bg-success", "text-success-content"],
-        warning: ["bg-warning", "text-warning-content"],
-        error: ["bg-error", "text-error-content"],
-      },
+      color: colorVariants.surface,
     },
     defaultVariants: {},
   });
@@ -87,7 +63,7 @@
 
 <div
   {style}
-  class={cx(
+  class={cn(
     cardVariants({ color, size, responsive, border, dash, sticky }),
     {
       [stickyClass]: sticky,
@@ -95,21 +71,24 @@
     },
     className,
   )}
+  {...restProps}
 >
   <div class="card-body">
     {#if stickyAble}
       <Button
-        className="text-2xl absolute top-2 right-2 z-1 opacity-25"
+        className="text-2xl absolute top-2 right-2 z-raised opacity-25"
         {color}
         responsive
         circle
         ghost
+        aria-label={sticky ? "取消固定卡片" : "固定卡片"}
+        aria-pressed={sticky}
         onclick={() => {
           sticky = !sticky;
         }}
       >
         <Icon
-          iconClass={cx({
+          iconClass={cn({
             "icon-[material-symbols--sticky-note-rounded]": sticky,
             "icon-[material-symbols--sticky-note-outline-rounded]": !sticky,
           })}
@@ -117,7 +96,7 @@
       </Button>
     {/if}
     <h3
-      class={cx(cardTitleVariants({ color }))}
+      class={cn(cardTitleVariants({ color }))}
       style="top: calc(-1 * var(--card-p, 1.5rem) + .25rem)"
     >
       {title}
@@ -141,10 +120,12 @@
           onclick={() => (showCollapsedActions = !showCollapsedActions)}
           circle
           responsive
-          className={cx("", {
+          className={cn({
             "opacity-25": !showCollapsedActions,
             "opacity-75": showCollapsedActions,
           })}
+          aria-label="更多操作"
+          aria-expanded={showCollapsedActions}
         >
           <Icon responsive iconClass="icon-[material-symbols--more-horiz]"
           ></Icon>

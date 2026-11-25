@@ -1,5 +1,8 @@
 <script>
-  import { cva, cx } from "class-variance-authority";
+  import { cva } from "class-variance-authority";
+  import Button from "./Button.svelte";
+  import { cn } from "./common/cn.js";
+
   let {
     children,
     open,
@@ -7,21 +10,26 @@
     mainAction,
     flower = false,
     show = $bindable(true),
+    color = "primary",
+    size = "lg",
+    className = "",
+    ...restProps
   } = $props();
-  const FABVariants = cva("fab", {
+
+  const fabVariants = cva("fab", {
     variants: {
       flower: {
-        true: ["fab-flower"],
+        true: "fab-flower",
       },
     },
   });
 </script>
 
 {#if show}
-  <div class={cx(FABVariants({ flower }))}>
-    <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">
+  <div class={cn(fabVariants({ flower }), className)} {...restProps}>
+    <Button {color} {size} circle type="button" aria-label="打开操作菜单">
       {@render open?.()}
-    </div>
+    </Button>
     {#if mainAction}
       <div class="fab-main-action">
         {@render mainAction?.()}

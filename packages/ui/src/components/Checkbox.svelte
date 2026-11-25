@@ -1,57 +1,43 @@
 <script>
-  import { cva, cx } from "class-variance-authority";
+  import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+  import {
+    colorVariants,
+    responsiveVariants,
+    sizeVariants,
+  } from "./common/variants.js";
+
   let {
     children,
-    disabled,
+    disabled = false,
     checked = $bindable(false),
-    className,
+    className = "",
     responsive = false,
     color = "",
     size = "",
     ...restProps
   } = $props();
+
   const checkboxVariants = cva("checkbox", {
     variants: {
-      color: {
-        primary: ["checkbox-primary"],
-        secondary: ["checkbox-secondary"],
-        accent: ["checkbox-accent"],
-        neutral: ["checkbox-neutral"],
-        info: ["checkbox-info"],
-        success: ["checkbox-success"],
-        warning: ["checkbox-warning"],
-        error: ["checkbox-error"],
-      },
+      color: colorVariants.checkbox,
       responsive: {
-        true: [
-          "checkbox-xs",
-          "sm:checkbox-sm",
-          "md:checkbox-md",
-          "lg:checkbox-lg",
-          "xl:checkbox-xl",
-          "2xl:checkbox-xl",
-        ],
+        true: responsiveVariants.checkbox,
       },
-      size: {
-        xs: ["checkbox-xs"],
-        sm: ["checkbox-sm"],
-        md: ["checkbox-md"],
-        lg: ["checkbox-lg"],
-        xl: ["checkbox-xl"],
-      },
+      size: sizeVariants.checkbox,
     },
   });
 </script>
 
-<fieldset class={cx("fieldset", className)} style="font-size: inherit;">
-  <label class={cx("fieldset-label")}>
+<fieldset class={cn("fieldset", className)} style="font-size: inherit;">
+  <label class="fieldset-label">
     <input
       type="checkbox"
       {disabled}
       bind:checked
-      class={cx(checkboxVariants({ color, size, responsive }))}
+      class={cn(checkboxVariants({ color, size, responsive }))}
       {...restProps}
     />
-    {@render children?.()}</label
-  >
+    {@render children?.()}
+  </label>
 </fieldset>

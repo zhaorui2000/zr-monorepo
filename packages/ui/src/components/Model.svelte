@@ -1,15 +1,21 @@
 <script>
-  import { cx, cva } from "class-variance-authority";
-  import { v4 as uuid } from "uuid";
+  import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+
   let {
     children,
-    className,
+    className = "",
     fullScreenCloseAble = true,
+    fullScreenCloseable = undefined,
     title,
     isShow = $bindable(false),
     ...restProps
   } = $props();
-  const id = uuid();
+
+  const id = $props.id();
+  const titleId = `${id}-title`;
+  const canClose = $derived(fullScreenCloseable ?? fullScreenCloseAble);
+  const modalBoxVariants = cva("modal-box overflow-y-hidden flex flex-col");
 </script>
 
 <input
@@ -19,14 +25,16 @@
   {id}
   {...restProps}
 />
-<div class="modal" role="dialog">
-  <div class={cx("modal-box overflow-y-hidden flex flex-col", className)}>
-    <h3 class="text-lg font-bold flex-shrink-0 py-2">{@render title?.()}</h3>
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby={titleId}>
+  <div class={cn(modalBoxVariants(), className)}>
+    <h3 id={titleId} class="text-lg font-bold flex-shrink-0 py-2">
+      {@render title?.()}
+    </h3>
     <div class="flex-1 min-h-0 overflow-y-auto">
       {@render children?.()}
     </div>
   </div>
-  {#if fullScreenCloseAble}
-    <label class="modal-backdrop" for={id}>Close</label>
+  {#if canClose}
+    <label class="modal-backdrop" for={id} aria-label="关闭弹窗">Close</label>
   {/if}
 </div>

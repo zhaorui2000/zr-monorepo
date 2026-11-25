@@ -1,7 +1,20 @@
 <script>
-  import { cva, cx } from "class-variance-authority";
-  const { sidebar, children, width = 80, side, btnProps } = $props();
-  let checkBox;
+  import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+
+  const {
+    sidebar,
+    children,
+    width = 80,
+    side = "left",
+    btnProps,
+    open = $bindable(false),
+    className = "",
+    ...restProps
+  } = $props();
+
+  const id = $props.id();
+
   const drawerVariants = cva("drawer", {
     variants: {
       side: {
@@ -12,23 +25,29 @@
   });
 </script>
 
-<div class={cx("z-[9999]", drawerVariants({ side }))}>
+<div
+  class={cn("z-overlay", drawerVariants({ side }), className)}
+  onkeydown={(event) => {
+    if (event.key === "Escape") open = false;
+  }}
+  {...restProps}
+>
   <input
-    bind:this={checkBox}
-    id="my-drawer"
+    {id}
+    bind:checked={open}
     type="checkbox"
     class="drawer-toggle"
+    aria-label="切换抽屉"
   />
   <div class="drawer-content">
     {@render children?.({
       onclick: () => {
-        checkBox.checked = true;
+        open = true;
       },
     })}
   </div>
   <div class="drawer-side">
-    <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"
-    ></label>
+    <label for={id} aria-label="关闭抽屉" class="drawer-overlay"></label>
     <div
       class="bg-base-200 text-base-content h-screen p-2"
       style="width: {width}%"

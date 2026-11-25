@@ -1,5 +1,11 @@
 <script>
-  import { cva, cx } from "class-variance-authority";
+  import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+  import {
+    colorVariants,
+    responsiveVariants,
+    sizeVariants,
+  } from "./common/variants.js";
 
   let {
     color = "",
@@ -11,27 +17,20 @@
     circle = false,
     outline = false,
     block = false,
-    content,
-    className,
+    active = false,
+    wide = false,
+    content = undefined,
+    className = "",
     ghost = false,
     square = false,
     responsive = false,
-    children,
+    children = undefined,
     ...restProps
   } = $props();
 
   const buttonVariants = cva("btn", {
     variants: {
-      color: {
-        neutral: ["btn-neutral"],
-        primary: ["btn-primary"],
-        secondary: ["btn-secondary"],
-        accent: ["btn-accent"],
-        info: ["btn-info"],
-        success: ["btn-success"],
-        warning: ["btn-warning"],
-        error: ["btn-error"],
-      },
+      color: colorVariants.button,
       soft: {
         true: ["btn-soft"],
       },
@@ -63,35 +62,23 @@
         true: ["btn-block"],
       },
       responsive: {
-        true: [
-          "btn-xs",
-          "sm:btn-sm",
-          "md:btn-md",
-          "lg:btn-lg",
-          "xl:btn-xl",
-          "2xl:btn-2xl",
-        ],
+        true: responsiveVariants.button,
       },
-      size: {
-        "": "",
-        xs: ["btn-xs"],
-        sm: ["btn-sm"],
-        md: [""],
-        lg: ["btn-lg"],
-        xl: ["btn-xl"],
-      },
+      size: sizeVariants.button,
     },
     defaultVariants: {},
   });
 </script>
 
 <button
-  class={cx(
+  class={cn(
     buttonVariants({
       responsive,
       color,
       size,
       disabled,
+      active,
+      wide,
       square,
       dash,
       ghost,
@@ -102,6 +89,8 @@
     }),
     className,
   )}
+  disabled={disabled || loading}
+  aria-busy={loading}
   {...restProps}
 >
   {#if loading}

@@ -1,21 +1,19 @@
 <script>
   import { cva } from "class-variance-authority";
+  import { cn } from "./common/cn.js";
+  import { colorVariants } from "./common/variants.js";
+
   const dividerVariants = cva("divider", {
     variants: {
-      color: {
-        undefined: [""],
-        primary: ["divider-primary"],
-        secondary: ["divider-secondary"],
-        accent: ["divider-accent"],
-        neutral: ["divider-neutral"],
-        info: ["divider-info"],
-        success: ["divider-success"],
-        warning: ["divider-warning"],
-        error: ["divider-error"],
-      },
+      color: colorVariants.divider,
     },
   });
-  let { color } = $props();
+
+  let { color, className = "", ...restProps } = $props();
 </script>
 
-<div class={dividerVariants({ color })}></div>
+<div
+  role="separator"
+  class={cn(dividerVariants({ color }), className)}
+  {...restProps}
+></div>

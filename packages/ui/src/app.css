@@ -1,56 +1,50 @@
 @import "tailwindcss";
-@plugin "daisyui/index.js"{
-    themes: light --default, dark --prefersdark,
-    "light",
-    "cupcake",
-    "bumblebee",
-    "emerald",
-    "corporate",
-    "synthwave",
-    "retro",
-    "cyberpunk",
-    "valentine",
-    "halloween",
-    "garden",
-    "forest",
-    "aqua",
-    "lofi",
-    "pastel",
-    "fantasy",
-    "wireframe",
-    "black",
-    "luxury",
-    "dracula",
-    "cmyk",
-    "autumn",
-    "business",
-    "acid",
-    "lemonade",
-    "night",
-    "coffee",
-    "winter",
-    "dim",
-    "nord",
-    "sunset",
-    "caramellatte",
-    "abyss",
-    "silk";
+@plugin "daisyui/index.js" {
+  themes: all;
 }
 @plugin "@tailwindcss/typography";
 @plugin "@iconify/tailwind4";
 
-html {
-    @apply bg-base-100;
+@theme {
+  --z-raised: 2;
+  --z-sticky: 999;
+  --z-dropdown: 1000;
+  --z-overlay: 9999;
+  --z-loading: 10000;
 }
 
-table{
+@utility z-raised {
+  z-index: var(--z-raised);
+}
+
+@utility z-sticky {
+  z-index: var(--z-sticky);
+}
+
+@utility z-dropdown {
+  z-index: var(--z-dropdown);
+}
+
+@utility z-overlay {
+  z-index: var(--z-overlay);
+}
+
+@utility z-loading {
+  z-index: var(--z-loading);
+}
+
+html {
+  @apply bg-base-100;
+}
+
+table {
   @apply table;
 }
 
 *::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 * {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

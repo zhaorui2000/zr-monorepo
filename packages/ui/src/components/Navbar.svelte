@@ -1,32 +1,47 @@
 <script>
-  import { cx, cva } from "class-variance-authority";
-  const navbarVariants = cva("navbar bg-base-100 shadow-sm", {
+  import { cva } from "class-variance-authority";
+  import Button from "./Button.svelte";
+  import { cn } from "./common/cn.js";
+  import { colorVariants } from "./common/variants.js";
+
+  const navbarVariants = cva("navbar shadow-sm", {
     variants: {
       color: {
-        primary: ["bg-primary", "text-primary-content"],
-        secondary: "bg-secondary text-secondary-content",
-        accent: "bg-accent text-accent-content",
-        neutral: "bg-neutral text-neutral-content",
-        info: "bg-info text-info-content",
-        success: "bg-success text-success-content",
-        warning: "bg-warning text-warning-content",
-        error: "bg-error text-error-content",
+        default: "bg-base-100",
+        ...colorVariants.surface,
       },
     },
+    defaultVariants: {
+      color: "default",
+    },
   });
-  let { start, end, color, onclickCenter, children } = $props();
+
+  let {
+    start,
+    end,
+    color = "default",
+    onclickCenter,
+    children,
+    className = "",
+    ...restProps
+  } = $props();
 </script>
 
-<div class={cx(navbarVariants({ color }))}>
+<nav
+  class={cn(navbarVariants({ color: /** @type {any} */ (color) }), className)}
+  {...restProps}
+>
   <div class="navbar-start">
     {@render start?.()}
   </div>
-  <div class="navbar-center">
-    <a href="" class="btn btn-ghost text-xl" onclick={onclickCenter}
-      >{@render children?.()}</a
-    >
-  </div>
+  {#if children || onclickCenter}
+    <div class="navbar-center">
+      <Button ghost className="text-xl" onclick={onclickCenter}>
+        {@render children?.()}
+      </Button>
+    </div>
+  {/if}
   <div class="navbar-end">
     {@render end?.()}
   </div>
-</div>
+</nav>
