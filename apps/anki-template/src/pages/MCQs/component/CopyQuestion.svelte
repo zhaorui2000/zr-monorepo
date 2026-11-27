@@ -1,7 +1,7 @@
 <script>
   import { onDestroy } from "svelte";
   import Button from "@zr/ui/Button";
-  import { ANKI_QUESTION, ANKI_OPTIONS, OPTION_LABELS } from "../store";
+  import { ANKI_QUESTION, OPTION_LABELS, MCQ_OPTIONS } from "../store";
   import Tooltip from "@zr/ui/Tooltip";
   import Icon from "@zr/ui/Icon";
 
@@ -55,11 +55,9 @@
     const parser = new DOMParser();
     const question = parser.parseFromString(ANKI_QUESTION, "text/html")
       .documentElement.textContent;
-    const options = ANKI_OPTIONS.map((option, index) => {
-      const text = parser.parseFromString(option, "text/html").documentElement
-        .textContent;
-      return `${OPTION_LABELS[index]}. ${text}`;
-    }).join("\n");
+    const options = MCQ_OPTIONS.map(
+      (text, index) => `${OPTION_LABELS[index]}. ${text}`,
+    ).join("\n");
 
     try {
       await copyText(`${question}\n\n${options}`);

@@ -1,16 +1,19 @@
 import { persistentAtom } from "@nanostores/persistent";
 import marked from "@utils/marked";
+import { parseMCQ } from "../utils/parseMCQ.js";
 export const OPTION_LABELS = ["A", "B", "C", "D"];
-export const ANKI_QUESTION = marked.parse(String.raw`{{问题}}`, {
-  async: false,
-});
+const questionContent = String.raw`{{问题}}`.trim();
+const parsedQuestion = parseMCQ(questionContent);
+export const ANKI_QUESTION = marked.parse(
+  parsedQuestion?.question ?? questionContent,
+  {
+    async: false,
+  },
+);
 export const ANKI_TRUE_ANSWER = String.raw`{{答案}}`.toUpperCase();
-export const ANKI_OPTIONS = [
-  marked.parse(String.raw`{{A}}`, { async: false }),
-  marked.parse(String.raw`{{B}}`, { async: false }),
-  marked.parse(String.raw`{{C}}`, { async: false }),
-  marked.parse(String.raw`{{D}}`, { async: false }),
-];
+export const MCQ_OPTIONS = parsedQuestion
+  ? OPTION_LABELS.map((label) => parsedQuestion.options[label])
+  : OPTION_LABELS;
 export const answer = persistentAtom("answer", /** @type {string} */ (""));
 export const isRandomOrder = persistentAtom("isRandomOrder", true, {
   encode: String,

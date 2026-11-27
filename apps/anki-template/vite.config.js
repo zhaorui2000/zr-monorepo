@@ -1,3 +1,4 @@
+import { readFileSync, writeFileSync } from "node:fs";
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import tailwindcss from "@tailwindcss/vite";
@@ -9,27 +10,37 @@ const entry = side === "back" ? "back.html" : "index.html";
 function stripComments() {
   return {
     name: "strip-comments",
-    generateBundle: {
-      order: "post",
-      handler(_options, bundle) {
-        for (const output of Object.values(bundle)) {
-          if (output.type !== "asset") continue;
+    writeBundle(outputOptions, bundle) {
+      for (const output of Object.values(bundle)) {
+        if (output.type !== "asset") continue;
 
-          if (output.fileName.endsWith(".css")) {
-            output.source = String(output.source).replace(/\/\*[\s\S]*?\*\//g, "");
-          }
-
-          if (output.fileName.endsWith(".html")) {
-            output.source = String(output.source)
-              .replace(/<!--[\s\S]*?-->/g, "")
-              .replace(
-                /(<style\b[^>]*>)([\s\S]*?)(<\/style>)/gi,
-                (_match, start, css, end) =>
-                  `${start}${css.replace(/\/\*[\s\S]*?\*\//g, "")}${end}`,
-              );
-          }
+        const filePath = path.resolve(
+          outputOptions.dir ?? "dist",
+          output.fileName,
+        );
+        if (output.fileName.endsWith(".css")) {
+          writeFileSync(
+            filePath,
+            readFileSync(filePath, "utf8").replace(/\/\*[\s\S]*?\*\//g, ""),
+          );
         }
-      },
+
+        if (output.fileName.endsWith(".html")) {
+          const html = readFileSync(filePath, "utf8")
+            .replace(/<!--[\s\S]*?-->/g, "")
+            .replace(
+              /(<script\b[^>]*>)([\s\S]*?)(<\/script>)/gi,
+              (_match, start, script, end) =>
+                `${start}${script.replace(/\{\{(?![^{}\r\n]+\}\})/g, "{ {")}${end}`,
+            )
+            .replace(
+              /(<style\b[^>]*>)([\s\S]*?)(<\/style>)/gi,
+              (_match, start, css, end) =>
+                `${start}${css.replace(/\/\*[\s\S]*?\*\//g, "")}${end}`,
+            );
+          writeFileSync(filePath, html);
+        }
+      }
     },
   };
 }
@@ -39,9 +50,9 @@ export default defineConfig({
     viteSingleFile({
       outputFileName: `${side}.html`,
     }),
-    stripComments(),
     tailwindcss(),
     svelte(),
+    stripComments(),
   ],
   build: {
     emptyOutDir: side === "front",

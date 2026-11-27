@@ -1,9 +1,9 @@
 <script>
   import {
-    ANKI_OPTIONS,
     ANKI_QUESTION,
     OPTION_LABELS,
     ANKI_TRUE_ANSWER,
+    MCQ_OPTIONS,
     randomOrder,
     answer,
   } from "../store/index.js";
@@ -58,7 +58,8 @@
               <div class="flex">
                 <Badge responsive className="mr-2" color="primary">
                   {OPTION_LABELS[row]}
-                </Badge>{@html ANKI_OPTIONS[row]}
+                </Badge>
+                <span class="whitespace-pre-wrap">{MCQ_OPTIONS[row]}</span>
               </div>
             </Radio>
           {/each}

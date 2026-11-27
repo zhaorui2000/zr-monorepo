@@ -11,7 +11,7 @@
     randomOrder,
     OPTION_LABELS,
     ANKI_QUESTION,
-    ANKI_OPTIONS,
+    MCQ_OPTIONS,
   } from "./store";
   import { onMount } from "svelte";
 
@@ -67,7 +67,7 @@
             value={OPTION_LABELS[row]}
             name={radioName}
           >
-            {@html ANKI_OPTIONS[row]}
+            <span class="whitespace-pre-wrap">{MCQ_OPTIONS[row]}</span>
           </Radio>
         {/each}
       </div>
