@@ -1,5 +1,3 @@
-import { marked } from "marked";
-
 export default {
   /** @param {{ text: string }} token */
   strong({ text }) {
@@ -12,7 +10,13 @@ export default {
     return `<${tag} class="${listClass} list-inside pl-5 space-y-1">${items
       .map((/** @type {any} */ item) => {
         const { tokens } = item;
-        const text = marked.parser(tokens);
+        const text = tokens
+          .map((/** @type {any} */ token) =>
+            token.type === "paragraph"
+              ? this.parser.parseInline(token.tokens)
+              : this.parser.parse([token]),
+          )
+          .join("");
         return `<li>${text}</li>`;
       })
       .join("")}</${tag}>`;

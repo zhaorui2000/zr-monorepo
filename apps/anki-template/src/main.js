@@ -2,6 +2,10 @@ import { mount } from "svelte";
 import "./app.css";
 import App from "./App.svelte";
 
+document
+  .querySelectorAll('link[href*="reviewer.css"], link[href*="webview.css"]')
+  .forEach((link) => link.remove());
+
 const target = document.getElementById("app");
 if (!target) throw new Error("Anki template root element was not found");
 
